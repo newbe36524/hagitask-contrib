@@ -1,0 +1,75 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "addCommunityTask",
+  "scriptKey": "autotask.add-community-task",
+  "defaultTargetType": "repository",
+  "requirements": [
+    { "type": "agent", "name": "any" },
+    { "type": "cli", "name": "gh", "command": "gh", "args": ["--version"] },
+    { "type": "cli", "name": "git", "command": "git", "args": ["--version"] },
+    { "type": "cli", "name": "node", "command": "node", "args": ["--version"] }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetRepositories",
+          "selectionMode": "multiple",
+          "allowedAccessTypes": ["read"],
+          "accessType": "read",
+          "required": false,
+          "output": "targetRepositories",
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "referenceVaultIds",
+          "selectionMode": "multiple",
+          "accessType": "read",
+          "required": false,
+          "output": "referenceVaultIds",
+          "scope": { "source": "vault-registry" }
+        }
+      ]
+    },
+    "projects": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetProjects",
+          "selectionMode": "multiple",
+          "allowedAccessTypes": ["read"],
+          "accessType": "read",
+          "required": false,
+          "output": "targetProjects",
+          "scope": { "source": "project-registry" }
+        }
+      ]
+    }
+  },
+  "inputBindings": [
+    {
+      "input": "communityTaskName",
+      "promptParameter": "communityTaskName",
+      "metadataKey": "autoTaskCommunityTaskName",
+      "required": true
+    },
+    {
+      "input": "communityTaskBrief",
+      "promptParameter": "communityTaskBrief",
+      "metadataKey": "autoTaskCommunityTaskBrief",
+      "required": true
+    },
+    {
+      "input": "targetScopeMarkdown",
+      "promptParameter": "targetScopeMarkdown",
+      "metadataKey": "autoTaskTargetScopeMarkdown",
+      "producer": "frontend-computed"
+    }
+  ]
+}

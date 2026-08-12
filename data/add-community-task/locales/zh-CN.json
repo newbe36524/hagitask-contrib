@@ -1,0 +1,50 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "添加 Community Task",
+    "title": "创建 Add Community Task 任务",
+    "description": "根据结构化说明创作完整的 HagiTask Community Task 包，在本地完成校验，并从你的 GitHub fork 创建 Pull Request。",
+    "defaultTitle": "新的 Community Task 包",
+    "submit": "创建 Community Task",
+    "submitting": "正在提交 Community Task 创作任务..."
+  },
+  "panel": {
+    "contextSectionTitle": "上下文",
+    "contextSectionDescription": "选择任务运行位置，以及执行器可以查阅的只读资料。",
+    "briefSectionTitle": "创作说明",
+    "briefSectionDescription": "请在一个连续区域中描述完整任务，提示词会先整理说明再写入包文件。",
+    "projectLabel": "项目 *",
+    "projectHint": "创作任务会在所选项目中创建。其工作目录仅用作 fork checkout 的临时空间。",
+    "taskNameLabel": "Community Task 名称 *",
+    "taskNameHint": "你要创作的任务的可读名称。canonical 小写 kebab-case task id 由它推导，之后不可重命名。",
+    "taskNamePlaceholder": "API 文档维护",
+    "repositoryAccessLabel": "只读仓库上下文",
+    "repositoryAccessHint": "可选。把仓库作为只读参考附加进来。包文件始终写入你的 Community Packages fork，绝不会写入这些仓库。",
+    "repositoryAccessEmpty": "当前所选项目还没有可用仓库。",
+    "referenceVaultsLabel": "引用 Vault",
+    "referenceVaultsHint": "可选。把 Vault 作为只读参考上下文附加进来，用于补充规范、笔记或既有探索结果。",
+    "vaultEmptyTitle": "没有可用的 Vault",
+    "vaultEmptyDescription": "如果需要为本次创作附加参考资料，请先创建一个 Vault。",
+    "projectReferencesLabel": "项目引用",
+    "projectReferencesHint": "可选。当新任务参照既有工作流时，把其他项目作为只读上下文附加进来。",
+    "briefLabel": "Community Task 创作说明 *",
+    "briefHint": "请包含目标与用户价值、输入和约束、执行与质量要求、验收标准，以及可选的发布说明。",
+    "briefPlaceholder": "目标与用户价值：\n输入字段与约束：\n执行行为与质量要求：\n验收标准：\n发布说明（可选）："
+  },
+  "status": {
+    "resolvingUpstream": "正在解析上游仓库...",
+    "checkingAuth": "正在检查 GitHub 登录状态...",
+    "preparingFork": "正在准备你的 fork...",
+    "authoringPackage": "正在生成包文件...",
+    "validating": "正在运行包校验...",
+    "creatingPullRequest": "正在创建 Pull Request..."
+  },
+  "errors": {
+    "missingRequiredFields": "提交前请填写任务名称和 Community Task 创作说明。",
+    "ghNotAvailable": "本任务需要 GitHub CLI（gh）。请先安装并执行 gh auth login，然后再派发任务。",
+    "ghNotAuthenticated": "gh 尚未登录。请执行 gh auth login 后重新派发任务。",
+    "forkUnavailable": "当前账号无法 fork 上游 Community Packages 仓库。请检查组织策略或仓库权限。",
+    "validationFailed": "包校验失败。请修改包源文件中报告的文件、字段或规则错误，不要修改生成产物。",
+    "pullRequestFailed": "Pull Request 创建失败。工作分支已推送到你的 fork，可以手动创建 Pull Request。"
+  }
+}

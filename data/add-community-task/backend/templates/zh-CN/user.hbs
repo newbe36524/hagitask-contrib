@@ -1,0 +1,87 @@
+## 运行模式
+
+本提示词运行在非交互环境中。
+
+### 非交互约束
+- 不要使用 AskUserQuestion 或任何交互式确认工具。
+- 为可选包元数据选择合理默认值，并逐项记录假设。
+- 跳过可选确认，直接继续。
+- 不要打开编辑器或浏览器提示。
+
+## 统一创作说明
+
+Community Task 名称：`{{{communityTaskName}}}`
+
+以下内容是用户统一提供的创作意图。不要要求用户使用固定标题；应把完整说明作为一个上下文解释：
+
+{{{communityTaskBrief}}}
+
+## 必须执行的处理阶段
+
+1. **提炼**目标、用户价值、期望结果，以及说明中明确提出的要求。
+2. **结构化**为任务输入、必填和可选字段、约束、执行行为、质量要求、验收标准和可选发布上下文。
+3. **补充**仅限包完整性所需的元数据：canonical 标识符、目录和文件结构、locale 元数据、manifest 字段，以及缺少发布信息时的安全默认值。不得虚构业务需求。将所有推断写入 `Assumptions`，并与 `User-provided content` 明确区分。
+4. **规范化**小写 kebab-case task id、包路径、manifest 声明、locale 覆盖、只读/可写范围表述和可观察的验收语句。保留任务名称作为可读标题。
+5. **验证**生成的每个资源、绑定、locale key、提示词模板、store page 和 manifest 路径。运行仓库真实的 `npm run validate` 与 `npm test`，报告实际命令、退出状态和错误。
+
+## 仓库身份与只读上下文
+
+通过公开 GitHub 身份解析仓库，不依赖本机目录布局。
+
+- 上游 Community Packages：`https://github.com/HagiCode-org/hagitask-community-packages`
+- 已发布 Schema 根地址：`https://tasks.hagicode.com/schemas/`
+- 临时项目路径（仅作 scratch）：`{{projectPath}}`
+{{#if repositoryPath}}
+- 解析到的仓库提示（只读）：`{{repositoryPath}}`
+{{/if}}
+
+{{#if targetScopeMarkdown}}
+### 所选仓库范围
+
+{{{targetScopeMarkdown}}}
+{{else}}
+未选择仓库范围。
+{{/if}}
+
+{{#if referenceVaults}}
+### 所选引用 Vault
+{{#each referenceVaults}}
+- `{{name}}`（`{{id}}`），路径 `{{physicalPath}}`{{#if type}} [{{type}}]{{/if}}
+{{/each}}
+{{/if}}
+
+{{#if targetProjects}}
+### 所选项目引用
+{{#each targetProjects}}
+- `{{name}}`，路径 `{{physicalPath}}`（访问权限：`{{accessType}}`）
+{{/each}}
+{{/if}}
+
+所有所选仓库、Vault 和项目引用都只是只读上下文，无论显示的访问标签如何都不得写入。唯一的包写入目标是贡献者 fork 工作分支中的 `data/<task-id>/`。
+
+## 贡献流程与边界
+
+1. 检查 `gh --version`、`git --version` 和 `gh auth status`。如果未认证，立即停止，报告准确结果并给出 `gh auth login`。
+2. 使用 `gh repo view` 解析上游元数据并记录默认分支，获取当前登录用户作为 fork owner；复用 parent 为上游的已有 fork。不得直接推送上游。
+3. 将 fork clone 到全新的临时 checkout，添加 upstream，同步上游默认分支，初始化嵌套 submodule，确认工作树干净，并创建工作分支。
+4. 推导唯一 canonical task id。若目标目录已存在，选择不同的安全 id 并记录该假设。
+5. 写入前阅读 Community Packages README、结构最接近的既有包和已发布 Schema。
+6. 仅在 `data/<task-id>/` 下创建完整包：manifest、panel、task preset、prompts、两份 locale bundle、两种语言的 system/user 模板对，以及两种语言的 store page。
+7. 在 Community Packages checkout 中运行 `npm run validate` 和 `npm test`。不要修改生成产物或隐藏失败；校验失败就必须报告失败。
+8. 只有两条命令都通过后，才只提交包源文件，将工作分支推送到 fork，并向解析出的上游默认分支创建非交互 PR。报告上游 URL、fork URL、默认分支、工作分支、校验结果和 PR URL。
+
+## 结果格式
+
+返回：
+
+### User-provided content
+概括说明中明确提供的内容。
+
+### Structured authoring context
+列出规范化后的目标、输入、约束、执行行为、质量要求、验收标准和发布上下文。
+
+### Assumptions
+逐项列出每个包完整性默认值或推断出的元数据，不要把假设写成用户要求。
+
+### Validation and contribution result
+报告生成的文件、真实命令退出状态、所有失败诊断，以及（仅在成功时）fork 和 PR 详情。

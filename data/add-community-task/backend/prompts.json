@@ -1,0 +1,63 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US", "zh-CN"],
+  "inputs": [
+    {
+      "name": "projectPath",
+      "source": "system",
+      "required": true,
+      "description": "Absolute path to the selected project root, used only as a temporary working directory."
+    },
+    {
+      "name": "repositoryPath",
+      "source": "computed-context",
+      "description": "Resolved repository identity hint for the selected project. Never treated as the Community Packages write target."
+    },
+    {
+      "name": "communityTaskName",
+      "source": "task-preset-input",
+      "required": true,
+      "description": "Human readable name of the Community Task to author. Drives the canonical kebab-case task id and store-page title."
+    },
+    {
+      "name": "communityTaskBrief",
+      "source": "task-preset-input",
+      "required": true,
+      "description": "Unified authoring brief containing objective, constraints, execution and quality requirements, acceptance criteria, and optional publication context."
+    },
+    {
+      "name": "targetScopeMarkdown",
+      "source": "task-preset-input",
+      "description": "Frontend-composed markdown scope block built from the selected read-only repositories and their access labels."
+    },
+    {
+      "name": "targetRepositories",
+      "source": "computed-context",
+      "description": "Optional read-only repositories resolved from the preset task selection."
+    },
+    {
+      "name": "referenceVaults",
+      "source": "computed-context",
+      "description": "Optional supplemental vault references resolved from the preset task selection."
+    },
+    {
+      "name": "targetProjects",
+      "source": "computed-context",
+      "description": "Optional supplemental cross-project references resolved from the preset task selection."
+    }
+  ],
+  "rendering": { "strictVariables": false, "trimBlocks": true },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  }
+}

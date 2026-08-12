@@ -1,0 +1,87 @@
+## Run mode
+
+This prompt runs in a non-interactive environment.
+
+### Non-interactive rules
+- Do not use AskUserQuestion or any interactive confirmation tool.
+- Choose reasonable defaults for optional package metadata and record each assumption.
+- Continue without optional confirmations.
+- Never open an editor or browser prompt.
+
+## Unified authoring brief
+
+Community Task name: `{{{communityTaskName}}}`
+
+The following is the user's single source of authoring intent. Do not require fixed headings; interpret the complete brief as one context:
+
+{{{communityTaskBrief}}}
+
+## Required processing stages
+
+1. **Extract** the objective, user value, desired outcome, and any explicit requirements from the brief.
+2. **Structure** the brief into task inputs, required and optional fields, constraints, execution behavior, quality requirements, acceptance criteria, and optional publication context.
+3. **Supplement** only package-completeness metadata: canonical identifiers, required directory and file structure, locale metadata, manifest fields, and safe defaults for omitted publication information. Do not invent business requirements. Record every inferred value under `Assumptions`, and distinguish it from `User-provided content`.
+4. **Normalize** the task id as lowercase kebab-case, package paths, manifest declarations, locale coverage, read-only/write scope wording, and observable acceptance statements. Preserve the task name as the human-readable title.
+5. **Verify** every generated resource, binding, locale key, prompt template, store page, and manifest path. Run the repository's real `npm run validate` and `npm test`; report the actual command, exit status, and errors.
+
+## Repository identity and read-only context
+
+Resolve repositories by public GitHub identity, not by local layout.
+
+- Upstream Community Packages: `https://github.com/HagiCode-org/hagitask-community-packages`
+- Published schema root: `https://tasks.hagicode.com/schemas/`
+- Temporary project path (scratch only): `{{projectPath}}`
+{{#if repositoryPath}}
+- Resolved repository hint (read-only): `{{repositoryPath}}`
+{{/if}}
+
+{{#if targetScopeMarkdown}}
+### Selected repository scope
+
+{{{targetScopeMarkdown}}}
+{{else}}
+No repository scope was selected.
+{{/if}}
+
+{{#if referenceVaults}}
+### Selected reference vaults
+{{#each referenceVaults}}
+- `{{name}}` (`{{id}}`) at `{{physicalPath}}`{{#if type}} [{{type}}]{{/if}}
+{{/each}}
+{{/if}}
+
+{{#if targetProjects}}
+### Selected project references
+{{#each targetProjects}}
+- `{{name}}` at `{{physicalPath}}` (access: `{{accessType}}`)
+{{/each}}
+{{/if}}
+
+All selected repositories, vaults, and project references are read-only context. Never write to them, regardless of displayed access labels. The only package write target is `data/<task-id>/` on a working branch of the contributor's fork.
+
+## Contribution flow and boundaries
+
+1. Check `gh --version`, `git --version`, and `gh auth status`. If authentication is missing, stop and report the exact result plus `gh auth login`.
+2. Resolve upstream metadata with `gh repo view`, capture its default branch, identify the authenticated fork owner, and reuse an existing fork whose parent is the upstream. Never push to upstream.
+3. Clone the fork into a fresh temporary checkout, add upstream, synchronize the upstream default branch, initialize nested submodules, confirm a clean tree, and create a working branch.
+4. Derive a unique canonical task id. If the intended directory already exists, choose a distinct safe id and record the assumption.
+5. Read the Community Packages README, a structurally relevant package, and the published schemas before writing.
+6. Create the complete package under `data/<task-id>/` only: manifest, panel, task preset, prompts, both locale bundles, both system/user template pairs, and both store pages.
+7. Run `npm run validate` and `npm test` from the Community Packages checkout. Do not edit generated output or hide failures. A failed validation is a failed result.
+8. If both commands pass, commit only the package source, push the working branch to the fork, and create a non-interactive PR against the resolved upstream default branch. Report upstream URL, fork URL, default branch, branch, validation results, and PR URL.
+
+## Result format
+
+Return:
+
+### User-provided content
+Summarize what the brief explicitly states.
+
+### Structured authoring context
+List the normalized objective, inputs, constraints, execution behavior, quality requirements, acceptance criteria, and publication context.
+
+### Assumptions
+List each package-completeness default or inferred metadata value separately. Do not present assumptions as user requirements.
+
+### Validation and contribution result
+Report generated files, real command exit statuses, any failure diagnostics, and (only if successful) the fork and PR details.

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": { "key": "taskPreset.title" },
+  "description": { "key": "taskPreset.description" },
+  "defaultTitle": { "key": "taskPreset.defaultTitle" },
+  "submitLabel": { "key": "taskPreset.submit" },
+  "submittingLabel": { "key": "taskPreset.submitting" },
+  "sections": [
+    {
+      "id": "context",
+      "layout": "split",
+      "title": { "key": "panel.contextSectionTitle" },
+      "description": { "key": "panel.contextSectionDescription" },
+      "fields": [
+        {
+          "id": "projectId",
+          "renderer": "project-picker",
+          "label": { "key": "panel.projectLabel" },
+          "hint": { "key": "panel.projectHint" },
+          "required": true,
+          "output": "projectId"
+        },
+        {
+          "id": "communityTaskName",
+          "renderer": "text",
+          "label": { "key": "panel.taskNameLabel" },
+          "hint": { "key": "panel.taskNameHint" },
+          "placeholder": { "key": "panel.taskNamePlaceholder" },
+          "required": true,
+          "output": "communityTaskName"
+        },
+        {
+          "id": "targetRepositories",
+          "renderer": "repository-access-selector",
+          "label": { "key": "panel.repositoryAccessLabel" },
+          "hint": { "key": "panel.repositoryAccessHint" },
+          "required": false,
+          "output": "targetRepositories",
+          "selectionMode": "multiple",
+          "componentProps": {
+            "targetSelectionId": "targetRepositories",
+            "emptyTextKey": "panel.repositoryAccessEmpty"
+          }
+        },
+        {
+          "id": "referenceVaultIds",
+          "renderer": "vault-role-selector",
+          "inputType": "text",
+          "label": { "key": "panel.referenceVaultsLabel" },
+          "hint": { "key": "panel.referenceVaultsHint" },
+          "required": false,
+          "output": "referenceVaultIds",
+          "selectionMode": "multiple",
+          "componentProps": {
+            "allowOutputSelection": false,
+            "emptyTitleKey": "panel.vaultEmptyTitle",
+            "emptyDescriptionKey": "panel.vaultEmptyDescription"
+          }
+        },
+        {
+          "id": "targetProjects",
+          "renderer": "project-reference-selector",
+          "inputType": "text",
+          "label": { "key": "panel.projectReferencesLabel" },
+          "hint": { "key": "panel.projectReferencesHint" },
+          "required": false,
+          "output": "targetProjects",
+          "selectionMode": "multiple"
+        }
+      ]
+    },
+    {
+      "id": "authoring-brief",
+      "layout": "stack",
+      "title": { "key": "panel.briefSectionTitle" },
+      "description": { "key": "panel.briefSectionDescription" },
+      "fields": [
+        {
+          "id": "communityTaskBrief",
+          "renderer": "multiline-text",
+          "inputType": "haginput",
+          "label": { "key": "panel.briefLabel" },
+          "hint": { "key": "panel.briefHint" },
+          "placeholder": { "key": "panel.briefPlaceholder" },
+          "required": true,
+          "output": "communityTaskBrief"
+        }
+      ]
+    }
+  ]
+}
