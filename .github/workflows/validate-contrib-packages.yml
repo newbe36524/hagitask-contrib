@@ -1,0 +1,44 @@
+name: Validate Contrib Packages
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - "hagitask/**"
+      - ".gitmodules"
+      - "scripts/**"
+      - "test/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/validate-contrib-packages.yml"
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-packages:
+    name: Validate packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout contrib packages
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+          cache: npm
+
+      - name: Install locked toolchain
+        run: npm ci
+
+      - name: Validate contrib packages
+        run: npm run validate
+
+      - name: Run validator tests
+        run: npm test
