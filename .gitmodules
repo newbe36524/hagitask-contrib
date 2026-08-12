@@ -1,0 +1,4 @@
+[submodule "hagitask"]
+	path = hagitask
+	url = https://github.com/HagiCode-org/hagitask.git
+	branch = main
