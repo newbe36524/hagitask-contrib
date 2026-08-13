@@ -1,0 +1,56 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US", "zh-CN"],
+  "inputs": [
+    {
+      "name": "command",
+      "source": "task-preset-input",
+      "required": true,
+      "description": "One of initialize, add-repository, or reorder-repositories."
+    },
+    {
+      "name": "operationDescription",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "Required user instructions and URLs for the selected operation."
+    },
+    {
+      "name": "projectPath",
+      "source": "system",
+      "required": true,
+      "description": "Absolute path to the selected project root and the only write target."
+    },
+    {
+      "name": "targetScopeMarkdown",
+      "source": "task-preset-input",
+      "description": "Frontend-composed read-only repository scope."
+    },
+    {
+      "name": "targetRepositories",
+      "source": "computed-context",
+      "description": "Optional read-only reference repositories."
+    }
+  ],
+  "partials": {
+    "initialize-zh-CN": "./templates/zh-CN/initialize.md",
+    "initialize-en-US": "./templates/en-US/initialize.md",
+    "add-repository-zh-CN": "./templates/zh-CN/add-repository.md",
+    "add-repository-en-US": "./templates/en-US/add-repository.md",
+    "reorder-repositories-zh-CN": "./templates/zh-CN/reorder-repositories.md",
+    "reorder-repositories-en-US": "./templates/en-US/reorder-repositories.md"
+  },
+  "rendering": { "strictVariables": false, "trimBlocks": true },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  }
+}

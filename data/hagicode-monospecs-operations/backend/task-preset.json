@@ -1,0 +1,61 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "hagicodeMonoSpecsOperations",
+  "scriptKey": "autotask.hagicode-monospecs-operations",
+  "defaultTargetType": "repository",
+  "requirements": [
+    { "type": "agent", "name": "any" },
+    { "type": "cli", "name": "git", "command": "git", "args": ["--version"] },
+    { "type": "cli", "name": "node", "command": "node", "args": ["--version"] }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetRepositories",
+          "selectionMode": "multiple",
+          "allowedAccessTypes": ["read"],
+          "accessType": "read",
+          "required": false,
+          "output": "targetRepositories",
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": { "enabled": false },
+    "projects": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetProjects",
+          "selectionMode": "single",
+          "allowedAccessTypes": ["write"],
+          "accessType": "write",
+          "required": true,
+          "output": "targetProjects",
+          "scope": { "source": "project-registry" }
+        }
+      ]
+    }
+  },
+  "inputBindings": [
+    {
+      "input": "command",
+      "promptParameter": "command",
+      "metadataKey": "autoTaskMonoSpecsCommand",
+      "required": true
+    },
+    {
+      "input": "operationDescription",
+      "promptParameter": "operationDescription",
+      "metadataKey": "autoTaskMonoSpecsOperationDescription",
+      "required": false
+    },
+    {
+      "input": "targetScopeMarkdown",
+      "promptParameter": "targetScopeMarkdown",
+      "producer": "frontend-computed"
+    }
+  ]
+}

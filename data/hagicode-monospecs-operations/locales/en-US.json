@@ -1,0 +1,52 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "HagiCode MonoSpecs Operations",
+    "title": "Manage HagiCode MonoSpecs",
+    "description": "Initialize configuration, add repositories, or reorder MonoSpecs repositories by activity.",
+    "defaultTitle": "New MonoSpecs operation",
+    "submit": "Create operation task",
+    "submitting": "Submitting MonoSpecs operation..."
+  },
+  "panel": {
+    "contextSectionTitle": "Project scope",
+    "contextSectionDescription": "Choose the only writable project and optional read-only references.",
+    "projectLabel": "Project *",
+    "projectHint": "The task may write only in the selected project root.",
+    "repositoryAccessLabel": "Read-only reference repositories",
+    "repositoryAccessHint": "Optional; these repositories may be read but never modified.",
+    "repositoryAccessEmpty": "No reference repositories are available for this project.",
+    "operationSectionTitle": "Operation",
+    "operationSectionDescription": "Choose an operation and provide complete instructions.",
+    "commandLabel": "Operation *",
+    "commandHint": "Choose initialize, add repositories, or reorder repositories.",
+    "operationDescriptionLabel": "Operation description",
+    "operationDescriptionHint": "For adding repositories, provide one or more absolute URLs; for reordering, describe the intent.",
+    "operationDescriptionPlaceholder": "Example: https://github.com/example/repo\nOr: organize repositories by recent use."
+  },
+  "commands": {
+    "groups": {
+      "monospecs": "MonoSpecs configuration",
+      "monospecsDescription": "Safely maintain .hagicode/monospecs.yaml"
+    },
+    "items": {
+      "initialize": { "description": "Create missing configuration or report the existing state." },
+      "addRepository": { "description": "Validate URLs and append repositories in input order." },
+      "reorderRepositories": { "description": "Preview and confirm an array-order-only repository reorder." }
+    }
+  },
+  "status": {
+    "reading": "Reading MonoSpecs configuration...",
+    "validating": "Validating MonoSpecs configuration...",
+    "writing": "Writing MonoSpecs configuration...",
+    "reporting": "Preparing operation result..."
+  },
+  "errors": {
+    "missingRequiredFields": "Choose a project and operation.",
+    "invalidConfiguration": "The MonoSpecs configuration is invalid; no write was performed.",
+    "invalidUrl": "Repository URLs must be valid absolute URLs.",
+    "duplicatePath": "The inferred repository path already exists or is duplicated.",
+    "confirmationRequired": "Explicit user confirmation is required before reordering.",
+    "validationFailed": "Full configuration validation failed before writing."
+  }
+}

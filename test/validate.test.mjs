@@ -400,7 +400,7 @@ assert.ok(SCHEMA_REL === 'hagitask/schemas/task-preset-plugin');
 
 test('discovers contrib tasks under data/ and nothing at the repo root', () => {
   const { packages } = validateCommunityPackages(repoRoot);
-  const expected = ['data/add-community-task'];
+  const expected = ['data/add-community-task', 'data/hagicode-monospecs-operations'];
   for (const id of expected) {
     assert.ok(packages.includes(id), `expected canonical task ${id} to be discovered`);
   }

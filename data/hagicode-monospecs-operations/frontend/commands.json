@@ -1,0 +1,35 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/commands.schema.json",
+  "schemaVersion": "1.1",
+  "selectionMode": "single",
+  "groups": [
+    {
+      "id": "monospecs",
+      "title": { "key": "commands.groups.monospecs" },
+      "description": { "key": "commands.groups.monospecsDescription" }
+    }
+  ],
+  "commands": [
+    {
+      "id": "initialize",
+      "groupId": "monospecs",
+      "label": "initialize",
+      "description": { "key": "commands.items.initialize.description" },
+      "preludeTemplate": "Use the initialize operation template. Read {projectPath}/.hagicode/monospecs.yaml; if missing, create .hagicode/ and the minimal version/commit_when_archive/repositories configuration; if valid, preserve it and report no overwrite; if invalid, stop and report the exact error. Validate before writing and report the path, repository count, and final state. User instructions: {operationDescription}"
+    },
+    {
+      "id": "add-repository",
+      "groupId": "monospecs",
+      "label": "add-repository",
+      "description": { "key": "commands.items.addRepository.description" },
+      "preludeTemplate": "Use the add-repository operation template. Read and validate {projectPath}/.hagicode/monospecs.yaml, extract one or more absolute URLs, infer path/displayName/icon/tags, reject invalid URLs and normalized duplicate paths, append in input order, revalidate the full document, then write or report that nothing changed. User instructions: {operationDescription}"
+    },
+    {
+      "id": "reorder-repositories",
+      "groupId": "monospecs",
+      "label": "reorder-repositories",
+      "description": { "key": "commands.items.reorderRepositories.description" },
+      "preludeTemplate": "Use the reorder-repositories operation template. Read repository activity signals, put commonly used repositories first with ui.collapseToMore=false, put low-frequency repositories later with ui.collapseToMore=true, show a position and More-group preview with evidence, wait for explicit confirmation, then change only array order and ui.collapseToMore and revalidate; without confirmation or on failure, do not write. User instructions: {operationDescription}"
+    }
+  ]
+}

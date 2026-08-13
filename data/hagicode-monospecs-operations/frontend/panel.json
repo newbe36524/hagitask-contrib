@@ -1,0 +1,67 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": { "key": "taskPreset.title" },
+  "description": { "key": "taskPreset.description" },
+  "defaultTitle": { "key": "taskPreset.defaultTitle" },
+  "submitLabel": { "key": "taskPreset.submit" },
+  "submittingLabel": { "key": "taskPreset.submitting" },
+  "sections": [
+    {
+      "id": "context",
+      "layout": "split",
+      "title": { "key": "panel.contextSectionTitle" },
+      "description": { "key": "panel.contextSectionDescription" },
+      "fields": [
+        {
+          "id": "projectId",
+          "renderer": "project-picker",
+          "label": { "key": "panel.projectLabel" },
+          "hint": { "key": "panel.projectHint" },
+          "required": true,
+          "output": "projectId"
+        },
+        {
+          "id": "targetRepositories",
+          "renderer": "repository-access-selector",
+          "label": { "key": "panel.repositoryAccessLabel" },
+          "hint": { "key": "panel.repositoryAccessHint" },
+          "required": false,
+          "output": "targetRepositories",
+          "selectionMode": "multiple",
+          "componentProps": {
+            "targetSelectionId": "targetRepositories",
+            "emptyTextKey": "panel.repositoryAccessEmpty"
+          }
+        }
+      ]
+    },
+    {
+      "id": "operation",
+      "layout": "stack",
+      "title": { "key": "panel.operationSectionTitle" },
+      "description": { "key": "panel.operationSectionDescription" },
+      "fields": [
+        {
+          "id": "command",
+          "renderer": "command-picker",
+          "label": { "key": "panel.commandLabel" },
+          "hint": { "key": "panel.commandHint" },
+          "required": true,
+          "output": "command",
+          "selectionMode": "single",
+          "dataSource": "./commands.json"
+        },
+        {
+          "id": "operationDescription",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.operationDescriptionLabel" },
+          "hint": { "key": "panel.operationDescriptionHint" },
+          "placeholder": { "key": "panel.operationDescriptionPlaceholder" },
+          "required": false,
+          "output": "operationDescription"
+        }
+      ]
+    }
+  ]
+}
