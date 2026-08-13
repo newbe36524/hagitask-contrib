@@ -1,7 +1,50 @@
 Run `{{command}}` for the selected project at `{{projectPath}}`.
 
-Operation description:
+{{#if (eq command "initialize")}}
+## initialize command
+
+Purpose: initialize `.hagicode/monospecs.yaml` for the target project or report its existing state.
+
+Steps:
+1. Read `.hagicode/monospecs.yaml` at the target project root.
+2. If missing, create `.hagicode/` with `version: "1.0"`, `commit_when_archive: false`, and `repositories: []`.
+3. If valid, preserve the existing file, do not overwrite it, and report its repository count.
+4. If YAML or required fields are invalid, stop without writing and report the path and field-level error.
+5. Validate before and after a write, then report the read path, action, validation result, and final state.
+{{/if}}
+
+{{#if (eq command "add-repository")}}
+## add-repository command
+
+Purpose: append repository entries in the order of one or more supplied URLs.
+
+Steps:
+1. Read and validate `.hagicode/monospecs.yaml` and its `repositories` array.
+2. Extract one or more valid absolute URLs from the operation description.
+3. Infer the repository name, relative `path`, and `displayName`; use default `icon` and `tags`. Stop and report when inference is unreliable.
+4. Normalize paths and reject duplicates against existing entries or other inputs, missing fields, and invalid URLs without writing.
+5. Append entries in URL input order and revalidate the complete document before writing.
+6. Report each URL's inferred values, write path, validation result, and final repository count.
+{{/if}}
+
+{{#if (eq command "reorder-repositories")}}
+## reorder-repositories command
+
+Purpose: organize the existing repository order from observable activity signals and use `ui.collapseToMore` so frequently used repositories stay visible while low-frequency repositories go into More.
+
+Steps:
+1. Read the complete `repositories` array.
+2. Check recent commits, current branch synchronization, uncommitted changes, and recent-use records.
+3. Put frequently or recently active repositories first with `ui.collapseToMore: false`; put long-inactive repositories later with `ui.collapseToMore: true` so common repositories receive visual priority. When activity cannot be determined, preserve relative order and the existing `collapseToMore` value.
+4. Produce a preview with evidence, proposed positions, and new `collapseToMore` values, then wait for explicit user confirmation.
+5. After confirmation, change only the `repositories` array order and each entry's `ui.collapseToMore`; do not add, remove, or rewrite other repository fields.
+6. Validate the complete document. Without confirmation or after validation failure, do not write; report the reason, final order, and More grouping.
+{{/if}}
+
+{{#if operationDescription}}
+Additional operation instructions:
 {{{operationDescription}}}
+{{/if}}
 
 Read-only reference scope:
 {{{targetScopeMarkdown}}}

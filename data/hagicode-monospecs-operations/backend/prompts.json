@@ -15,7 +15,7 @@
       "name": "operationDescription",
       "source": "task-preset-input",
       "required": false,
-      "description": "Required user instructions and URLs for the selected operation."
+      "description": "Optional operation-specific instructions; add-repository uses this field for repository URL or URLs."
     },
     {
       "name": "projectPath",
@@ -34,14 +34,6 @@
       "description": "Optional read-only reference repositories."
     }
   ],
-  "partials": {
-    "initialize-zh-CN": "./templates/zh-CN/initialize.md",
-    "initialize-en-US": "./templates/en-US/initialize.md",
-    "add-repository-zh-CN": "./templates/zh-CN/add-repository.md",
-    "add-repository-en-US": "./templates/en-US/add-repository.md",
-    "reorder-repositories-zh-CN": "./templates/zh-CN/reorder-repositories.md",
-    "reorder-repositories-en-US": "./templates/en-US/reorder-repositories.md"
-  },
   "rendering": { "strictVariables": false, "trimBlocks": true },
   "locales": {
     "en-US": {
