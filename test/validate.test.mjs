@@ -595,7 +595,13 @@ test('HagiTask Contrib maintenance package has complete bilingual command contra
   assert.match(commandText.dev, /read-only source/i);
   assert.match(commandText.dev, /atomically/i);
   assert.match(commandText.publish, /semantic version/i);
-  assert.match(commandText.publish, /Do not fork, push, create a Pull Request/i);
+  assert.match(commandText.publish, /local Community Packages checkout/i);
+  assert.match(commandText.publish, /two selected repository paths/i);
+  assert.match(
+    readFileSync(join(packageRoot, 'backend/templates/zh-CN/commands/publish.md'), 'utf8'),
+    /两个选定的仓库路径/,
+  );
+  assert.match(commandText.publish, /does not remove the Contrib source/i);
 
   const { packages, errors } = validateCommunityPackages(repoRoot);
   assert.ok(packages.includes('data/hagitask-contrib-maintenance'));

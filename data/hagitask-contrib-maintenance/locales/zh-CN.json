@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "HagiTask Contrib 维护",
     "title": "维护 HagiTask Contrib 包",
-    "description": "创建包、从只读 Community 包开发同步，或准备本地发布副本。",
+    "description": "创建包、从 Community 包开发同步，或准备本地发布迁移。",
     "defaultTitle": "HagiTask Contrib 维护",
     "submit": "运行维护",
     "submitting": "正在运行维护..."
@@ -13,7 +13,7 @@
     "groupDescription": "选择一个安全且有边界的包操作。",
     "newDescription": "创建并校验完整的新 Contrib 包。",
     "devDescription": "从只读 Community 源同步包到 Contrib。",
-    "publishDescription": "复制、更新版本并本地校验待发布的 Contrib 包。"
+    "publishDescription": "在本地复制、更新版本并校验 Contrib 包。"
   },
   "panel": {
     "contextTitle": "命令与仓库范围",
@@ -40,7 +40,7 @@
   "status": {
     "preflight": "正在执行 Contrib preflight...",
     "synchronizing": "正在原子同步包...",
-    "publishing": "正在准备本地发布副本...",
+    "publishing": "正在准备本地 Community Packages 迁移...",
     "validating": "正在运行校验和测试..."
   },
   "errors": {
@@ -50,6 +50,6 @@
     "localConflict": "本地 Contrib 存在差异，需要明确覆盖策略。",
     "invalidVersion": "发布需要有效的语义化版本。",
     "validationFailed": "校验或测试失败，不能报告包已完成。",
-    "readOnlyBoundary": "Community Packages、嵌套 schema 和生成物均为只读。"
+    "readOnlyBoundary": "嵌套 schema 和生成物受保护；publish 仅使用本地 checkout。"
   }
 }
