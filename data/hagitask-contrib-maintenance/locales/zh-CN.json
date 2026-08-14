@@ -1,0 +1,57 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "HagiTask Contrib 维护",
+    "title": "维护 HagiTask Contrib 包",
+    "description": "创建包、从只读 Community 包开发同步，或准备本地发布副本。",
+    "defaultTitle": "HagiTask Contrib 维护",
+    "submit": "运行维护",
+    "submitting": "正在运行维护..."
+  },
+  "commands": {
+    "groupTitle": "维护命令",
+    "groupDescription": "选择一个安全且有边界的包操作。",
+    "newDescription": "创建并校验完整的新 Contrib 包。",
+    "devDescription": "从只读 Community 源同步包到 Contrib。",
+    "publishDescription": "复制、更新版本并本地校验待发布的 Contrib 包。"
+  },
+  "panel": {
+    "contextTitle": "项目与命令",
+    "contextDescription": "选择项目、操作和包标识。",
+    "projectLabel": "项目 *",
+    "projectHint": "所选项目提供 Contrib 工作上下文。",
+    "repositoryAccessLabel": "参考仓库",
+    "repositoryAccessHint": "所选仓库仅作为只读上下文；包始终写入 Contrib。",
+    "repositoryAccessEmpty": "未选择参考仓库。",
+    "commandLabel": "命令 *",
+    "commandHint": "选择 new、dev 或 publish。",
+    "taskIdLabel": "Task ID *",
+    "taskIdHint": "Contrib 包使用小写 kebab-case。",
+    "taskIdPlaceholder": "my-task",
+    "sourceTaskIdLabel": "Community 源 task ID",
+    "sourceTaskIdHint": "dev 使用；Community Packages 始终只读。",
+    "sourceTaskIdPlaceholder": "community-task",
+    "operationTitle": "操作详情",
+    "operationDescription": "描述预期变更和验收条件。",
+    "briefLabel": "操作说明 *",
+    "briefHint": "包括范围、假设和校验要求。",
+    "briefPlaceholder": "目标、范围、验收条件和发布说明",
+    "scopeLabel": "仓库范围 *",
+    "scopeHint": "Contrib 是唯一写入目标；Community Packages 仅可读。"
+  },
+  "status": {
+    "preflight": "正在执行 Contrib preflight...",
+    "synchronizing": "正在原子同步包...",
+    "publishing": "正在准备本地发布副本...",
+    "validating": "正在运行校验和测试..."
+  },
+  "errors": {
+    "invalidCommand": "命令必须是 new、dev 或 publish。",
+    "invalidTaskId": "Task ID 必须是小写 kebab-case 且不能冲突。",
+    "missingSource": "Community 源包或 manifest 缺失。",
+    "localConflict": "本地 Contrib 存在差异，需要明确覆盖策略。",
+    "invalidVersion": "发布需要有效的语义化版本。",
+    "validationFailed": "校验或测试失败，不能报告包已完成。",
+    "readOnlyBoundary": "Community Packages、嵌套 schema 和生成物均为只读。"
+  }
+}

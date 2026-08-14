@@ -1,0 +1,32 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/commands.schema.json",
+  "schemaVersion": "1.1",
+  "selectionMode": "single",
+  "groups": [
+    {
+      "id": "maintenance",
+      "title": { "key": "commands.groupTitle" },
+      "description": { "key": "commands.groupDescription" }
+    }
+  ],
+  "commands": [
+    {
+      "id": "new",
+      "groupId": "maintenance",
+      "label": "new",
+      "description": { "key": "commands.newDescription" }
+    },
+    {
+      "id": "dev",
+      "groupId": "maintenance",
+      "label": "dev",
+      "description": { "key": "commands.devDescription" }
+    },
+    {
+      "id": "publish",
+      "groupId": "maintenance",
+      "label": "publish",
+      "description": { "key": "commands.publishDescription" }
+    }
+  ]
+}

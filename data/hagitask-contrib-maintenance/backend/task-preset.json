@@ -1,0 +1,34 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "hagitaskContribMaintenance",
+  "scriptKey": "autotask.hagitask-contrib-maintenance",
+  "defaultTargetType": "repository",
+  "requirements": [
+    { "type": "agent", "name": "any" },
+    { "type": "cli", "name": "node", "command": "node", "args": ["--version"] }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetRepositories",
+          "selectionMode": "multiple",
+          "accessType": "read",
+          "allowedAccessTypes": ["read"],
+          "required": false,
+          "output": "targetRepositories",
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": { "enabled": false },
+    "projects": { "enabled": false }
+  },
+  "inputBindings": [
+    { "input": "projectId", "promptParameter": "projectId", "metadataKey": "maintenanceProjectId", "required": true },
+    { "input": "command", "promptParameter": "command", "metadataKey": "maintenanceCommand", "required": true },
+    { "input": "operationBrief", "promptParameter": "operationBrief", "metadataKey": "maintenanceOperationBrief", "required": true },
+    { "input": "targetRepositories", "promptParameter": "targetRepositories", "metadataKey": "maintenanceTargetRepositories", "producer": "frontend-computed" }
+  ]
+}

@@ -42,3 +42,8 @@ npm test
 
 Only packages under `data/` are discovered. Generated catalogs and archives do
 not belong in this repository.
+
+For command-driven packages, command-specific execution steps belong in the
+optional `commandSystemPrompts` section of `backend/prompts.json` and its
+locale template files. Keep skills for reusable capabilities; do not use skill
+installation or discovery to carry the MonoSpecs command steps.

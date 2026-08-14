@@ -1,0 +1,57 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "HagiTask Contrib Maintenance",
+    "title": "Maintain a HagiTask Contrib package",
+    "description": "Create, develop from a read-only Community package, or prepare a local publication copy.",
+    "defaultTitle": "HagiTask Contrib maintenance",
+    "submit": "Run maintenance",
+    "submitting": "Running maintenance..."
+  },
+  "commands": {
+    "groupTitle": "Maintenance commands",
+    "groupDescription": "Choose one safe, scoped package operation.",
+    "newDescription": "Create and validate a complete new Contrib package.",
+    "devDescription": "Synchronize a Community package into Contrib from a read-only source.",
+    "publishDescription": "Copy, version, and locally validate a Contrib package for publication."
+  },
+  "panel": {
+    "contextTitle": "Project and command",
+    "contextDescription": "Choose the project, operation, and package identifiers.",
+    "projectLabel": "Project *",
+    "projectHint": "The selected project provides the Contrib working context.",
+    "repositoryAccessLabel": "Reference repositories",
+    "repositoryAccessHint": "Selected repositories are read-only context; package writes stay in Contrib.",
+    "repositoryAccessEmpty": "No reference repositories selected.",
+    "commandLabel": "Command *",
+    "commandHint": "Choose new, dev, or publish.",
+    "taskIdLabel": "Task ID *",
+    "taskIdHint": "Use lowercase kebab-case for the Contrib package.",
+    "taskIdPlaceholder": "my-task",
+    "sourceTaskIdLabel": "Community source task ID",
+    "sourceTaskIdHint": "Used by dev; Community Packages remain read-only.",
+    "sourceTaskIdPlaceholder": "community-task",
+    "operationTitle": "Operation details",
+    "operationDescription": "Describe the intended change and acceptance criteria.",
+    "briefLabel": "Operation brief *",
+    "briefHint": "Include scope, assumptions, and validation expectations.",
+    "briefPlaceholder": "Goal, scope, acceptance criteria, and publication notes",
+    "scopeLabel": "Repository scope *",
+    "scopeHint": "Contrib is write-only target; Community Packages are read-only reference."
+  },
+  "status": {
+    "preflight": "Running Contrib preflight...",
+    "synchronizing": "Synchronizing package atomically...",
+    "publishing": "Preparing local publication copy...",
+    "validating": "Running validation and tests..."
+  },
+  "errors": {
+    "invalidCommand": "Command must be new, dev, or publish.",
+    "invalidTaskId": "Task ID must be lowercase kebab-case and must not conflict.",
+    "missingSource": "Community source package or manifest is missing.",
+    "localConflict": "Local Contrib differences require an explicit overwrite strategy.",
+    "invalidVersion": "A valid semantic version is required for publication.",
+    "validationFailed": "Validation or tests failed; package was not reported as complete.",
+    "readOnlyBoundary": "Community Packages, nested schemas, and generated outputs are read-only."
+  }
+}

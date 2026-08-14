@@ -1,19 +1,19 @@
 {
   "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/manifest.schema.json",
   "schemaVersion": "1.0",
-  "taskPresetId": "hagicode-monospecs-operations",
+  "taskPresetId": "hagitask-contrib-maintenance",
   "version": "1.0.0",
-  "icon": "list-settings",
+  "icon": "wrench",
   "displayName": { "key": "taskPreset.displayName" },
   "description": { "key": "taskPreset.description" },
   "kind": "custom-executor",
   "status": "experimental",
   "owner": "Hagicode Team",
-  "entrypoints": { "menuSurface": "session-create", "drawerId": "hagicode-monospecs-operations" },
+  "entrypoints": { "menuSurface": "session-create", "drawerId": "hagitask-contrib-maintenance" },
   "activation": { "defaultState": "passive" },
   "localization": {
     "strategy": "plugin-bundles",
-    "namespace": "hagicode-monospecs-operations",
+    "namespace": "hagitask-contrib-maintenance",
     "defaultLocale": "en-US",
     "supportedLocales": ["en-US", "zh-CN"],
     "bundles": {

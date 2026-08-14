@@ -1,0 +1,38 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US", "zh-CN"],
+  "inputs": [
+    { "name": "projectId", "source": "task-preset-input", "required": true, "description": "Selected Contrib project context." },
+    { "name": "command", "source": "task-preset-input", "required": true, "description": "Must be new, dev, or publish." },
+    { "name": "operationBrief", "source": "task-preset-input", "required": true, "description": "Operation objective and acceptance criteria." },
+    { "name": "targetRepositories", "source": "computed-context", "description": "Selected repositories are read-only reference context." }
+  ],
+  "rendering": { "strictVariables": true, "trimBlocks": true },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  },
+  "commandSystemPrompts": {
+    "new": {
+      "en-US": "./templates/en-US/commands/new.md",
+      "zh-CN": "./templates/zh-CN/commands/new.md"
+    },
+    "dev": {
+      "en-US": "./templates/en-US/commands/dev.md",
+      "zh-CN": "./templates/zh-CN/commands/dev.md"
+    },
+    "publish": {
+      "en-US": "./templates/en-US/commands/publish.md",
+      "zh-CN": "./templates/zh-CN/commands/publish.md"
+    }
+  }
+}

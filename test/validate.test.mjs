@@ -345,6 +345,56 @@ test('missing prompt template is an explicit failure', () => {
   assert.ok(hit, 'expected missing prompt template error');
 });
 
+test('command-specific prompt templates are validated and resolved', () => {
+  const id = 'command-prompts';
+  const files = validPackageFiles(id);
+  const promptDocument = JSON.parse(files['backend/prompts.json']);
+  promptDocument.commandSystemPrompts = {
+    initialize: { 'en-US': './templates/en-US/commands/initialize.md' },
+  };
+  files['backend/prompts.json'] = JSON.stringify(promptDocument);
+  files['backend/templates/en-US/commands/initialize.md'] = '# initialize';
+  writePackage(id, files);
+  const { errors } = validateCommunityPackages(root);
+  assert.deepEqual(
+    errors.filter((error) => error.packageId === `data/${id}`),
+    [],
+  );
+});
+
+test('missing command-specific prompt template is an explicit failure', () => {
+  const id = 'missing-command-prompt';
+  const files = validPackageFiles(id);
+  const promptDocument = JSON.parse(files['backend/prompts.json']);
+  promptDocument.commandSystemPrompts = {
+    initialize: { 'en-US': './templates/en-US/commands/does-not-exist.md' },
+  };
+  files['backend/prompts.json'] = JSON.stringify(promptDocument);
+  writePackage(id, files);
+  const { errors } = validateCommunityPackages(root);
+  const hit = errors.find(
+    (error) => error.packageId === `data/${id}`
+      && error.field.includes('template:./templates/en-US/commands/does-not-exist.md')
+      && error.message.includes('prompt template file not found'),
+  );
+  assert.ok(hit, 'expected missing command-specific prompt template error');
+});
+
+test('invalid command-specific prompt declaration is reported', () => {
+  const id = 'invalid-command-prompt';
+  const files = validPackageFiles(id);
+  const promptDocument = JSON.parse(files['backend/prompts.json']);
+  promptDocument.commandSystemPrompts = { initialize: './not-a-locale-object.md' };
+  files['backend/prompts.json'] = JSON.stringify(promptDocument);
+  writePackage(id, files);
+  const { errors } = validateCommunityPackages(root);
+  const hit = errors.find(
+    (error) => error.packageId === `data/${id}`
+      && error.field.includes('schema:prompt-package.schema.json'),
+  );
+  assert.ok(hit, 'expected invalid command-specific prompt schema error');
+});
+
 test('inconsistent localization: store page slug must equal taskId', () => {
   const files = validPackageFiles('wrong-slug');
   files['store-page/index.en-US.md'] = storePage('different-id', 'en-US', 'Test', 'en');
@@ -455,4 +505,117 @@ test('add-community-task uses one unified brief across panel, bindings, prompts,
     assert.equal(promptInputs.includes(oldField), false, `${oldField} must not be a prompt input`);
     assert.equal(panelText.includes(oldField), false, `${oldField} must not be declared in the panel`);
   }
+});
+
+test('MonoSpecs command prompts are independent and do not require skills', () => {
+  const packageRoot = join(repoRoot, 'data', 'hagicode-monospecs-operations');
+  const prompts = JSON.parse(readFileSync(join(packageRoot, 'backend/prompts.json'), 'utf8'));
+  const commands = JSON.parse(readFileSync(join(packageRoot, 'frontend/commands.json'), 'utf8'));
+  const expected = {
+    initialize: ['initialize', 'repositories: []'],
+    'add-repository': ['add-repository', 'URL', 'input order'],
+    'reorder-repositories': ['reorder-repositories', 'confirmation', 'collapseToMore', '10'],
+  };
+
+  for (const [commandId, markers] of Object.entries(expected)) {
+    const mapping = prompts.commandSystemPrompts?.[commandId];
+    assert.ok(mapping, `expected command-specific mapping for ${commandId}`);
+    const templatePath = mapping['en-US'];
+    const template = readFileSync(join(packageRoot, 'backend', templatePath), 'utf8');
+    for (const marker of markers) {
+      assert.ok(template.includes(marker), `${commandId} template should include ${marker}`);
+    }
+    assert.equal(commands.commands.find((command) => command.id === commandId)?.skill, undefined);
+    for (const otherCommandId of Object.keys(expected).filter((id) => id !== commandId)) {
+      assert.equal(template.includes(otherCommandId), false, `${commandId} template must not contain ${otherCommandId}`);
+    }
+  }
+});
+
+test('HagiTask Contrib maintenance package has complete bilingual command contracts', () => {
+  const packageRoot = join(repoRoot, 'data', 'hagitask-contrib-maintenance');
+  const manifest = JSON.parse(readFileSync(join(packageRoot, 'manifest.json'), 'utf8'));
+  const panel = JSON.parse(readFileSync(join(packageRoot, 'frontend/panel.json'), 'utf8'));
+  const commands = JSON.parse(readFileSync(join(packageRoot, 'frontend/commands.json'), 'utf8'));
+  const preset = JSON.parse(readFileSync(join(packageRoot, 'backend/task-preset.json'), 'utf8'));
+  const prompts = JSON.parse(readFileSync(join(packageRoot, 'backend/prompts.json'), 'utf8'));
+  const en = JSON.parse(readFileSync(join(packageRoot, 'locales/en-US.json'), 'utf8'));
+  const zh = JSON.parse(readFileSync(join(packageRoot, 'locales/zh-CN.json'), 'utf8'));
+  const allPromptText = [
+    readFileSync(join(packageRoot, 'backend/templates/en-US/system.md'), 'utf8'),
+    readFileSync(join(packageRoot, 'backend/templates/en-US/user.hbs'), 'utf8'),
+    readFileSync(join(packageRoot, 'backend/templates/zh-CN/system.md'), 'utf8'),
+    readFileSync(join(packageRoot, 'backend/templates/zh-CN/user.hbs'), 'utf8'),
+    ...['new', 'dev', 'publish'].flatMap((command) => [
+      readFileSync(join(packageRoot, `backend/templates/en-US/commands/${command}.md`), 'utf8'),
+      readFileSync(join(packageRoot, `backend/templates/zh-CN/commands/${command}.md`), 'utf8'),
+    ]),
+  ].join('\n');
+
+  assert.equal(manifest.taskPresetId, 'hagitask-contrib-maintenance');
+  assert.deepEqual(commands.commands.map((command) => command.id), ['new', 'dev', 'publish']);
+  assert.equal(manifest.ui.commands, './frontend/commands.json');
+  assert.deepEqual(Object.keys(prompts.commandSystemPrompts).sort(), ['dev', 'new', 'publish']);
+  for (const command of ['new', 'dev', 'publish']) {
+    assert.deepEqual(Object.keys(prompts.commandSystemPrompts[command]).sort(), ['en-US', 'zh-CN']);
+  }
+
+  const outputs = panel.sections.flatMap((section) => section.fields.map((field) => field.output));
+  const commandField = panel.sections
+    .flatMap((section) => section.fields)
+    .find((field) => field.output === 'command');
+  assert.equal(commandField?.renderer, 'command-picker');
+  assert.equal(commandField?.dataSource, './commands.json');
+  for (const input of ['projectId', 'command', 'targetRepositories', 'operationBrief']) {
+    assert.ok(outputs.includes(input), `panel should expose ${input}`);
+    assert.ok(prompts.inputs.some((promptInput) => promptInput.name === input), `prompts should bind ${input}`);
+    assert.ok(
+      preset.inputBindings.some((binding) => binding.input === input),
+      `preset should bind ${input}`,
+    );
+  }
+  assert.equal(
+    panel.sections.flatMap((section) => section.fields)
+      .filter((field) => field.renderer === 'multiline-text').length,
+    1,
+    'maintenance panel should have one text box',
+  );
+  assert.ok(commands.commands.every((command) => command.description?.key));
+
+  const keyPaths = (value, prefix = '') => Object.entries(value).flatMap(([key, child]) => {
+    const path = prefix ? `${prefix}.${key}` : key;
+    return child && typeof child === 'object' && !Array.isArray(child)
+      ? keyPaths(child, path)
+      : [path];
+  }).sort();
+  assert.deepEqual(keyPaths(en), keyPaths(zh), 'locale bundles must have matching key sets');
+
+  for (const marker of [
+    'repos/hagitask-contrib/data',
+    'repos/hagitask-community-packages',
+    'read-only',
+    'generated',
+    'index.json',
+    'packages/<taskId>.zip',
+    'local publication',
+    'version',
+  ]) {
+    assert.ok(allPromptText.toLowerCase().includes(marker.toLowerCase()), `prompt must mention ${marker}`);
+  }
+  const commandText = Object.fromEntries(['new', 'dev', 'publish'].map((command) => [
+    command,
+    readFileSync(join(packageRoot, `backend/templates/en-US/commands/${command}.md`), 'utf8'),
+  ]));
+  assert.match(commandText.new, /reject an existing directory|never overwrite/i);
+  assert.match(commandText.dev, /read-only source/i);
+  assert.match(commandText.dev, /atomically/i);
+  assert.match(commandText.publish, /semantic version/i);
+  assert.match(commandText.publish, /Do not fork, push, create a Pull Request/i);
+
+  const { packages, errors } = validateCommunityPackages(repoRoot);
+  assert.ok(packages.includes('data/hagitask-contrib-maintenance'));
+  assert.deepEqual(
+    errors.filter((error) => error.packageId === 'data/hagitask-contrib-maintenance'),
+    [],
+  );
 });

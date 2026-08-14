@@ -10,8 +10,8 @@
     {
       "id": "context",
       "layout": "split",
-      "title": { "key": "panel.contextSectionTitle" },
-      "description": { "key": "panel.contextSectionDescription" },
+      "title": { "key": "panel.contextTitle" },
+      "description": { "key": "panel.contextDescription" },
       "fields": [
         {
           "id": "projectId",
@@ -33,15 +33,7 @@
             "targetSelectionId": "targetRepositories",
             "emptyTextKey": "panel.repositoryAccessEmpty"
           }
-        }
-      ]
-    },
-    {
-      "id": "operation",
-      "layout": "stack",
-      "title": { "key": "panel.operationSectionTitle" },
-      "description": { "key": "panel.operationSectionDescription" },
-      "fields": [
+        },
         {
           "id": "command",
           "renderer": "command-picker",
@@ -51,15 +43,24 @@
           "output": "command",
           "selectionMode": "single",
           "dataSource": "./commands.json"
-        },
+        }
+      ]
+    },
+    {
+      "id": "operation",
+      "layout": "stack",
+      "title": { "key": "panel.operationTitle" },
+      "description": { "key": "panel.operationDescription" },
+      "fields": [
         {
-          "id": "operationDescription",
+          "id": "operationBrief",
           "renderer": "multiline-text",
-          "label": { "key": "panel.operationDescriptionLabel" },
-          "hint": { "key": "panel.operationDescriptionHint" },
-          "placeholder": { "key": "panel.operationDescriptionPlaceholder" },
-          "required": false,
-          "output": "operationDescription"
+          "inputType": "haginput",
+          "label": { "key": "panel.briefLabel" },
+          "hint": { "key": "panel.briefHint" },
+          "placeholder": { "key": "panel.briefPlaceholder" },
+          "required": true,
+          "output": "operationBrief"
         }
       ]
     }
