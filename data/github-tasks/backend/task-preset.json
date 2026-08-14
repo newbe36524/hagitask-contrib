@@ -1,0 +1,35 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "githubTasks",
+  "scriptKey": "autotask.github-tasks",
+  "defaultTargetType": "repository",
+  "requirements": [
+    { "type": "agent", "name": "any" },
+    { "type": "cli", "name": "gh", "command": "gh", "args": ["--version"] },
+    { "type": "cli", "name": "node", "command": "node", "args": ["--version"] }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetRepositories",
+          "selectionMode": "multiple",
+          "allowedAccessTypes": ["write"],
+          "accessType": "write",
+          "required": false,
+          "output": "targetRepositories",
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": { "enabled": false },
+    "projects": { "enabled": false }
+  },
+  "inputBindings": [
+    { "input": "command", "promptParameter": "command", "metadataKey": "githubTaskCommand", "required": true },
+    { "input": "operationBrief", "promptParameter": "operationBrief", "metadataKey": "githubTaskOperationBrief" },
+    { "input": "targetRepositories", "promptParameter": "targetRepositories", "metadataKey": "githubTaskTargetRepositories", "producer": "frontend-computed", "required": false },
+    { "input": "targetScopeMarkdown", "promptParameter": "targetScopeMarkdown", "metadataKey": "targetScopeMarkdown", "producer": "frontend-computed" }
+  ]
+}

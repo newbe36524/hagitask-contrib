@@ -1,0 +1,31 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "GitHub Tasks",
+    "title": "Run a GitHub task",
+    "description": "Manage GitHub data through gh CLI commands without leaving persistent local artifacts.",
+    "defaultTitle": "GitHub Tasks",
+    "submit": "Run task",
+    "submitting": "Running task..."
+  },
+  "commands": {
+    "groupTitle": "GitHub management",
+    "groupDescription": "Run safe GitHub CLI remote management operations.",
+    "arrangeStarDescription": "Fetch the user's GitHub stars with gh, analyze them, and apply supported remote updates without leaving local catalog files.",
+    "updateRepoDescriptionDescription": "Update descriptions, topics, homepage URLs, and other explicitly requested repository metadata remotely."
+  },
+  "panel": {
+    "contextTitle": "GitHub remote operation",
+    "contextDescription": "Use selected repositories or repository URLs from the operation brief without local output files.",
+    "repositoryLabel": "Repository context",
+    "repositoryHint": "Optional writable fallback; update-repo-description uses URLs in the operation brief first.",
+    "repositoryEmpty": "No repository context selected.",
+    "commandLabel": "Command *",
+    "commandHint": "Choose the GitHub operation to run.",
+    "briefTitle": "Task guidance",
+    "briefDescription": "Optionally describe constraints, classification rules, or review criteria.",
+    "briefLabel": "Operation brief",
+    "briefHint": "Leave empty to use the selected command's default behavior.",
+    "briefPlaceholder": "Describe the desired remote GitHub operation and acceptance criteria."
+  }
+}

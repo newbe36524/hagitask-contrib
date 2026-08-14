@@ -1,0 +1,31 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "GitHub 任务",
+    "title": "运行 GitHub 任务",
+    "description": "通过 gh CLI 命令管理 GitHub 数据，不留下持久化本地文件。",
+    "defaultTitle": "GitHub 任务",
+    "submit": "运行任务",
+    "submitting": "正在运行任务..."
+  },
+  "commands": {
+    "groupTitle": "GitHub 管理",
+    "groupDescription": "运行安全的 GitHub CLI 远程管理操作。",
+    "arrangeStarDescription": "通过 gh 获取用户 Star，分析并应用受支持的远程更新，不留下本地 catalog 文件。",
+    "updateRepoDescriptionDescription": "远程更新仓库描述、topics、主页 URL 及其他明确请求的仓库元数据。"
+  },
+  "panel": {
+    "contextTitle": "GitHub 远程操作",
+    "contextDescription": "可使用已选仓库，或从操作说明中的仓库 URL 解析目标，不产生本地输出文件。",
+    "repositoryLabel": "仓库上下文",
+    "repositoryHint": "可选的可写仓库后备范围；update-repo-description 优先使用操作说明中的 URL。",
+    "repositoryEmpty": "未选择仓库上下文。",
+    "commandLabel": "命令 *",
+    "commandHint": "选择要运行的 GitHub 操作。",
+    "briefTitle": "任务说明",
+    "briefDescription": "可选填写约束、分类规则或审核标准。",
+    "briefLabel": "操作说明",
+    "briefHint": "留空则使用所选 command 的默认行为。",
+    "briefPlaceholder": "描述期望的远程 GitHub 操作和验收条件。"
+  }
+}

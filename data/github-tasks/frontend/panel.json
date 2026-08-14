@@ -1,0 +1,60 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": { "key": "taskPreset.title" },
+  "description": { "key": "taskPreset.description" },
+  "defaultTitle": { "key": "taskPreset.defaultTitle" },
+  "submitLabel": { "key": "taskPreset.submit" },
+  "submittingLabel": { "key": "taskPreset.submitting" },
+  "sections": [
+    {
+      "id": "context",
+      "layout": "split",
+      "title": { "key": "panel.contextTitle" },
+      "description": { "key": "panel.contextDescription" },
+      "fields": [
+        {
+          "id": "targetRepositories",
+          "renderer": "repository-access-selector",
+          "label": { "key": "panel.repositoryLabel" },
+          "hint": { "key": "panel.repositoryHint" },
+          "required": false,
+          "output": "targetRepositories",
+          "selectionMode": "multiple",
+          "componentProps": {
+            "targetSelectionId": "targetRepositories",
+            "emptyTextKey": "panel.repositoryEmpty"
+          }
+        },
+        {
+          "id": "command",
+          "renderer": "command-picker",
+          "label": { "key": "panel.commandLabel" },
+          "hint": { "key": "panel.commandHint" },
+          "required": true,
+          "output": "command",
+          "selectionMode": "single",
+          "dataSource": "./commands.json"
+        }
+      ]
+    },
+    {
+      "id": "brief",
+      "layout": "stack",
+      "title": { "key": "panel.briefTitle" },
+      "description": { "key": "panel.briefDescription" },
+      "fields": [
+        {
+          "id": "operationBrief",
+          "renderer": "multiline-text",
+          "inputType": "haginput",
+          "label": { "key": "panel.briefLabel" },
+          "hint": { "key": "panel.briefHint" },
+          "placeholder": { "key": "panel.briefPlaceholder" },
+          "required": false,
+          "output": "operationBrief"
+        }
+      ]
+    }
+  ]
+}

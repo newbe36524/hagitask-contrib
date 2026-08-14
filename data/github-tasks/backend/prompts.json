@@ -1,0 +1,34 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US", "zh-CN"],
+  "inputs": [
+    { "name": "command", "source": "task-preset-input", "required": true, "description": "The selected GitHub command." },
+    { "name": "operationBrief", "source": "task-preset-input", "description": "Optional classification guidance and acceptance criteria." },
+    { "name": "targetRepositories", "source": "computed-context", "required": false, "description": "Optional repository context; arrange-star does not require a repository target." },
+    { "name": "targetScopeMarkdown", "source": "task-preset-input", "description": "Markdown scope block for the selected repository." }
+  ],
+  "rendering": { "strictVariables": true, "trimBlocks": true },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  },
+  "commandSystemPrompts": {
+    "arrange-star": {
+      "en-US": "./templates/en-US/commands/arrange-star.md",
+      "zh-CN": "./templates/zh-CN/commands/arrange-star.md"
+    },
+    "update-repo-description": {
+      "en-US": "./templates/en-US/commands/update-repo-description.md",
+      "zh-CN": "./templates/zh-CN/commands/update-repo-description.md"
+    }
+  }
+}

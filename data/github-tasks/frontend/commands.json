@@ -1,0 +1,26 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/commands.schema.json",
+  "schemaVersion": "1.1",
+  "selectionMode": "single",
+  "groups": [
+    {
+      "id": "github",
+      "title": { "key": "commands.groupTitle" },
+      "description": { "key": "commands.groupDescription" }
+    }
+  ],
+  "commands": [
+    {
+      "id": "arrange-star",
+      "groupId": "github",
+      "label": "arrange-star",
+      "description": { "key": "commands.arrangeStarDescription" }
+    },
+    {
+      "id": "update-repo-description",
+      "groupId": "github",
+      "label": "update-repo-description",
+      "description": { "key": "commands.updateRepoDescriptionDescription" }
+    }
+  ]
+}
