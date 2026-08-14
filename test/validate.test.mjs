@@ -450,7 +450,7 @@ assert.ok(SCHEMA_REL === 'hagitask/schemas/task-preset-plugin');
 
 test('discovers contrib tasks under data/ and nothing at the repo root', () => {
   const { packages } = validateCommunityPackages(repoRoot);
-  const expected = ['data/add-community-task', 'data/hagicode-monospecs-operations'];
+  const expected = ['data/add-community-task', 'data/hagitask-contrib-maintenance'];
   for (const id of expected) {
     assert.ok(packages.includes(id), `expected canonical task ${id} to be discovered`);
   }
@@ -504,31 +504,6 @@ test('add-community-task uses one unified brief across panel, bindings, prompts,
     assert.equal(bindings.includes(oldField), false, `${oldField} must not be a preset binding`);
     assert.equal(promptInputs.includes(oldField), false, `${oldField} must not be a prompt input`);
     assert.equal(panelText.includes(oldField), false, `${oldField} must not be declared in the panel`);
-  }
-});
-
-test('MonoSpecs command prompts are independent and do not require skills', () => {
-  const packageRoot = join(repoRoot, 'data', 'hagicode-monospecs-operations');
-  const prompts = JSON.parse(readFileSync(join(packageRoot, 'backend/prompts.json'), 'utf8'));
-  const commands = JSON.parse(readFileSync(join(packageRoot, 'frontend/commands.json'), 'utf8'));
-  const expected = {
-    initialize: ['initialize', 'repositories: []'],
-    'add-repository': ['add-repository', 'URL', 'input order'],
-    'reorder-repositories': ['reorder-repositories', 'confirmation', 'collapseToMore', '10'],
-  };
-
-  for (const [commandId, markers] of Object.entries(expected)) {
-    const mapping = prompts.commandSystemPrompts?.[commandId];
-    assert.ok(mapping, `expected command-specific mapping for ${commandId}`);
-    const templatePath = mapping['en-US'];
-    const template = readFileSync(join(packageRoot, 'backend', templatePath), 'utf8');
-    for (const marker of markers) {
-      assert.ok(template.includes(marker), `${commandId} template should include ${marker}`);
-    }
-    assert.equal(commands.commands.find((command) => command.id === commandId)?.skill, undefined);
-    for (const otherCommandId of Object.keys(expected).filter((id) => id !== commandId)) {
-      assert.equal(template.includes(otherCommandId), false, `${commandId} template must not contain ${otherCommandId}`);
-    }
   }
 });
 
