@@ -14,14 +14,6 @@
       "description": { "key": "panel.contextDescription" },
       "fields": [
         {
-          "id": "projectId",
-          "renderer": "project-picker",
-          "label": { "key": "panel.projectLabel" },
-          "hint": { "key": "panel.projectHint" },
-          "required": true,
-          "output": "projectId"
-        },
-        {
           "id": "targetRepositories",
           "renderer": "repository-access-selector",
           "label": { "key": "panel.repositoryAccessLabel" },

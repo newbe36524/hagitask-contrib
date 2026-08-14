@@ -16,12 +16,10 @@
     "publishDescription": "复制、更新版本并本地校验待发布的 Contrib 包。"
   },
   "panel": {
-    "contextTitle": "项目与命令",
-    "contextDescription": "选择项目、操作和包标识。",
-    "projectLabel": "项目 *",
-    "projectHint": "所选项目提供 Contrib 工作上下文。",
+    "contextTitle": "命令与仓库范围",
+    "contextDescription": "选择操作和只读仓库上下文。",
     "repositoryAccessLabel": "参考仓库",
-    "repositoryAccessHint": "所选仓库仅作为只读上下文；包始终写入 Contrib。",
+    "repositoryAccessHint": "选择本次操作所需仓库及其读写权限。",
     "repositoryAccessEmpty": "未选择参考仓库。",
     "commandLabel": "命令 *",
     "commandHint": "选择 new、dev 或 publish。",

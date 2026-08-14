@@ -14,8 +14,7 @@
         {
           "id": "targetRepositories",
           "selectionMode": "multiple",
-          "accessType": "read",
-          "allowedAccessTypes": ["read"],
+          "allowedAccessTypes": ["read", "write"],
           "required": false,
           "output": "targetRepositories",
           "scope": { "source": "owner-project-repositories" }
@@ -26,9 +25,9 @@
     "projects": { "enabled": false }
   },
   "inputBindings": [
-    { "input": "projectId", "promptParameter": "projectId", "metadataKey": "maintenanceProjectId", "required": true },
     { "input": "command", "promptParameter": "command", "metadataKey": "maintenanceCommand", "required": true },
     { "input": "operationBrief", "promptParameter": "operationBrief", "metadataKey": "maintenanceOperationBrief", "required": true },
-    { "input": "targetRepositories", "promptParameter": "targetRepositories", "metadataKey": "maintenanceTargetRepositories", "producer": "frontend-computed" }
+    { "input": "targetRepositories", "promptParameter": "targetRepositories", "metadataKey": "maintenanceTargetRepositories", "producer": "frontend-computed" },
+    { "input": "targetScopeMarkdown", "promptParameter": "targetScopeMarkdown", "metadataKey": "targetScopeMarkdown", "producer": "frontend-computed" }
   ]
 }

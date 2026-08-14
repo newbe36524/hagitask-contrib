@@ -1,8 +1,12 @@
 ## 维护请求
 
-- 项目：`{{projectId}}`
 - 命令：`{{command}}`
-- 只读仓库上下文：`{{targetRepositories}}`
+- 仓库上下文：`{{targetRepositories}}`
+{{#if targetScopeMarkdown}}
+
+### 目标范围
+{{{targetScopeMarkdown}}}
+{{/if}}
 
 ### 操作说明
 {{{operationBrief}}}

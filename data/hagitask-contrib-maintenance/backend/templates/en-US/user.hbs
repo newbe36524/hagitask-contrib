@@ -1,8 +1,12 @@
 ## Maintenance request
 
-- Project: `{{projectId}}`
 - Command: `{{command}}`
-- Read-only repository context: `{{targetRepositories}}`
+- Repository context: `{{targetRepositories}}`
+{{#if targetScopeMarkdown}}
+
+### Selected target scope
+{{{targetScopeMarkdown}}}
+{{/if}}
 
 ### Operation brief
 {{{operationBrief}}}

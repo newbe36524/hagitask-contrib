@@ -5,10 +5,10 @@
   "defaultLocale": "en-US",
   "supportedLocales": ["en-US", "zh-CN"],
   "inputs": [
-    { "name": "projectId", "source": "task-preset-input", "required": true, "description": "Selected Contrib project context." },
     { "name": "command", "source": "task-preset-input", "required": true, "description": "Must be new, dev, or publish." },
     { "name": "operationBrief", "source": "task-preset-input", "required": true, "description": "Operation objective and acceptance criteria." },
-    { "name": "targetRepositories", "source": "computed-context", "description": "Selected repositories are read-only reference context." }
+    { "name": "targetRepositories", "source": "computed-context", "description": "Selected repositories and their access modes." },
+    { "name": "targetScopeMarkdown", "source": "task-preset-input", "description": "Markdown description of the selected repository scope." }
   ],
   "rendering": { "strictVariables": true, "trimBlocks": true },
   "locales": {

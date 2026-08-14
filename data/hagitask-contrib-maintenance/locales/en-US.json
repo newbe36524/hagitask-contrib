@@ -16,12 +16,10 @@
     "publishDescription": "Copy, version, and locally validate a Contrib package for publication."
   },
   "panel": {
-    "contextTitle": "Project and command",
-    "contextDescription": "Choose the project, operation, and package identifiers.",
-    "projectLabel": "Project *",
-    "projectHint": "The selected project provides the Contrib working context.",
+    "contextTitle": "Command and repository scope",
+    "contextDescription": "Choose the operation and read-only repository context.",
     "repositoryAccessLabel": "Reference repositories",
-    "repositoryAccessHint": "Selected repositories are read-only context; package writes stay in Contrib.",
+    "repositoryAccessHint": "Choose repositories and their read or write access for this operation.",
     "repositoryAccessEmpty": "No reference repositories selected.",
     "commandLabel": "Command *",
     "commandHint": "Choose new, dev, or publish.",

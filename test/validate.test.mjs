@@ -450,7 +450,11 @@ assert.ok(SCHEMA_REL === 'hagitask/schemas/task-preset-plugin');
 
 test('discovers contrib tasks under data/ and nothing at the repo root', () => {
   const { packages } = validateCommunityPackages(repoRoot);
-  const expected = ['data/add-community-task', 'data/hagitask-contrib-maintenance'];
+  const expected = [
+    'data/add-community-task',
+    'data/github-tasks',
+    'data/hagitask-contrib-maintenance',
+  ];
   for (const id of expected) {
     assert.ok(packages.includes(id), `expected canonical task ${id} to be discovered`);
   }
@@ -541,7 +545,11 @@ test('HagiTask Contrib maintenance package has complete bilingual command contra
     .find((field) => field.output === 'command');
   assert.equal(commandField?.renderer, 'command-picker');
   assert.equal(commandField?.dataSource, './commands.json');
-  for (const input of ['projectId', 'command', 'targetRepositories', 'operationBrief']) {
+  const repositorySelection = preset.targets.repositories.selections
+    .find((selection) => selection.id === 'targetRepositories');
+  assert.deepEqual(repositorySelection?.allowedAccessTypes, ['read', 'write']);
+  assert.equal(repositorySelection?.accessType, undefined);
+  for (const input of ['command', 'targetRepositories', 'operationBrief']) {
     assert.ok(outputs.includes(input), `panel should expose ${input}`);
     assert.ok(prompts.inputs.some((promptInput) => promptInput.name === input), `prompts should bind ${input}`);
     assert.ok(
@@ -549,6 +557,8 @@ test('HagiTask Contrib maintenance package has complete bilingual command contra
       `preset should bind ${input}`,
     );
   }
+  assert.ok(prompts.inputs.some((promptInput) => promptInput.name === 'targetScopeMarkdown'));
+  assert.ok(preset.inputBindings.some((binding) => binding.input === 'targetScopeMarkdown'));
   assert.equal(
     panel.sections.flatMap((section) => section.fields)
       .filter((field) => field.renderer === 'multiline-text').length,
