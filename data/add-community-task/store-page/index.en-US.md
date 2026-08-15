@@ -33,11 +33,11 @@ The panel provides one required multiline brief for the objective, user value, i
 
 ### Writes only inside your fork
 
-Repository, vault, and project selections are read-only context. The executor resolves the upstream repository from its public GitHub URL, reuses your existing fork or creates one with `gh`, works in a temporary checkout, and writes only under `data/<task-id>/` on a working branch. Nothing writes to the repositories you attached, and nothing writes to the read-only `hagitask` schema submodule.
+Repository, vault, and project selections are read-only context. The executor resolves the upstream repository from its public GitHub URL, reuses your existing fork or creates one with `gh`, works in a temporary checkout, and writes only under `data/<task-id>/` on a working branch. Nothing writes to the repositories you attached, and nothing writes to the installed HagiTask CLI dependency.
 
 ### Treats validation as a completion condition
 
-After generating the package the executor initializes the nested schema submodule and runs the repository's own `npm run validate` and `npm test`. It reports the real exit status. Editing generated output or dropping an error to make the run look clean is explicitly forbidden.
+After generating the package the executor runs the repository's own `npm run validate` and `npm test` using the installed CLI. It reports the real exit status. Editing generated output or dropping an error to make the run look clean is explicitly forbidden.
 
 ### Finishes the contribution
 

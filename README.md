@@ -18,10 +18,9 @@ data/<taskId>/
   locales/
   store-page/
 scripts/
-  validate-contrib-packages.mjs
+  (validation is provided by @hagicode/hagitask)
 test/
   validate.test.mjs
-hagitask/                         # nested schema source
 ```
 
 The package layout and schema contracts intentionally match the community
@@ -34,7 +33,6 @@ repository so a stabilized task can be moved without restructuring.
 ## Validate locally
 
 ```bash
-git submodule update --init --recursive
 npm ci
 npm run validate
 npm test
