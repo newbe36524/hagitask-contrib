@@ -1,0 +1,50 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/manifest.schema.json",
+  "schemaVersion": "1.0",
+  "taskPresetId": "claude-md-update",
+  "version": "1.0.0",
+  "icon": "file-pen-line",
+  "displayName": {
+    "key": "taskPreset.displayName"
+  },
+  "description": {
+    "key": "taskPreset.description"
+  },
+  "kind": "custom-executor",
+  "status": "experimental",
+  "owner": "Hagicode Team",
+  "entrypoints": {
+    "menuSurface": "session-create",
+    "drawerId": "claude-md-update"
+  },
+  "activation": {
+    "defaultState": "passive"
+  },
+  "localization": {
+    "strategy": "plugin-bundles",
+    "namespace": "claude-md-update",
+    "defaultLocale": "en-US",
+    "supportedLocales": [
+      "en-US",
+      "zh-CN"
+    ],
+    "bundles": {
+      "en-US": "./locales/en-US.json",
+      "zh-CN": "./locales/zh-CN.json"
+    }
+  },
+  "capabilities": {
+    "supportsSceneBinding": false,
+    "supportsCommandCatalog": false
+  },
+  "ui": {
+    "panel": "./frontend/panel.json"
+  },
+  "site": {
+    "storePage": "./store-page/"
+  },
+  "backend": {
+    "taskPreset": "./backend/task-preset.json",
+    "prompts": "./backend/prompts.json"
+  }
+}

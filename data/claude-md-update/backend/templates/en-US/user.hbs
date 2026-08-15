@@ -1,0 +1,56 @@
+## Run mode
+This prompt is running in a non-interactive environment.
+
+### Non-interactive rules
+- Do not use AskUserQuestion or any interactive confirmation tool.
+- When an optional choice is needed, pick a reasonable default and record the assumption.
+- Skip optional confirmations and continue directly.
+
+## Task
+Update the selected project's agent docs using the resolved scope:
+- `AGENTS.md` is the primary documentation source.
+- `CLAUDE.md` stays minimal as a redirect to `AGENTS.md`.
+
+## Execution context
+- Working directory: `{{projectPath}}`
+{{#if repositoryPath}}- Resolved repository hint: `{{repositoryPath}}`
+{{/if}}
+- Resolved scope key: `{{scope}}`
+
+### Target file scope
+
+{{{targetScopeMarkdown}}}
+
+## Requirements
+1. Read existing `AGENTS.md` and `CLAUDE.md` before editing.
+2. Keep changes strictly within files explicitly listed in the target scope.
+3. Treat `AGENTS.md` as the primary source; place all substantive instructions, commands, conventions, and agent behavior constraints there.
+4. Keep `CLAUDE.md` minimal and redirect-only. Reference pattern:
+   ```
+   # Claude Configuration
+   This file points to [AGENTS.md](./AGENTS.md) which is the source of truth for project-specific AI assistant configuration.
+   ```
+5. When `scope` is `project-only` or `root-only`, update root `AGENTS.md` (primary) and `CLAUDE.md` (redirect).
+6. When `scope` is `root-and-children`, update every listed `AGENTS.md` / `CLAUDE.md` file using the same AGENTS-primary pattern.
+7. Preserve accurate existing guidance; remove stale guidance only when replaced by better current guidance.
+8. Reuse nearby repository documentation conventions instead of inventing a new maintenance format.
+9. Keep assumptions explicit, especially if a listed file is missing or a child repo has no existing maintenance doc.
+10. Reply in the user's input language by default; for mixed-language input, follow the last explicit language instruction.
+11. If scope has no writable targets, do read-only analysis and provide actionable follow-up edit suggestions.
+
+## Output format
+- Return output in this exact order:
+  1. `## Conclusion`
+  2. `## Assumptions (if any)`
+  3. `## Next step`
+- Write `None` under assumptions when there are none.
+- When assumptions are needed, use this exact format: `Assumption: <one sentence>; Reason: <one sentence>; Impact: <one sentence>`.
+- Result must include: modified files and the applied scope.
+
+## Suggested workflow
+1. Check root and any child-repo files listed in scope.
+2. Read each target's current `AGENTS.md` and `CLAUDE.md`.
+3. Compare docs against actual toolchain and workflow to identify stale sections.
+4. Update `AGENTS.md` first as full source of truth.
+5. Update `CLAUDE.md` second as minimal redirect.
+6. Summarize outcomes and remaining gaps.

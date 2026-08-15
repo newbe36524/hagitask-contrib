@@ -1,0 +1,50 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "claudeMdUpdate",
+  "scriptKey": "autotask.claude-md-update",
+  "defaultTargetType": "repository",
+  "requirements": [
+    {
+      "type": "agent",
+      "name": "any"
+    }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": false
+    },
+    "vaults": {
+      "enabled": false
+    },
+    "projects": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "projectId",
+          "selectionMode": "single",
+          "output": "projectId"
+        }
+      ]
+    }
+  },
+  "inputBindings": [
+    {
+      "input": "projectId",
+      "metadataKey": "autoTaskTargetProjectId",
+      "required": true
+    },
+    {
+      "input": "scope",
+      "promptParameter": "scope",
+      "metadataKey": "autoTaskClaudeMdScope",
+      "required": true
+    },
+    {
+      "input": "targetScopeMarkdown",
+      "promptParameter": "targetScopeMarkdown",
+      "metadataKey": "autoTaskTargetScopeMarkdown",
+      "producer": "frontend-computed",
+      "required": true
+    }
+  ]
+}

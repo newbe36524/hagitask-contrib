@@ -1,0 +1,25 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "AGENTS.md / CLAUDE.md 更新",
+    "title": "创建 AGENTS.md / CLAUDE.md 更新任务",
+    "description": "为单个项目派发结构化 AGENTS.md 维护任务（含 CLAUDE.md 重定向），并可按需覆盖 MonoSpecs 子仓库文档。",
+    "defaultTitle": "AGENTS.md / CLAUDE.md 更新",
+    "submit": "更新文档",
+    "submitting": "正在派发文档更新任务..."
+  },
+  "panel": {
+    "projectLabel": "项目 *",
+    "projectHint": "维护会话会在你选中的项目内创建。",
+    "scopeLabel": "作用域",
+    "scopeHint": "如果项目是 MonoSpecs 根仓库，你可以只更新根目录 AGENTS.md/CLAUDE.md，或一并覆盖子仓库 AGENTS.md / CLAUDE.md。",
+    "scopeRootOnly": "仅根目录 AGENTS.md + CLAUDE.md",
+    "scopeRootAndChildren": "根目录 + 子仓库 AGENTS.md / CLAUDE.md",
+    "scopeLoading": "正在加载子仓库列表...",
+    "scopeLoadFailed": "加载 MonoSpecs 仓库列表失败。你仍然可以继续执行仅根目录作用域。",
+    "scopePreviewLabel": "解析后的目标范围",
+    "taskNameLabel": "任务名称",
+    "taskNameHint": "可选。留空时会使用该预设的默认标题来创建维护会话。",
+    "taskNamePlaceholder": "更新 hagicode-mono 的 AGENTS.md / CLAUDE.md"
+  }
+}

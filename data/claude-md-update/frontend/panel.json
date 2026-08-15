@@ -1,0 +1,73 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": {
+    "key": "taskPreset.title"
+  },
+  "description": {
+    "key": "taskPreset.description"
+  },
+  "defaultTitle": {
+    "key": "taskPreset.defaultTitle"
+  },
+  "submitLabel": {
+    "key": "taskPreset.submit"
+  },
+  "submittingLabel": {
+    "key": "taskPreset.submitting"
+  },
+  "sections": [
+    {
+      "id": "context",
+      "layout": "split",
+      "fields": [
+        {
+          "id": "projectId",
+          "renderer": "project-picker",
+          "label": {
+            "key": "panel.projectLabel"
+          },
+          "hint": {
+            "key": "panel.projectHint"
+          },
+          "required": true,
+          "output": "projectId"
+        },
+        {
+          "id": "scope",
+          "renderer": "claude-md-scope-selector",
+          "label": {
+            "key": "panel.scopeLabel"
+          },
+          "hint": {
+            "key": "panel.scopeHint"
+          },
+          "placeholder": {
+            "key": "panel.scopeRootOnly"
+          },
+          "output": "scope",
+          "componentProps": {
+            "emptyTextKey": "panel.scopeRootAndChildren",
+            "emptyTitleKey": "panel.scopeLoading",
+            "emptyDescriptionKey": "panel.scopeLoadFailed",
+            "requiredMessageKey": "panel.scopePreviewLabel"
+          }
+        },
+        {
+          "id": "title",
+          "renderer": "text",
+          "label": {
+            "key": "panel.taskNameLabel"
+          },
+          "hint": {
+            "key": "panel.taskNameHint"
+          },
+          "placeholder": {
+            "key": "panel.taskNamePlaceholder"
+          },
+          "output": "title"
+        }
+      ]
+    }
+  ]
+}

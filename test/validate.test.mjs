@@ -452,6 +452,7 @@ test('discovers contrib tasks under data/ and nothing at the repo root', () => {
   const { packages } = validateCommunityPackages(repoRoot);
   const expected = [
     'data/add-community-task',
+    'data/claude-md-update',
     'data/github-tasks',
     'data/hagitask-contrib-maintenance',
   ];
