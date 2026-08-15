@@ -236,6 +236,30 @@ function validatePackage(pkg, repoRoot, validator) {
             `selection '${selection?.id ?? '<unknown>'}' uses unsupported scope source ${JSON.stringify(source)}`,
           );
         }
+        const execution = taskPresetRes.value.execution;
+        if (execution !== undefined) {
+          if (!execution || typeof execution !== 'object'
+            || !/^1\./.test(execution.schemaVersion ?? '')
+            || !['declarative', 'extension'].includes(execution.strategy)) {
+            add(taskPresetPath, 'execution', 'must declare schemaVersion 1.x and strategy declarative or extension');
+          } else if (execution.strategy === 'extension' && typeof execution.extensionPoint !== 'string') {
+            add(taskPresetPath, 'execution.extensionPoint', 'is required for extension strategy');
+          } else if (execution.strategy === 'declarative' && execution.extensionPoint !== undefined) {
+            add(taskPresetPath, 'execution.extensionPoint', 'must be omitted for declarative strategy');
+          }
+        }
+        const bindings = Array.isArray(taskPresetRes.value.inputBindings)
+          ? taskPresetRes.value.inputBindings
+          : [];
+        for (const binding of bindings) {
+          const aliases = Array.isArray(binding?.aliases) ? binding.aliases : [];
+          if (aliases.includes(binding?.input)) {
+            add(taskPresetPath, `inputBindings.${binding?.input}.aliases`, 'must not contain its canonical input name');
+          }
+          if (binding?.transform === 'url-list' && binding?.valueType !== 'url-list') {
+            add(taskPresetPath, `inputBindings.${binding?.input}.valueType`, 'url-list transform requires url-list valueType');
+          }
+        }
       }
     }
   }

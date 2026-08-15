@@ -611,3 +611,32 @@ test('HagiTask Contrib maintenance package has complete bilingual command contra
     [],
   );
 });
+
+test('agents-md-update keeps repository scope optional and template-driven', () => {
+  const packageRoot = join(repoRoot, 'data', 'agents-md-update');
+  const panel = JSON.parse(readFileSync(join(packageRoot, 'frontend/panel.json'), 'utf8'));
+  const preset = JSON.parse(readFileSync(join(packageRoot, 'backend/task-preset.json'), 'utf8'));
+  const prompts = JSON.parse(readFileSync(join(packageRoot, 'backend/prompts.json'), 'utf8'));
+  const templates = [
+    readFileSync(join(packageRoot, 'backend/templates/en-US/user.hbs'), 'utf8'),
+    readFileSync(join(packageRoot, 'backend/templates/zh-CN/user.hbs'), 'utf8'),
+  ];
+  const repositoryField = panel.sections
+    .flatMap((section) => section.fields)
+    .find((field) => field.output === 'repositoryScope');
+  const repositorySelection = preset.targets.repositories.selections
+    .find((selection) => selection.id === 'repositoryScope');
+  const projectBindings = preset.inputBindings.filter((binding) => binding.input === 'projectId');
+
+  assert.equal(repositoryField?.required, undefined);
+  assert.equal(repositorySelection?.required, false);
+  assert.equal(projectBindings.length, 1);
+  assert.equal(projectBindings[0]?.required, false);
+  assert.ok(prompts.inputs.some((input) => input.name === 'projectName'));
+  assert.ok(prompts.inputs.some((input) => input.name === 'projectPath'));
+  assert.ok(prompts.inputs.some((input) => input.name === 'targetRepositories'));
+  assert.ok(templates.every((template) => template.includes('{{#each targetRepositories}}')));
+  assert.ok(templates.every((template) => template.includes('{{else}}')));
+  assert.ok(templates.every((template) => template.includes('{{#if includeClaudeMd}}')));
+  assert.ok(templates.every((template) => !template.includes('targetScopeMarkdown')));
+});
