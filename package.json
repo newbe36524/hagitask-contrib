@@ -5,11 +5,11 @@
   "type": "module",
   "description": "HagiCode Team internal HagiTask development packages and validation tooling.",
   "scripts": {
-    "validate": "node scripts/validate-contrib-packages.mjs",
+    "validate": "hagitask validate .",
     "test": "node --test"
   },
   "devDependencies": {
-    "ajv": "^8.17.1"
+    "@hagicode/hagitask": "0.1.2"
   },
   "engines": {
     "node": ">=22.12.0"

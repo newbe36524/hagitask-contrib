@@ -4,9 +4,6 @@ on:
   pull_request:
     paths:
       - "data/**"
-      - "hagitask/**"
-      - ".gitmodules"
-      - "scripts/**"
       - "test/**"
       - "package.json"
       - "package-lock.json"
@@ -25,8 +22,6 @@ jobs:
     steps:
       - name: Checkout contrib packages
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,5 +35,5 @@ jobs:
       - name: Validate contrib packages
         run: npm run validate
 
-      - name: Run validator tests
+      - name: Run CLI smoke tests
         run: npm test
