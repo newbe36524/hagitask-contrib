@@ -34,3 +34,11 @@ Run validation and tests after changing a package contract, prompt binding, loca
 ## Deployment
 
 This repository is an intermediate source, not the public publication target. Promote only validated package source to `hagitask-community-packages`; the site owns catalog and archive generation.
+
+## Publish Preparation
+
+The `publish` operation receives the absolute Contrib source checkout and Community Packages target checkout from its execution context. Treat those paths as authoritative; verify that both exist, are distinct repository roots, and initialize the nested `hagitask/` schema checkout when required. Do not infer paths or use remotes, `gh`, forks, commits, pushes, pull requests, merges, or releases.
+
+Before copying anything, run `npm run validate` and `npm test` in this checkout, then verify the selected `data/<taskId>/` package, its directory name, `manifest.json.taskPresetId`, and the requested target semantic version. Any validation, identity, preflight, or version failure stops the operation and leaves the Contrib package unchanged.
+
+Copy only the authored package source from `data/<taskId>/` to the target checkout's `data/<taskId>/`. Update the copied `manifest.json` to the target semantic version while preserving its public `$schema` URL. Never copy or edit catalogs, archives, generated `/index.json`, `/tasks/<taskId>.json`, `/packages/<taskId>.zip`, unrelated packages, repository-level files, or the nested schema checkout. Report the task ID, old and new versions, copied and skipped files, both validation/test exit statuses, and the local target path.
