@@ -3,22 +3,39 @@
 Update agent documentation for the selected project and the normalized repositories below.
 
 - Command: `{{command}}`
+{{#if includeClaudeMd}}
 - Include `CLAUDE.md`: `{{includeClaudeMd}}`
+{{/if}}
 - Include categories: {{#if agentsInclude}}{{agentsInclude}}{{else}}none specified{{/if}}
 - Exclude categories: {{#if agentsExclude}}{{agentsExclude}}{{else}}none specified{{/if}}
 - Operation objective and acceptance criteria:
 
 {{operationBrief}}
 
-### Resolved repository scope
+### Target documentation
 
-{{{targetScopeMarkdown}}}
+{{#if targetRepositories}}
+The selected repository documents are:
+{{#each targetRepositories}}
+- `{{#if ../projectPath}}{{../projectPath}}/{{/if}}{{#unless isRoot}}{{path}}/{{/unless}}AGENTS.md` ({{displayName}})
+{{#if ../includeClaudeMd}}
+- `{{#if ../projectPath}}{{../projectPath}}/{{/if}}{{#unless isRoot}}{{path}}/{{/unless}}CLAUDE.md` ({{displayName}})
+{{/if}}
+{{/each}}
+{{else}}
+The project-root document is:
+- `{{projectPath}}/AGENTS.md` ({{projectName}})
+{{#if includeClaudeMd}}
+- `{{projectPath}}/CLAUDE.md` ({{projectName}})
+{{/if}}
+{{/if}}
 
 ### Execution rules
 
 1. Read each existing AGENTS.md before editing.
 2. Keep all changes inside the resolved repository list; do not infer additional paths.
 3. Keep substantive instructions in AGENTS.md.
-4. When includeClaudeMd is false, do not read, create, or modify CLAUDE.md.
-5. When includeClaudeMd is true, create or update only a minimal CLAUDE.md redirect.
+{{#if includeClaudeMd}}
+4. Create or update only a minimal CLAUDE.md redirect.
+{{/if}}
 6. Report modified files, applied scope, and assumptions in the requested output format.

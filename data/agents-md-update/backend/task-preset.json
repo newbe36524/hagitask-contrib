@@ -72,18 +72,6 @@
       "promptParameter": "operationBrief",
       "metadataKey": "autoTaskOperationBrief",
       "required": false
-    },
-    {
-      "input": "projectId",
-      "metadataKey": "autoTaskTargetProjectId",
-      "required": true
-    },
-    {
-      "input": "targetScopeMarkdown",
-      "promptParameter": "targetScopeMarkdown",
-      "metadataKey": "autoTaskTargetScopeMarkdown",
-      "producer": "frontend-computed",
-      "required": true
     }
   ]
 }

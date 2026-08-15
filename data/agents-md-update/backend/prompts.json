@@ -15,24 +15,24 @@
       "description": "Absolute path to the selected project root."
     },
     {
-      "name": "repositoryPath",
+      "name": "projectName",
       "source": "computed-context",
-      "description": "Resolved repository identity hint for the selected project."
+      "required": true,
+      "description": "Display name of the selected project."
+    },
+    {
+      "name": "targetRepositories",
+      "source": "computed-context",
+      "description": "Optional normalized repositories selected within the project."
     },
     { "name": "command", "source": "task-preset-input", "required": true },
     { "name": "includeClaudeMd", "source": "task-preset-input", "required": true },
     { "name": "agentsInclude", "source": "task-preset-input" },
     { "name": "agentsExclude", "source": "task-preset-input" },
     {
-    "name": "operationBrief",
-    "source": "task-preset-input",
-    "description": "Operation objective and acceptance criteria."
-    },
-    {
-      "name": "targetScopeMarkdown",
+      "name": "operationBrief",
       "source": "task-preset-input",
-      "required": true,
-      "description": "Frontend-composed markdown block describing the target AGENTS.md and CLAUDE.md files for this run."
+      "description": "Operation objective and acceptance criteria."
     }
   ],
   "rendering": {
