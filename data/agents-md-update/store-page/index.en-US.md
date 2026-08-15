@@ -1,6 +1,6 @@
 ---
 locale: en-US
-slug: claude-md-update
+slug: agents-md-update
 title: AGENTS.md / CLAUDE.md Update
 summary: A structured documentation-maintenance task preset that builds AGENTS.md as the primary data source and keeps CLAUDE.md as a minimal redirect, with explicit project selection and MonoSpecs-aware scope.
 eyebrow: Task Preset Store
@@ -20,7 +20,7 @@ badges:
   - Migration path
 ---
 
-CLAUDE.md Update is a task preset package for teams that want documentation maintenance to run through the shared preset-task contract instead of a legacy prompt shortcut. It treats `AGENTS.md` as the primary source of truth and keeps `CLAUDE.md` as a minimal redirect.
+AGENTS.md Update is a task preset package for teams that want documentation maintenance to run through the shared preset-task contract. It treats `AGENTS.md` as the primary source of truth and lets users choose whether `CLAUDE.md` is included.
 
 ## Why teams install it
 
@@ -28,13 +28,13 @@ CLAUDE.md Update is a task preset package for teams that want documentation main
 
 The preset builds or updates `AGENTS.md` as the comprehensive project documentation source, then writes a thin `CLAUDE.md` that redirects readers to `AGENTS.md`.
 
-### MonoSpecs-aware scope
+### Configurable operation and content
 
-When the selected project is a MonoSpecs root, the drawer can keep the run limited to the root `AGENTS.md`/`CLAUDE.md` or expand it to child-repo `AGENTS.md` / `CLAUDE.md` files.
+Choose `new`, `incresement update`, or `shrink`, then select AGENTS.md include/exclude categories. An empty repository selection means all available repositories, including the MonoSpecs root. When `CLAUDE.md` is disabled, only AGENTS.md files are targeted.
 
-### Clean migration away from legacy routing
+### MonoSpecs-aware repository scope
 
-The preset replaces the orphaned legacy `claudeMdUpdate` entry point without touching existing docs until a user explicitly starts a run.
+MonoSpecs root and child repositories use one repository selector. The resolved selection determines which targets the prompt may edit; there is no separate MonoSpecs scope switch.
 
 ## Best fit
 

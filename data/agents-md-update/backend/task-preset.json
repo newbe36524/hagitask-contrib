@@ -1,0 +1,89 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "agentsMdUpdate",
+  "scriptKey": "autotask.agents-md-update",
+  "defaultTargetType": "repository",
+  "requirements": [
+    {
+      "type": "agent",
+      "name": "any"
+    }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "repositoryScope",
+          "selectionMode": "multiple",
+          "allowedAccessTypes": ["write"],
+          "output": "repositoryScope",
+          "required": false,
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": {
+      "enabled": false
+    },
+    "projects": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "projectId",
+          "selectionMode": "single",
+          "output": "projectId"
+        }
+      ]
+    }
+  },
+  "inputBindings": [
+    {
+      "input": "projectId",
+      "metadataKey": "autoTaskTargetProjectId",
+      "required": false
+    },
+    {
+      "input": "command",
+      "promptParameter": "command",
+      "metadataKey": "autoTaskAgentsCommand",
+      "required": true
+    },
+    {
+      "input": "includeClaudeMd",
+      "promptParameter": "includeClaudeMd",
+      "metadataKey": "autoTaskIncludeClaudeMd",
+      "required": true
+    },
+    {
+      "input": "agentsInclude",
+      "promptParameter": "agentsInclude",
+      "metadataKey": "autoTaskAgentsInclude",
+      "required": false
+    },
+    {
+      "input": "agentsExclude",
+      "promptParameter": "agentsExclude",
+      "metadataKey": "autoTaskAgentsExclude",
+      "required": false
+    },
+    {
+      "input": "operationBrief",
+      "promptParameter": "operationBrief",
+      "metadataKey": "autoTaskOperationBrief",
+      "required": false
+    },
+    {
+      "input": "projectId",
+      "metadataKey": "autoTaskTargetProjectId",
+      "required": true
+    },
+    {
+      "input": "targetScopeMarkdown",
+      "promptParameter": "targetScopeMarkdown",
+      "metadataKey": "autoTaskTargetScopeMarkdown",
+      "producer": "frontend-computed",
+      "required": true
+    }
+  ]
+}

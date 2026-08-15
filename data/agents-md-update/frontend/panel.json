@@ -1,0 +1,114 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": { "key": "taskPreset.title" },
+  "description": { "key": "taskPreset.description" },
+  "defaultTitle": { "key": "taskPreset.defaultTitle" },
+  "submitLabel": { "key": "taskPreset.submit" },
+  "submittingLabel": { "key": "taskPreset.submitting" },
+  "sections": [
+    {
+      "id": "context",
+      "layout": "split",
+      "fields": [
+        {
+          "id": "projectId",
+          "renderer": "project-picker",
+          "label": { "key": "panel.projectLabel" },
+          "hint": { "key": "panel.projectHint" },
+          "required": false,
+          "output": "projectId"
+        },
+        {
+          "id": "repositoryScope",
+          "renderer": "repository-access-selector",
+          "label": { "key": "panel.repositoryScopeLabel" },
+          "hint": { "key": "panel.repositoryScopeHint" },
+          "selectionMode": "multiple",
+          "valueType": "multiple",
+          "output": "repositoryScope",
+          "componentProps": { "targetSelectionId": "repositoryScope" }
+        },
+        {
+          "id": "command",
+          "renderer": "command-picker",
+          "label": { "key": "panel.commandLabel" },
+          "hint": { "key": "panel.commandHint" },
+          "required": true,
+          "output": "command",
+          "selectionMode": "single",
+          "dataSource": "./commands.json"
+        },
+        {
+          "id": "includeClaudeMd",
+          "renderer": "text",
+          "label": { "key": "panel.includeClaudeMdLabel" },
+          "hint": { "key": "panel.includeClaudeMdHint" },
+          "placeholder": { "key": "panel.includeClaudeMdLabel" },
+          "valueType": "boolean",
+          "output": "includeClaudeMd"
+        },
+        {
+          "id": "agentsInclude",
+          "renderer": "text",
+          "label": { "key": "panel.agentsIncludeLabel" },
+          "valueType": "multiple",
+          "selectionMode": "multiple",
+          "output": "agentsInclude",
+          "componentProps": {
+            "options": [
+              { "value": "overview", "label": { "key": "panel.includeOverview" } },
+              { "value": "architecture", "label": { "key": "panel.includeArchitecture" } },
+              { "value": "commands", "label": { "key": "panel.includeCommands" } },
+              { "value": "conventions", "label": { "key": "panel.includeConventions" } },
+              { "value": "testing", "label": { "key": "panel.includeTesting" } },
+              { "value": "deployment", "label": { "key": "panel.includeDeployment" } }
+            ]
+          }
+        },
+        {
+          "id": "agentsExclude",
+          "renderer": "text",
+          "label": { "key": "panel.agentsExcludeLabel" },
+          "valueType": "multiple",
+          "selectionMode": "multiple",
+          "output": "agentsExclude",
+          "componentProps": {
+            "options": [
+              { "value": "secrets", "label": { "key": "panel.excludeSecrets" } },
+              { "value": "generated", "label": { "key": "panel.excludeGenerated" } },
+              { "value": "caches", "label": { "key": "panel.excludeCaches" } },
+              { "value": "temporary", "label": { "key": "panel.excludeTemporary" } }
+            ]
+          }
+        },
+        {
+          "id": "title",
+          "renderer": "text",
+          "label": { "key": "panel.taskNameLabel" },
+          "hint": { "key": "panel.taskNameHint" },
+          "placeholder": { "key": "panel.taskNamePlaceholder" },
+          "output": "title"
+        }
+      ]
+    },
+    {
+      "id": "operation",
+      "layout": "stack",
+      "title": { "key": "panel.operationTitle" },
+      "description": { "key": "panel.operationDescription" },
+      "fields": [
+        {
+          "id": "operationBrief",
+          "renderer": "multiline-text",
+          "inputType": "haginput",
+          "label": { "key": "panel.operationBriefLabel" },
+          "hint": { "key": "panel.operationBriefHint" },
+          "placeholder": { "key": "panel.operationBriefPlaceholder" },
+          "required": false,
+          "output": "operationBrief"
+        }
+      ]
+    }
+  ]
+}

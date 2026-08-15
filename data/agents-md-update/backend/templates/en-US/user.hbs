@@ -1,0 +1,24 @@
+## Task
+
+Update agent documentation for the selected project and the normalized repositories below.
+
+- Command: `{{command}}`
+- Include `CLAUDE.md`: `{{includeClaudeMd}}`
+- Include categories: {{#if agentsInclude}}{{agentsInclude}}{{else}}none specified{{/if}}
+- Exclude categories: {{#if agentsExclude}}{{agentsExclude}}{{else}}none specified{{/if}}
+- Operation objective and acceptance criteria:
+
+{{operationBrief}}
+
+### Resolved repository scope
+
+{{{targetScopeMarkdown}}}
+
+### Execution rules
+
+1. Read each existing AGENTS.md before editing.
+2. Keep all changes inside the resolved repository list; do not infer additional paths.
+3. Keep substantive instructions in AGENTS.md.
+4. When includeClaudeMd is false, do not read, create, or modify CLAUDE.md.
+5. When includeClaudeMd is true, create or update only a minimal CLAUDE.md redirect.
+6. Report modified files, applied scope, and assumptions in the requested output format.

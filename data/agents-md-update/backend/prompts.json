@@ -19,11 +19,14 @@
       "source": "computed-context",
       "description": "Resolved repository identity hint for the selected project."
     },
+    { "name": "command", "source": "task-preset-input", "required": true },
+    { "name": "includeClaudeMd", "source": "task-preset-input", "required": true },
+    { "name": "agentsInclude", "source": "task-preset-input" },
+    { "name": "agentsExclude", "source": "task-preset-input" },
     {
-      "name": "scope",
-      "source": "task-preset-input",
-      "required": true,
-      "description": "Resolved AGENTS.md/CLAUDE.md update scope for the selected project."
+    "name": "operationBrief",
+    "source": "task-preset-input",
+    "description": "Operation objective and acceptance criteria."
     },
     {
       "name": "targetScopeMarkdown",
@@ -44,6 +47,20 @@
     "zh-CN": {
       "systemTemplate": "./templates/zh-CN/system.md",
       "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  },
+  "commandSystemPrompts": {
+    "new": {
+      "en-US": "./templates/en-US/commands/new.md",
+      "zh-CN": "./templates/zh-CN/commands/new.md"
+    },
+    "incresement update": {
+      "en-US": "./templates/en-US/commands/incresement-update.md",
+      "zh-CN": "./templates/zh-CN/commands/incresement-update.md"
+    },
+    "shrink": {
+      "en-US": "./templates/en-US/commands/shrink.md",
+      "zh-CN": "./templates/zh-CN/commands/shrink.md"
     }
   }
 }

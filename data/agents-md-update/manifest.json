@@ -1,7 +1,7 @@
 {
   "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/manifest.schema.json",
   "schemaVersion": "1.0",
-  "taskPresetId": "claude-md-update",
+  "taskPresetId": "agents-md-update",
   "version": "1.0.0",
   "icon": "file-pen-line",
   "displayName": {
@@ -15,14 +15,14 @@
   "owner": "Hagicode Team",
   "entrypoints": {
     "menuSurface": "session-create",
-    "drawerId": "claude-md-update"
+    "drawerId": "agents-md-update"
   },
   "activation": {
     "defaultState": "passive"
   },
   "localization": {
     "strategy": "plugin-bundles",
-    "namespace": "claude-md-update",
+    "namespace": "agents-md-update",
     "defaultLocale": "en-US",
     "supportedLocales": [
       "en-US",
@@ -35,10 +35,11 @@
   },
   "capabilities": {
     "supportsSceneBinding": false,
-    "supportsCommandCatalog": false
+    "supportsCommandCatalog": true
   },
   "ui": {
-    "panel": "./frontend/panel.json"
+    "panel": "./frontend/panel.json",
+    "commands": "./frontend/commands.json"
   },
   "site": {
     "storePage": "./store-page/"
