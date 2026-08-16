@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "Add Community Task",
     "title": "Create Add Community Task",
-    "description": "Author a complete HagiTask Community Task package from a structured brief, validate it locally, and open a Pull Request from your GitHub fork.",
+    "description": "Author a complete HagiTask Community Task package from one structured brief, validate every authored file locally, and open a Pull Request from your GitHub fork.",
     "defaultTitle": "New Community Task package",
     "submit": "Create Community Task",
     "submitting": "Queueing Community Task authoring..."

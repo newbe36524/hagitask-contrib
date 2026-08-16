@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "添加 Community Task",
     "title": "创建 Add Community Task 任务",
-    "description": "根据结构化说明创作完整的 HagiTask Community Task 包，在本地完成校验，并从你的 GitHub fork 创建 Pull Request。",
+    "description": "根据一份结构化说明创作完整的 HagiTask Community Task 包，校验全部源文件，并从你的 GitHub fork 创建 Pull Request。",
     "defaultTitle": "新的 Community Task 包",
     "submit": "创建 Community Task",
     "submitting": "正在提交 Community Task 创作任务..."
