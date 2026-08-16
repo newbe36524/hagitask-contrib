@@ -3,7 +3,7 @@
   "schemaVersion": "1.0",
   "taskPresetId": "github-tasks",
   "version": "1.0.0",
-  "icon": "star",
+  "icon": "zap",
   "displayName": { "key": "taskPreset.displayName" },
   "description": { "key": "taskPreset.description" },
   "kind": "custom-executor",
