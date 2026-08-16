@@ -22,14 +22,14 @@ The following is the user's single source of authoring intent. Do not require fi
 2. **Structure** the brief into task inputs, required and optional fields, constraints, execution behavior, quality requirements, acceptance criteria, and optional publication context.
 3. **Supplement** only package-completeness metadata: canonical identifiers, required directory and file structure, locale metadata, manifest fields, and safe defaults for omitted publication information. Do not invent business requirements. Record every inferred value under `Assumptions`, and distinguish it from `User-provided content`.
 4. **Normalize** the task id as lowercase kebab-case, package paths, manifest declarations, locale coverage, read-only/write scope wording, and observable acceptance statements. Preserve the task name as the human-readable title.
-5. **Verify** every generated resource, binding, locale key, prompt template, store page, and manifest path. Run the repository's real `npm run validate` and `npm test`; report the actual command, exit status, and errors.
+5. **Verify** every generated resource, binding, locale key, prompt template, store page, and manifest path. Use `npx hagitask validate <path> --json` as the primary validity check and run `npm test`; report the actual commands, exit status, JSON result, and errors.
 
 ## Repository identity and read-only context
 
 Resolve repositories by public GitHub identity, not by local layout.
 
 - Upstream Community Packages: `https://github.com/HagiCode-org/hagitask-community-packages`
-- Published schema root: `https://tasks.hagicode.com/schemas/`
+- HagiTask CLI: the `hagitask validate` command from `@hagicode/hagitask`
 - Temporary project path (scratch only): `{{projectPath}}`
 {{#if repositoryPath}}
 - Resolved repository hint (read-only): `{{repositoryPath}}`
@@ -65,9 +65,9 @@ All selected repositories, vaults, and project references are read-only context.
 2. Resolve upstream metadata with `gh repo view`, capture its default branch, identify the authenticated fork owner, and reuse an existing fork whose parent is the upstream. Never push to upstream.
 3. Clone the fork into a fresh temporary checkout, add upstream, synchronize the upstream default branch, initialize nested submodules, confirm a clean tree, and create a working branch.
 4. Derive a unique canonical task id. If the intended directory already exists, choose a distinct safe id and record the assumption.
-5. Read the Community Packages README, a structurally relevant package, and the published schemas before writing.
+5. Read the Community Packages README, a structurally relevant package, and the HagiTask CLI usage documentation before writing.
 6. Create the complete package under `data/<task-id>/` only: manifest, panel, task preset, prompts, both locale bundles, both system/user template pairs, and both store pages.
-7. Run `npm run validate` and `npm test` from the Community Packages checkout. Do not edit generated output or hide failures. A failed validation is a failed result.
+7. Run `npx hagitask validate . --json` and `npm test` from the Community Packages checkout. Use the HagiTask CLI exit code and `valid` field to determine package validity. Do not edit generated output, manually execute schemas, or hide failures. A failed CLI validation is a failed result.
 8. If both commands pass, commit only the package source, push the working branch to the fork, and create a non-interactive PR against the resolved upstream default branch. Report upstream URL, fork URL, default branch, branch, validation results, and PR URL.
 
 ## Result format
@@ -84,4 +84,4 @@ List the normalized objective, inputs, constraints, execution behavior, quality 
 List each package-completeness default or inferred metadata value separately. Do not present assumptions as user requirements.
 
 ### Validation and contribution result
-Report generated files, real command exit statuses, any failure diagnostics, and (only if successful) the fork and PR details.
+Report generated files, the HagiTask CLI command and JSON result, the `npm test` exit status, any failure diagnostics, and (only if successful) the fork and PR details.
