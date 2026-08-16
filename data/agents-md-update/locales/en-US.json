@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "AGENTS.md Update",
     "title": "Create AGENTS.md Update Task",
-    "description": "Create or update AGENTS.md with optional CLAUDE.md output and configurable content boundaries.",
+    "description": "Create or update AGENTS.md with optional CLAUDE.md redirection, explicit repository scope, and configurable content boundaries.",
     "defaultTitle": "AGENTS.md Update",
     "submit": "Update AGENTS.md",
     "submitting": "Queueing AGENTS.md update..."

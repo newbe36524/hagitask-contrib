@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "AGENTS.md 更新",
     "title": "创建 AGENTS.md 更新任务",
-    "description": "创建或更新 AGENTS.md，可选生成 CLAUDE.md 并配置内容边界。",
+    "description": "创建或更新 AGENTS.md，可选维护 CLAUDE.md 重定向，明确仓库范围并配置内容边界。",
     "defaultTitle": "AGENTS.md 更新",
     "submit": "更新 AGENTS.md",
     "submitting": "正在派发 AGENTS.md 更新任务..."
