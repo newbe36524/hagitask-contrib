@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "GitHub Tasks",
     "title": "Run a GitHub task",
-    "description": "Manage GitHub data through gh CLI commands without leaving persistent local artifacts.",
+    "description": "Run focused GitHub repository-management commands through gh CLI, with explicit targets, authentication checks, and no persistent local artifacts.",
     "defaultTitle": "GitHub Tasks",
     "submit": "Run task",
     "submitting": "Running task..."

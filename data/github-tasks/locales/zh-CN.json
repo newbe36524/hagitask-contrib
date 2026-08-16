@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "GitHub 任务",
     "title": "运行 GitHub 任务",
-    "description": "通过 gh CLI 命令管理 GitHub 数据，不留下持久化本地文件。",
+    "description": "通过 gh CLI 执行有边界的 GitHub 仓库管理命令，明确目标、检查登录状态，并且不留下持久化本地文件。",
     "defaultTitle": "GitHub 任务",
     "submit": "运行任务",
     "submitting": "正在运行任务..."
