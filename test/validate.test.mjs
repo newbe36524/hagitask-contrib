@@ -91,3 +91,57 @@ test('agents-md-update only binds AGENTS.md targets in both locales', () => {
     assert.doesNotMatch(readPackageFile(`store-page/index.${locale}.md`), /includeClaudeMd|redirect|重定向/);
   }
 });
+
+test('codegraph-tasks exposes only the six supported commands in both locales', () => {
+  const packageRoot = join(repoRoot, 'data', 'codegraph-tasks');
+  const readJson = (path) => JSON.parse(readFileSync(join(packageRoot, path), 'utf8'));
+  const commands = readJson('frontend/commands.json').commands;
+  const prompts = readJson('backend/prompts.json');
+  const expected = ['init', 'status', 'sync', 'upgrade', 'uninit', 'explore'];
+
+  assert.deepEqual(commands.map(({ id }) => id), expected);
+  assert.deepEqual(Object.keys(prompts.commandSystemPrompts), expected);
+  for (const locale of ['en-US', 'zh-CN']) {
+    const bundle = readJson(`locales/${locale}.json`);
+    for (const command of commands) {
+      assert.ok(bundle.commands[command.description.key.split('.')[1]]);
+      assert.ok(readFileSync(join(packageRoot, 'backend', prompts.commandSystemPrompts[command.id][locale]), 'utf8'));
+    }
+    const system = readFileSync(join(packageRoot, `backend/templates/${locale}/system.md`), 'utf8');
+    assert.match(system, /six catalog commands|六个命令/);
+    assert.doesNotMatch(system, /`install`|`uninstall`|`ui`/);
+  }
+});
+
+test('codegraph-tasks binds explicit repository scope to both localized prompts', () => {
+  const packageRoot = join(repoRoot, 'data', 'codegraph-tasks');
+  const readJson = (path) => JSON.parse(readFileSync(join(packageRoot, path), 'utf8'));
+  const panel = readJson('frontend/panel.json');
+  const preset = readJson('backend/task-preset.json');
+  const prompts = readJson('backend/prompts.json');
+  const fields = panel.sections.flatMap(({ fields }) => fields);
+  const scope = fields.find(({ id }) => id === 'targetMode');
+
+  assert.equal(scope.renderer, 'radio-group');
+  assert.equal(scope.required, true);
+  assert.deepEqual(scope.componentProps.options.map(({ value }) => value), ['all', 'specific']);
+  assert.ok(fields.some(({ id }) => id === 'targetRepositories'));
+  assert.ok(preset.inputBindings.some(({ input, promptParameter, required }) =>
+    input === 'targetMode' && promptParameter === 'targetMode' && required));
+  assert.ok(prompts.inputs.some(({ name, required }) => name === 'targetMode' && required));
+
+  for (const locale of ['en-US', 'zh-CN']) {
+    const bundle = readJson(`locales/${locale}.json`);
+    for (const option of scope.componentProps.options) {
+      assert.ok(bundle.panel[option.label.key.split('.')[1]]);
+    }
+    const user = readFileSync(join(packageRoot, `backend/templates/${locale}/user.hbs`), 'utf8');
+    const system = readFileSync(join(packageRoot, `backend/templates/${locale}/system.md`), 'utf8');
+    assert.match(user, /{{targetMode}}/);
+    assert.match(user, /{{targetScopeMarkdown}}/);
+    assert.match(system, /`all`/);
+    assert.match(system, /`specific`/);
+    assert.match(system, /ignore|忽略/);
+    assert.match(system, /exactly one|仅找到一个/);
+  }
+});

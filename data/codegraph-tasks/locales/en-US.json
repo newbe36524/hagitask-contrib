@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "CodeGraph Tasks",
+    "title": "Run a CodeGraph task",
+    "description": "Manage CodeGraph indexes and explore architecture in selected or all available MonoSpecs child repositories.",
+    "defaultTitle": "CodeGraph Tasks",
+    "submit": "Run task",
+    "submitting": "Running task..."
+  },
+  "commands": {
+    "groupTitle": "CodeGraph",
+    "groupDescription": "Choose one graph lifecycle or architecture operation.",
+    "initDescription": "Initialize and build a project graph.",
+    "statusDescription": "Inspect graph index and pending synchronization state.",
+    "syncDescription": "Synchronize a project graph on demand.",
+    "upgradeDescription": "Upgrade the installed CodeGraph CLI once.",
+    "uninitDescription": "Remove a project's graph index without uninstalling the CLI.",
+    "exploreDescription": "Use codegraph_explore to answer an architecture or impact question."
+  },
+  "panel": {
+    "contextTitle": "Target and command",
+    "contextDescription": "Choose all repositories or a specific repository, then select a command.",
+    "targetModeLabel": "Repository scope",
+    "targetModeHint": "Choose whether to run on all configured repositories or one selected repository.",
+    "targetModeAll": "All repositories",
+    "targetModeSpecific": "Specific repository",
+    "repositoryLabel": "Repository (optional)",
+    "repositoryHint": "Select one repository for Specific repository; ignored when All repositories is chosen.",
+    "repositoryEmpty": "Select a repository when using Specific repository.",
+    "commandLabel": "Command *",
+    "commandHint": "Select exactly one CodeGraph operation.",
+    "briefTitle": "Execution details",
+    "briefDescription": "Describe what you need; include any expected results in the same request.",
+    "briefLabel": "Your request",
+    "briefHint": "For explore, include a concrete question or symbol.",
+    "briefPlaceholder": "Describe what you want to do, any expected results, or an architecture question."
+  }
+}

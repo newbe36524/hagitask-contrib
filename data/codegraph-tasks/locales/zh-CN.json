@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "CodeGraph 任务",
+    "title": "运行 CodeGraph 任务",
+    "description": "在选定的仓库或全部可用的 MonoSpecs 子仓库中管理图索引并探索架构。",
+    "defaultTitle": "CodeGraph 任务",
+    "submit": "运行任务",
+    "submitting": "正在运行任务..."
+  },
+  "commands": {
+    "groupTitle": "CodeGraph",
+    "groupDescription": "选择一项图生命周期或架构操作。",
+    "initDescription": "初始化并构建项目图。",
+    "statusDescription": "查看图索引和待同步状态。",
+    "syncDescription": "按需同步项目图。",
+    "upgradeDescription": "仅执行一次已安装 CodeGraph CLI 的升级。",
+    "uninitDescription": "移除项目图索引而不卸载 CLI。",
+    "exploreDescription": "使用 codegraph_explore 回答架构或影响问题。"
+  },
+  "panel": {
+    "contextTitle": "目标与命令",
+    "contextDescription": "选择全部仓库或指定仓库，再选择命令。",
+    "targetModeLabel": "仓库范围",
+    "targetModeHint": "选择在所有配置的仓库或一个指定仓库中运行。",
+    "targetModeAll": "全部仓库",
+    "targetModeSpecific": "指定仓库",
+    "repositoryLabel": "仓库（可选）",
+    "repositoryHint": "选择“指定仓库”时须选一个仓库；选择“全部仓库”时忽略此处选择。",
+    "repositoryEmpty": "选择“指定仓库”时请选一个仓库。",
+    "commandLabel": "命令 *",
+    "commandHint": "选择一项 CodeGraph 操作。",
+    "briefTitle": "执行详情",
+    "briefDescription": "在同一输入框中描述诉求和期望结果。",
+    "briefLabel": "用户诉求",
+    "briefHint": "explore 需要具体问题或符号。",
+    "briefPlaceholder": "描述操作、期望结果或架构问题。"
+  }
+}

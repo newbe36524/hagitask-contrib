@@ -1,0 +1,13 @@
+Selected command: {{command}}
+
+Scope choice: {{targetMode}}
+
+When the choice is `all`, ignore any repository left selected in the picker and attempt every configured MonoSpecs child (or the project root outside MonoSpecs). When it is `specific`, require exactly one repository from the computed scope below and use only that repository. Do not infer the choice from whether the picker contains a selection.
+
+Computed target and access context:
+{{targetScopeMarkdown}}
+
+User request (including any requested success checks):
+{{operationBrief}}
+
+Follow only the selected command's guidance; report actual results for each attempted repository and assess any success checks in the request.

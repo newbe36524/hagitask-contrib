@@ -1,0 +1,1 @@
+For `status`, run `codegraph status` from each eligible repository root (or the verified no-download CLI equivalent). Read access is sufficient when the invocation does not change project state. Relay the observed index state and pending synchronization information per repository, including an uninitialized or unavailable index; do not imply the graph is current without evidence.

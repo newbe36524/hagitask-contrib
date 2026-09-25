@@ -1,0 +1,33 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "codegraphTasks",
+  "scriptKey": "autotask.codegraph-tasks",
+  "defaultTargetType": "repository",
+  "requirements": [
+    { "type": "agent", "name": "any" }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "targetRepositories",
+          "selectionMode": "single",
+          "allowedAccessTypes": ["read", "write"],
+          "required": false,
+          "output": "targetRepositories",
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": { "enabled": false },
+    "projects": { "enabled": false }
+  },
+  "inputBindings": [
+    { "input": "command", "promptParameter": "command", "metadataKey": "codegraphTaskCommand", "required": true },
+    { "input": "targetMode", "promptParameter": "targetMode", "metadataKey": "codegraphTaskTargetMode", "required": true },
+    { "input": "operationBrief", "promptParameter": "operationBrief", "metadataKey": "codegraphTaskOperationBrief" },
+    { "input": "targetRepositories", "promptParameter": "targetRepositories", "metadataKey": "codegraphTaskTargetRepositories", "producer": "frontend-computed", "required": false },
+    { "input": "targetScopeMarkdown", "promptParameter": "targetScopeMarkdown", "metadataKey": "targetScopeMarkdown", "producer": "frontend-computed" }
+  ]
+}

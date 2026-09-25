@@ -1,0 +1,20 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/commands.schema.json",
+  "schemaVersion": "1.1",
+  "selectionMode": "single",
+  "groups": [
+    {
+      "id": "codegraph",
+      "title": { "key": "commands.groupTitle" },
+      "description": { "key": "commands.groupDescription" }
+    }
+  ],
+  "commands": [
+    { "id": "init", "groupId": "codegraph", "label": "init", "description": { "key": "commands.initDescription" } },
+    { "id": "status", "groupId": "codegraph", "label": "status", "description": { "key": "commands.statusDescription" } },
+    { "id": "sync", "groupId": "codegraph", "label": "sync", "description": { "key": "commands.syncDescription" } },
+    { "id": "upgrade", "groupId": "codegraph", "label": "upgrade", "description": { "key": "commands.upgradeDescription" } },
+    { "id": "uninit", "groupId": "codegraph", "label": "uninit", "description": { "key": "commands.uninitDescription" } },
+    { "id": "explore", "groupId": "codegraph", "label": "explore", "description": { "key": "commands.exploreDescription" } }
+  ]
+}

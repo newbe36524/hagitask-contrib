@@ -1,0 +1,33 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": ["en-US", "zh-CN"],
+  "inputs": [
+    { "name": "command", "source": "task-preset-input", "required": true, "description": "Explicitly selected CodeGraph operation." },
+    { "name": "targetMode", "source": "task-preset-input", "required": true, "description": "Explicit scope choice: all or specific." },
+    { "name": "operationBrief", "source": "task-preset-input", "description": "User request, including optional success checks; a question or symbol is required for explore." },
+    { "name": "targetRepositories", "source": "computed-context", "required": false, "description": "Selected repository for specific mode; ignored for all mode." },
+    { "name": "targetScopeMarkdown", "source": "task-preset-input", "description": "Computed repository scope and access context for selection validation." }
+  ],
+  "rendering": { "strictVariables": true, "trimBlocks": true },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  },
+  "commandSystemPrompts": {
+    "init": { "en-US": "./templates/en-US/commands/init.md", "zh-CN": "./templates/zh-CN/commands/init.md" },
+    "status": { "en-US": "./templates/en-US/commands/status.md", "zh-CN": "./templates/zh-CN/commands/status.md" },
+    "sync": { "en-US": "./templates/en-US/commands/sync.md", "zh-CN": "./templates/zh-CN/commands/sync.md" },
+    "upgrade": { "en-US": "./templates/en-US/commands/upgrade.md", "zh-CN": "./templates/zh-CN/commands/upgrade.md" },
+    "uninit": { "en-US": "./templates/en-US/commands/uninit.md", "zh-CN": "./templates/zh-CN/commands/uninit.md" },
+    "explore": { "en-US": "./templates/en-US/commands/explore.md", "zh-CN": "./templates/zh-CN/commands/explore.md" }
+  }
+}
