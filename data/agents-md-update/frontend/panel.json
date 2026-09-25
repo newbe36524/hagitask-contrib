@@ -40,15 +40,6 @@
           "dataSource": "./commands.json"
         },
         {
-          "id": "includeClaudeMd",
-          "renderer": "text",
-          "label": { "key": "panel.includeClaudeMdLabel" },
-          "hint": { "key": "panel.includeClaudeMdHint" },
-          "placeholder": { "key": "panel.includeClaudeMdLabel" },
-          "valueType": "boolean",
-          "output": "includeClaudeMd"
-        },
-        {
           "id": "agentsInclude",
           "renderer": "text",
           "label": { "key": "panel.agentsIncludeLabel" },

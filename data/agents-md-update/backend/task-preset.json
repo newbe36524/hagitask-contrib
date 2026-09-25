@@ -50,12 +50,6 @@
       "required": true
     },
     {
-      "input": "includeClaudeMd",
-      "promptParameter": "includeClaudeMd",
-      "metadataKey": "autoTaskIncludeClaudeMd",
-      "required": true
-    },
-    {
       "input": "agentsInclude",
       "promptParameter": "agentsInclude",
       "metadataKey": "autoTaskAgentsInclude",

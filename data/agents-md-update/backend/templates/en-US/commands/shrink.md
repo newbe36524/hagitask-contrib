@@ -7,5 +7,5 @@ Reduce documentation to current, useful guidance without deleting information th
 3. Remove only content confirmed to be obsolete, duplicated, generated, temporary, secret, or explicitly excluded.
 4. Preserve uncertain content and report it instead of guessing or deleting it.
 5. Keep `AGENTS.md` as the substantive source of truth.
-6. When `includeClaudeMd` is true, keep `CLAUDE.md` as a minimal redirect to `AGENTS.md`; when false, do not read or modify it.
+6. Do not read, create, or modify `CLAUDE.md`; leave existing files untouched.
 7. Report removed, retained, uncertain, and skipped content. Never modify files outside the resolved scope.

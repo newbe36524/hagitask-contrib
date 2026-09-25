@@ -3,7 +3,7 @@
   "taskPreset": {
     "displayName": "AGENTS.md Update",
     "title": "Create AGENTS.md Update Task",
-    "description": "Create or update AGENTS.md with optional CLAUDE.md redirection, explicit repository scope, and configurable content boundaries.",
+    "description": "Create or update AGENTS.md for the selected repositories or project root, with configurable content boundaries; leave CLAUDE.md untouched.",
     "defaultTitle": "AGENTS.md Update",
     "submit": "Update AGENTS.md",
     "submitting": "Queueing AGENTS.md update..."
@@ -16,8 +16,6 @@
     "commandNew": "new",
     "commandIncremental": "incresement update",
     "commandShrink": "shrink",
-    "includeClaudeMdLabel": "Also update CLAUDE.md",
-    "includeClaudeMdHint": "When disabled, CLAUDE.md is not read or modified.",
     "agentsIncludeLabel": "Include content",
     "agentsExcludeLabel": "Exclude content",
     "repositoryScopeLabel": "Repository scope",
@@ -38,15 +36,15 @@
     "excludeCaches": "Caches",
     "excludeTemporary": "Temporary files",
     "scopeLabel": "Scope",
-    "scopeHint": "MonoSpecs roots can stay at the root AGENTS.md/CLAUDE.md or include child-repo AGENTS.md / CLAUDE.md files in one run.",
-    "scopeRootOnly": "Root AGENTS.md + CLAUDE.md only",
-    "scopeRootAndChildren": "Root + child-repo AGENTS.md / CLAUDE.md",
+    "scopeHint": "MonoSpecs roots can stay at the root AGENTS.md or include child-repo AGENTS.md files in one run.",
+    "scopeRootOnly": "Root AGENTS.md only",
+    "scopeRootAndChildren": "Root + child-repo AGENTS.md",
     "scopeLoading": "Loading child repositories...",
     "scopeLoadFailed": "Couldn't load the MonoSpecs repository list. You can still run the root-only scope.",
     "scopePreviewLabel": "Resolved target scope",
     "taskNameLabel": "Task name",
     "taskNameHint": "Optional. Leave empty to use the preset default title for this queued maintenance session.",
-    "taskNamePlaceholder": "Update AGENTS.md / CLAUDE.md for hagicode-mono"
+    "taskNamePlaceholder": "Update AGENTS.md for hagicode-mono"
   },
   "commands": {
     "groupTitle": "AGENTS.md operations",
