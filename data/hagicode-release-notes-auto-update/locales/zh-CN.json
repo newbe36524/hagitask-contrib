@@ -1,0 +1,23 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "版本说明自动更新",
+    "title": "更新 HagiCode 版本说明",
+    "description": "基于证据更新至最新有效版本的说明，并通过现有同步工作流更新 Docs。",
+    "defaultTitle": "更新版本说明",
+    "submit": "准备版本说明草稿",
+    "submitting": "正在准备版本说明草稿..."
+  },
+  "panel": {
+    "scopeTitle": "仓库范围",
+    "scopeDescription": "选择本任务可用的仓库。可将只读仓库作为上下文。",
+    "repositoriesLabel": "仓库范围 *",
+    "repositoriesHint": "选择本任务可使用的仓库及其访问权限。只读仓库可作为上下文；写入必须具有 write 权限。",
+    "repositoriesEmpty": "所选项目没有可用仓库。",
+    "requestTitle": "请求",
+    "requestDescription": "描述要检查或更新的内容；系统会自动选择最新有效版本。",
+    "requestLabel": "自然语言请求 *",
+    "requestHint": "必填的一条请求。无需填写版本，任务会自动选择最新有效 tag。",
+    "requestPlaceholder": "检查并准备截至最新有效版本的版本说明草稿。"
+  }
+}

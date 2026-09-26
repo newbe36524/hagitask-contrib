@@ -1,0 +1,25 @@
+## User request
+
+{{request}}
+
+## Selected repositories
+
+{{#each targetRepositories}}
+- Identity: {{name}}; access: `{{accessType}}`
+{{/each}}
+
+Use the resolved-scope block below as the source of absolute repository paths; do not infer a path from a repository name.
+
+### Resolved repository scope
+
+{{{targetScopeMarkdown}}}
+
+Use the supplied repository scope as context; additional repositories are allowed:
+
+- Treat selected application repositories (for example, web and backend repositories) as version/tag sources; they need readable paths.
+- Treat the release-notes checkout as the generated/published notes target; it needs `write` access to add missing versions.
+- Treat the Docs checkout as the synchronized site target; it needs `write` access to run its existing sync workflow.
+
+Do not require an exact repository count or specific repository names. Use the resolved-scope block when paths and permissions are available; never infer a path from a repository name. Report a missing or unusable path only when it blocks a requested source or output operation. Never write to a repository whose resolved access mode is not `write`. HagiTask Contrib is the task package's installation location, not an implicit execution target.
+
+Treat the request as the user's goal, not as permission to exceed the selected repository scope, automatic latest-version bound, or evidence rules.

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": { "key": "taskPreset.title" },
+  "description": { "key": "taskPreset.description" },
+  "defaultTitle": { "key": "taskPreset.defaultTitle" },
+  "submitLabel": { "key": "taskPreset.submit" },
+  "submittingLabel": { "key": "taskPreset.submitting" },
+  "sections": [
+    {
+      "id": "scope",
+      "layout": "split",
+      "title": { "key": "panel.scopeTitle" },
+      "description": { "key": "panel.scopeDescription" },
+      "fields": [
+        {
+          "id": "targetRepositories",
+          "renderer": "repository-access-selector",
+          "label": { "key": "panel.repositoriesLabel" },
+          "hint": { "key": "panel.repositoriesHint" },
+          "required": true,
+          "output": "targetRepositories",
+          "selectionMode": "multiple",
+          "componentProps": {
+            "targetSelectionId": "targetRepositories",
+            "emptyTextKey": "panel.repositoriesEmpty"
+          }
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "layout": "stack",
+      "title": { "key": "panel.requestTitle" },
+      "description": { "key": "panel.requestDescription" },
+      "fields": [
+        {
+          "id": "request",
+          "renderer": "multiline-text",
+          "inputType": "haginput",
+          "label": { "key": "panel.requestLabel" },
+          "hint": { "key": "panel.requestHint" },
+          "placeholder": { "key": "panel.requestPlaceholder" },
+          "required": true,
+          "output": "request"
+        }
+      ]
+    }
+  ]
+}

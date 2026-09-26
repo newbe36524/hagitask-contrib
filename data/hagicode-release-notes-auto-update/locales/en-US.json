@@ -1,0 +1,23 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "Release Notes Auto-Update",
+    "title": "Update HagiCode release notes",
+    "description": "Update evidence-backed release notes through the latest valid version tag and synchronize the Docs landing pages.",
+    "defaultTitle": "Update release notes",
+    "submit": "Prepare release-note drafts",
+    "submitting": "Preparing release-note drafts..."
+  },
+  "panel": {
+    "scopeTitle": "Repository scope",
+    "scopeDescription": "Select the repositories available to this task. Read-only repositories may be included as context.",
+    "repositoriesLabel": "Repository scope *",
+    "repositoriesHint": "Choose the repositories this task may use and their access modes. Read-only repositories can provide context; writes require write access.",
+    "repositoriesEmpty": "No repositories are available for the selected project.",
+    "requestTitle": "Request",
+    "requestDescription": "Describe what you want checked or updated; the latest valid version is selected automatically.",
+    "requestLabel": "Natural-language request *",
+    "requestHint": "One required request. Do not enter a version; the task selects the latest valid tag.",
+    "requestPlaceholder": "Review and prepare release-note drafts through the latest valid version."
+  }
+}
