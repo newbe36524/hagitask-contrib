@@ -5,6 +5,7 @@
   "defaultLocale": "en-US",
   "supportedLocales": ["en-US", "zh-CN"],
   "inputs": [
+    { "name": "omitNonInteractiveHints", "source": "system", "required": false, "description": "Optional. True when interactive control is enabled for the agent CLI running this prompt; gates the non-interactive run-mode section. Absent means false." },
     { "name": "command", "source": "task-preset-input", "required": true, "description": "Must be new, dev, or publish." },
     { "name": "operationBrief", "source": "task-preset-input", "required": true, "description": "Operation objective and acceptance criteria." },
     { "name": "targetRepositories", "source": "computed-context", "description": "Selected repositories and their access modes." },
