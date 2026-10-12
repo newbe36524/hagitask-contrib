@@ -12,6 +12,12 @@
       "description": "Absolute path to the selected project root, used only as a temporary working directory."
     },
     {
+      "name": "omitNonInteractiveHints",
+      "source": "system",
+      "required": false,
+      "description": "Optional. True when interactive control is enabled for the agent CLI running this prompt; gates the non-interactive run-mode section. Absent means false."
+    },
+    {
       "name": "repositoryPath",
       "source": "computed-context",
       "description": "Resolved repository identity hint for the selected project. Never treated as the Community Packages write target."

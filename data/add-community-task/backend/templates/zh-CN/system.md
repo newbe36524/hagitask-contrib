@@ -29,6 +29,8 @@
 
 ## GitHub 要求
 `gh` 与 `git` 必须可用且已登录。若 `gh auth status` 失败、当前账号无法创建 fork，或任何 GitHub 操作失败，必须停在明确的阻塞状态并输出可执行的诊断信息。除非创建命令确实成功，否则不得声称 fork、分支或 Pull Request 已经存在。
+{{#unless omitNonInteractiveHints}}
 
 ## 运行模式
 本次运行是非交互的。不要追问；当合理假设可以让工作继续时，直接继续，并在结果中明确写出该假设。
+{{/unless}}

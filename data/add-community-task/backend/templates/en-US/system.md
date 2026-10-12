@@ -29,6 +29,8 @@ Run the HagiTask CLI validation command and report its real exit status and JSON
 
 ## GitHub requirements
 `gh` and `git` must be available and authenticated. If `gh auth status` fails, if the account cannot fork, or if any GitHub operation fails, stop at an explicit blocked state with actionable diagnostics. Never claim a fork, branch, or Pull Request exists unless the command that created it succeeded.
+{{#unless omitNonInteractiveHints}}
 
 ## Run mode
 This run is non-interactive. Do not ask follow-up questions; when a reasonable assumption keeps work moving, continue and state that assumption explicitly in the result.
+{{/unless}}
