@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 
@@ -277,4 +277,62 @@ test('release-notes auto-update prompts preserve evidence, output, and Docs cont
   assert.match(texts['zh-CN'].system, /\/<locale>\/release-notes\//);
   assert.match(texts['zh-CN'].system, /规范化版本锚点/);
   assert.match(texts['zh-CN'].system, /不得创建逐版本页面/);
+});
+
+// Shared three-section output contract; must match the heading map in repos/web finalResponseSections.ts.
+const outputFormatContract = {
+  'en-US': {
+    heading: '## Output format',
+    headings: ['## Conclusion', '## Assumptions (if any)', '## Next step'],
+  },
+  'zh-CN': {
+    heading: '## 输出格式',
+    headings: ['## 结论', '## 假设（如有）', '## 下一步'],
+  },
+};
+
+// Packages whose reply is not meant to follow the three-section shape. Each entry needs a reason string.
+const outputFormatExemptions = {};
+
+function packageIds() {
+  return readdirSync(join(repoRoot, 'data'), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+}
+
+function readUserTemplate(packageId, locale) {
+  return readFileSync(join(repoRoot, 'data', packageId, 'backend', 'templates', locale, 'user.hbs'), 'utf8');
+}
+
+function outputFormatSection(text, heading) {
+  const lines = text.split('\n');
+  const start = lines.indexOf(heading);
+  if (start === -1) return null;
+  const next = lines.findIndex((line, index) => index > start && line.startsWith('## '));
+  return lines.slice(start, next === -1 ? lines.length : next).join('\n');
+}
+
+test('output-format exemptions name existing packages and each carries a reason', () => {
+  const ids = new Set(packageIds());
+  for (const [id, reason] of Object.entries(outputFormatExemptions)) {
+    assert.ok(ids.has(id), `output-format exemption ${id} does not match a package`);
+    assert.equal(typeof reason, 'string', `output-format exemption ${id} needs a reason string`);
+    assert.ok(reason.trim().length > 0, `output-format exemption ${id} needs a non-empty reason`);
+  }
+});
+
+test('every non-exempt user template carries the output-format block with its headings in order', () => {
+  for (const id of packageIds()) {
+    if (Object.hasOwn(outputFormatExemptions, id)) continue;
+    for (const [locale, { heading, headings }] of Object.entries(outputFormatContract)) {
+      const section = outputFormatSection(readUserTemplate(id, locale), heading);
+      assert.notEqual(section, null, `${id} ${locale} user.hbs is missing "${heading}"`);
+      let previous = -1;
+      for (const expected of headings) {
+        const at = section.indexOf(`\`${expected}\``);
+        assert.ok(at > previous, `${id} ${locale} output format must name \`${expected}\` after the previous heading`);
+        previous = at;
+      }
+    }
+  }
 });

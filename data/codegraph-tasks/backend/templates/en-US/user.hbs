@@ -11,3 +11,13 @@ User request (including any requested success checks):
 {{operationBrief}}
 
 Follow only the selected command's guidance; report actual results for each attempted repository and assess any success checks in the request.
+
+## Output format
+- Return output in this exact order, using these level-2 headings: `## Conclusion`, `## Assumptions (if any)`, `## Next step`.
+- `## Conclusion`: start with one bold sentence that states the outcome. Follow with at most 5 bullets of key facts. Write paths, commands, and identifiers as inline code. Use a table only for real comparisons.
+- `## Assumptions (if any)`: write one list item per assumption in this shape:
+  - **Assumption:** <one sentence>
+    - **Reason:** <one sentence>
+    - **Impact:** <one sentence>
+  Write `None` under the heading when there are no assumptions.
+- `## Next step`: use an ordered list with the recommended action first, and start each item with a bold action phrase. If there is only one follow-up, write one sentence.
