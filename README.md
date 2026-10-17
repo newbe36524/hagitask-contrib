@@ -1,5 +1,7 @@
 # hagitask-contrib
 
+[![last commit](https://img.shields.io/github/last-commit/newbe36524/hagitask-contrib)](https://github.com/newbe36524/hagitask-contrib/commits/main)
+
 HagiCode Team's internal development repository for HagiTask packages.
 
 Packages in this repository are temporary development versions. After a task
