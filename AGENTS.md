@@ -22,6 +22,8 @@ npm test
 
 Run validation and tests after changing a package contract, prompt binding, locale, or validator.
 
+Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validate-contrib-packages.yml` runs `npm ci`, `npm run validate`, and `npm test` (`test/validate.test.mjs`); keep local runs equivalent. `validate` is `hagitask validate .` from the pinned `@hagicode/hagitask` devDependency.
+
 ## Conventions
 
 - Keep package IDs, directory names, schema references, and locale resources consistent.
