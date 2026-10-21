@@ -1,4 +1,4 @@
-# Command: incresement update
+## Command: incresement update
 
 Update existing documentation incrementally, preserving valid guidance and changing only what current repository evidence requires.
 

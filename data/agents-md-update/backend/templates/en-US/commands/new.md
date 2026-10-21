@@ -1,4 +1,4 @@
-# Command: new
+## Command: new
 
 Create only `AGENTS.md` files inside the normalized repository scope.
 

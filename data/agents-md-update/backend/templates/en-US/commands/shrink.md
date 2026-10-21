@@ -1,4 +1,4 @@
-# Command: shrink
+## Command: shrink
 
 Reduce documentation to current, useful guidance without deleting information that may still be valid.
 

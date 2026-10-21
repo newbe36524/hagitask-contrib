@@ -1,4 +1,4 @@
-# 命令：incresement update
+## 命令：incresement update
 
 以增量方式更新现有文档，只修改当前仓库事实要求变化的内容，并保留有效说明。
 

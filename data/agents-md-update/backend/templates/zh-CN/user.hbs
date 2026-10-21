@@ -2,26 +2,35 @@
 
 根据以下规范化仓库范围更新项目代理文档。
 
-- 操作：`{{command}}`
-- 包含类别：{{#if agentsInclude}}{{agentsInclude}}{{else}}未指定{{/if}}
-- 排除类别：{{#if agentsExclude}}{{agentsExclude}}{{else}}未指定{{/if}}
-- 操作目标与验收标准：
-
-{{operationBrief}}
+## 执行上下文
 
 ### 目标文档
 
 {{#if targetRepositories}}
 选定仓库中的文档：
+
 {{#each targetRepositories}}
-- `{{#if ../projectPath}}{{../projectPath}}/{{/if}}{{#unless isRoot}}{{path}}/{{/unless}}AGENTS.md`（{{displayName}}）
+- `{{#if ../projectPath}}{{../projectPath}}/{{/if}}{{#unless isRoot}}{{{path}}}/{{/unless}}AGENTS.md`（{{{displayName}}}）
 {{/each}}
 {{else}}
 项目根目录中的文档：
-- `{{projectPath}}/AGENTS.md`（{{projectName}}）
+
+- `{{projectPath}}/AGENTS.md`（{{{projectName}}}）
 {{/if}}
 
-### 执行要求
+## 用户输入
+
+- 操作：`{{command}}`
+- 包含类别：{{#if agentsInclude}}{{{agentsInclude}}}{{else}}未指定{{/if}}
+- 排除类别：{{#if agentsExclude}}{{{agentsExclude}}}{{else}}未指定{{/if}}
+
+### 操作目标与验收标准
+
+````text
+{{{operationBrief}}}
+````
+
+## 要求
 
 1. 修改前先读取每个目标中的 AGENTS.md。
 2. 文档变更严格限制在上方列出的目标路径内，不得自行扩大路径。
