@@ -29,6 +29,7 @@ Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validat
 - Keep package IDs, directory names, schema references, and locale resources consistent.
 - Put command-specific execution guidance in `backend/prompts.json` and locale templates; keep skills for reusable capabilities.
 - Do not copy or edit local schema files or generated publication output.
+- Enabled task target selections may use only the scope sources `owner-project-repositories`, `vault-registry`, or `project-registry`; unknown sources fail validation.
 - Keep internal packages compatible with the community repository layout so promotion does not require restructuring.
 
 ## Deployment
