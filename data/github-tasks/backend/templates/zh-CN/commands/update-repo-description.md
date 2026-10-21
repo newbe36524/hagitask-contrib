@@ -1,3 +1,5 @@
+## 命令：update-repo-description
+
 对于 `update-repo-description`，必须先按步骤分析每个仓库的当前状态和实际内容，再根据分析结果更新远程 GitHub 仓库信息。
 
 1. 优先从 `operationBrief` 中明确出现的有效 `https://github.com/OWNER/REPOSITORY` 或 `github.com/OWNER/REPOSITORY` URL 解析目标。如果没有 URL，则使用已选择的可写仓库列表。如果两者同时存在，以 URL 目标为准并报告这一点。忽略带 query、fragment、额外路径、或非 GitHub 主机的 URL。

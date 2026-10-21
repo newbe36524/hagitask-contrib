@@ -1,12 +1,31 @@
-Run command `{{command}}`.
+## Task
 
-Optional writable target scope:
-{{targetScopeMarkdown}}
+Run the selected GitHub command.
 
-Operation guidance:
-{{operationBrief}}
+## Execution context
 
-Follow the selected command's instructions. Do not ask me to choose a repository or path when the target can be resolved from the provided context.
+- Command: `{{command}}`
+
+### Optional writable target scope
+
+{{#if targetScopeMarkdown}}
+{{{targetScopeMarkdown}}}
+{{else}}
+No target scope was selected.
+{{/if}}
+
+## User input
+
+### Operation guidance
+
+````text
+{{{operationBrief}}}
+````
+
+## Requirements
+
+1. Follow the selected command's instructions.
+2. Do not ask me to choose a repository or path when the target can be resolved from the provided context.
 
 ## Output format
 - Return output in this exact order, using these level-2 headings: `## Conclusion`, `## Assumptions (if any)`, `## Next step`.

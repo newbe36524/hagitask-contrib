@@ -1,3 +1,5 @@
+## Command: update-repo-description
+
 For `update-repo-description`, analyze each repository's current state and content step by step, then update its remote GitHub metadata based on that analysis.
 
 1. Resolve targets from valid `https://github.com/OWNER/REPOSITORY` or `github.com/OWNER/REPOSITORY` URLs explicitly present in `operationBrief`. If no such URL is present, use the selected writable repository list. If both are present, use the URL targets and report that they took precedence. Ignore URLs with query strings, fragments, extra path segments, or non-GitHub hosts.
