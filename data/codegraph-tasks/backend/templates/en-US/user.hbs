@@ -1,16 +1,35 @@
-Selected command: {{command}}
+## Task
 
-Scope choice: {{targetMode}}
+Run the selected CodeGraph command against the resolved repositories.
 
-When the choice is `all`, ignore any repository left selected in the picker and attempt every configured MonoSpecs child (or the project root outside MonoSpecs). When it is `specific`, require exactly one repository from the computed scope below and use only that repository. Do not infer the choice from whether the picker contains a selection.
+## Execution context
 
-Computed target and access context:
-{{targetScopeMarkdown}}
+- Selected command: `{{command}}`
+- Scope choice: `{{targetMode}}`
 
-User request (including any requested success checks):
-{{operationBrief}}
+### Scope rules
 
-Follow only the selected command's guidance; report actual results for each attempted repository and assess any success checks in the request.
+- When the choice is `all`, ignore any repository left selected in the picker and attempt every configured MonoSpecs child (or the project root outside MonoSpecs).
+- When it is `specific`, require exactly one repository from the computed scope below and use only that repository.
+- Do not infer the choice from whether the picker contains a selection.
+
+### Computed target and access context
+
+{{{targetScopeMarkdown}}}
+
+## User input
+
+### Request (including any requested success checks)
+
+````text
+{{{operationBrief}}}
+````
+
+## Requirements
+
+1. Follow only the selected command's guidance.
+2. Report actual results for each attempted repository.
+3. Assess any success checks in the request.
 
 ## Output format
 - Return output in this exact order, using these level-2 headings: `## Conclusion`, `## Assumptions (if any)`, `## Next step`.
