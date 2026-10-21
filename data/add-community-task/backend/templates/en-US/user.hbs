@@ -10,31 +10,19 @@ This prompt runs in a non-interactive environment.
 - Never open an editor or browser prompt.
 
 {{/unless}}
-## Unified authoring brief
+## Task
 
-Community Task name: `{{{communityTaskName}}}`
+Author a new HagiTask Community Task package from the brief below and contribute it upstream through a GitHub fork and Pull Request.
 
-The following is the user's single source of authoring intent. Do not require fixed headings; interpret the complete brief as one context:
-
-{{{communityTaskBrief}}}
-
-## Required processing stages
-
-1. **Extract** the objective, user value, desired outcome, and any explicit requirements from the brief.
-2. **Structure** the brief into task inputs, required and optional fields, constraints, execution behavior, quality requirements, acceptance criteria, and optional publication context.
-3. **Supplement** only package-completeness metadata: canonical identifiers, required directory and file structure, locale metadata, manifest fields, and safe defaults for omitted publication information. Do not invent business requirements. Record every inferred value under `Assumptions`, and distinguish it from `User-provided content`.
-4. **Normalize** the task id as lowercase kebab-case, package paths, manifest declarations, locale coverage, read-only/write scope wording, and observable acceptance statements. Preserve the task name as the human-readable title.
-5. **Verify** every generated resource, binding, locale key, prompt template, store page, and manifest path. Use `npx hagitask validate <path> --json` as the primary validity check and run `npm test`; report the actual commands, exit status, JSON result, and errors.
-
-## Repository identity and read-only context
+## Execution context
 
 Resolve repositories by public GitHub identity, not by local layout.
 
 - Upstream Community Packages: `https://github.com/HagiCode-org/hagitask-community-packages`
 - HagiTask CLI: the `hagitask validate` command from `@hagicode/hagitask`
-- Temporary project path (scratch only): `{{projectPath}}`
+- Temporary project path (scratch only): `{{{projectPath}}}`
 {{#if repositoryPath}}
-- Resolved repository hint (read-only): `{{repositoryPath}}`
+- Resolved repository hint (read-only): `{{{repositoryPath}}}`
 {{/if}}
 
 {{#if targetScopeMarkdown}}
@@ -42,26 +30,50 @@ Resolve repositories by public GitHub identity, not by local layout.
 
 {{{targetScopeMarkdown}}}
 {{else}}
+### Selected repository scope
+
 No repository scope was selected.
 {{/if}}
 
 {{#if referenceVaults}}
 ### Selected reference vaults
-{{#each referenceVaults}}
-- `{{name}}` (`{{id}}`) at `{{physicalPath}}`{{#if type}} [{{type}}]{{/if}}
-{{/each}}
-{{/if}}
 
+{{#each referenceVaults}}
+- `{{{name}}}` (`{{{id}}}`) at `{{{physicalPath}}}`{{#if type}} [{{{type}}}]{{/if}}
+{{/each}}
+
+{{/if}}
 {{#if targetProjects}}
 ### Selected project references
-{{#each targetProjects}}
-- `{{name}}` at `{{physicalPath}}` (access: `{{accessType}}`)
-{{/each}}
-{{/if}}
 
+{{#each targetProjects}}
+- `{{{name}}}` at `{{{physicalPath}}}` (access: `{{{accessType}}}`)
+{{/each}}
+
+{{/if}}
 All selected repositories, vaults, and project references are read-only context. Never write to them, regardless of displayed access labels. The only package write target is `data/<task-id>/` on a working branch of the contributor's fork.
 
-## Contribution flow and boundaries
+## User input
+
+- Community Task name: `{{{communityTaskName}}}`
+
+The brief below is the user's single source of authoring intent. Do not require fixed headings; interpret the complete brief as one context:
+
+````text
+{{{communityTaskBrief}}}
+````
+
+## Requirements
+
+### Required processing stages
+
+1. **Extract** the objective, user value, desired outcome, and any explicit requirements from the brief.
+2. **Structure** the brief into task inputs, required and optional fields, constraints, execution behavior, quality requirements, acceptance criteria, and optional publication context.
+3. **Supplement** only package-completeness metadata: canonical identifiers, required directory and file structure, locale metadata, manifest fields, and safe defaults for omitted publication information. Do not invent business requirements. Record every inferred value under `Assumptions`, and distinguish it from `User-provided content`.
+4. **Normalize** the task id as lowercase kebab-case, package paths, manifest declarations, locale coverage, read-only/write scope wording, and observable acceptance statements. Preserve the task name as the human-readable title.
+5. **Verify** every generated resource, binding, locale key, prompt template, store page, and manifest path. Use `npx hagitask validate <path> --json` as the primary validity check and run `npm test`; report the actual commands, exit status, JSON result, and errors.
+
+### Contribution flow and boundaries
 
 1. Check `gh --version`, `git --version`, and `gh auth status`. If authentication is missing, stop and report the exact result plus `gh auth login`.
 2. Resolve upstream metadata with `gh repo view`, capture its default branch, identify the authenticated fork owner, and reuse an existing fork whose parent is the upstream. Never push to upstream.
@@ -72,21 +84,14 @@ All selected repositories, vaults, and project references are read-only context.
 7. Run `npx hagitask validate . --json` and `npm test` from the Community Packages checkout. Use the HagiTask CLI exit code and `valid` field to determine package validity. Do not edit generated output, manually execute schemas, or hide failures. A failed CLI validation is a failed result.
 8. If both commands pass, commit only the package source, push the working branch to the fork, and create a non-interactive PR against the resolved upstream default branch. Report upstream URL, fork URL, default branch, branch, validation results, and PR URL.
 
-## Result format
+### Result format
 
-Return:
+Return these four parts:
 
-### User-provided content
-Summarize what the brief explicitly states.
-
-### Structured authoring context
-List the normalized objective, inputs, constraints, execution behavior, quality requirements, acceptance criteria, and publication context.
-
-### Assumptions
-List each package-completeness default or inferred metadata value separately. Do not present assumptions as user requirements.
-
-### Validation and contribution result
-Report generated files, the HagiTask CLI command and JSON result, the `npm test` exit status, any failure diagnostics, and (only if successful) the fork and PR details.
+- **User-provided content** — summarize what the brief explicitly states.
+- **Structured authoring context** — list the normalized objective, inputs, constraints, execution behavior, quality requirements, acceptance criteria, and publication context.
+- **Assumptions** — list each package-completeness default or inferred metadata value separately. Do not present assumptions as user requirements.
+- **Validation and contribution result** — report generated files, the HagiTask CLI command and JSON result, the `npm test` exit status, any failure diagnostics, and (only if successful) the fork and PR details.
 
 ## Output format
 - Return output in this exact order, using these level-2 headings: `## Conclusion`, `## Assumptions (if any)`, `## Next step`.
