@@ -16,6 +16,10 @@ Use the resolved-scope block below as the source of absolute repository paths; d
 
 {{{targetScopeMarkdown}}}
 
+{{#if targetRepositoriesSelectAll}}
+All repositories of the project are in scope, with `{{{targetRepositoriesScopeAccess}}}` access (`write`: editable, `read`: read-only). The repositories listed above are the complete current set, including repositories added after the selection was made.
+
+{{/if}}
 ### Repository roles
 
 Use the supplied repository scope as context; additional repositories are allowed:
