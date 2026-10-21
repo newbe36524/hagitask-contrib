@@ -1,8 +1,10 @@
-## Role
+## Executor rules
+
+### Role
 
 Prepare evidence-backed, localized HagiCode release-note drafts for the user's request. This is a future execution prompt: defining this task does not itself inspect tags, create notes, or stage output.
 
-## Preflight: repository scope and request
+### Preflight: repository scope and request
 
 Before reading or writing task data:
 
@@ -14,11 +16,11 @@ Before reading or writing task data:
 
 The user request does not supply a version. Do not ask for or infer one from the request.
 
-## One-month lookback window
+### One-month lookback window
 
 At task start, compute one fixed UTC cutoff equal to the current time minus 30 days. Only commits with a Git committer timestamp in the inclusive interval `[cutoff, task start]` may be considered for release-note content. Use each commit's `%ct` timestamp from its selected source repository; date-only history fields are not precise enough to determine eligibility. For existing history, match commit hashes to the selected source checkout and retrieve timestamps before considering commit details. Ignore older commits completely when deciding whether a tag needs notes or what those notes say. Skip tags whose per-repository ranges contain no eligible commits, even when their notes are missing. Do not extend the window to fill gaps or backfill older releases.
 
-## Discover versions from selected application repositories
+### Discover versions from selected application repositories
 
 1. Identify selected application/source repositories from the resolved repository scope and inspect their actual Git roots and tags. Read tags from every selected source repository that has readable access and a valid path; do not assume the release-notes checkout is the only source of version bounds.
 2. Exclude `unreleased` and tags that are not valid version tags or do not resolve to commits in their source repository. Compare version tags by semantic version precedence, never lexical order, date, directory order, or Git HEAD.
@@ -31,7 +33,7 @@ At task start, compute one fixed UTC cutoff equal to the current time minus 30 d
 9. Create missing release-note JSON and locale Markdown from only verified, in-window commits. Compare existing files first, skip identical content, and preserve conflicts unless replacement was explicitly requested.
 10. If no valid source tag is available, report a blocker and stop without writing. Never substitute HEAD, an unreleased tag, or a guessed version.
 
-## Evidence and release-note content
+### Evidence and release-note content
 
 - Compare each candidate history against both existing generated JSON and published Markdown. Identify only missing, supported user-visible improvements and fixes from in-window commits; consolidate related changes and omit internal-only changes unless evidence shows a user impact. Do not use older commits to fill gaps in existing notes.
 - Treat history JSON as evidence, not copy. Do not turn raw commit subjects, hashes, or chronological logs into release notes. Do not infer features, impact, fixes, release dates, or compatibility claims unsupported by source.
@@ -41,7 +43,7 @@ At task start, compute one fixed UTC cutoff equal to the current time minus 30 d
 - Markdown for each locale starts with `# HagiCode <tag>`, then applicable `##` sections in the same order and flat one-sentence bullets matching its JSON locale entry. Do not add nested bullets or raw-history details.
 - A missing required locale or unsupported translation makes that version incomplete. Report locale completeness; do not call an incomplete version Docs-ready.
 
-## Docs compatibility and synchronization
+### Docs compatibility and synchronization
 
 Read the selected Docs checkout's current release-notes route, sync implementation, and anchor normalization before checking links. The existing presentation is a localized landing page, not one page per version: Simplified Chinese uses `/release-notes/`, English uses `/en-US/release-notes/`, and other locales use `/<locale>/release-notes/`. Version links target that locale's landing route plus the canonical normalized version anchor (lowercase, one leading `v`, e.g. `v1.2.3`).
 
@@ -53,7 +55,7 @@ Run it against the selected Docs root. Before running it, check the Docs worktre
 
 Run the sync only when the release-notes source and Docs checkout are both selected with valid paths, release-notes has `write` access, Docs has `write` access, and release-notes has complete published Markdown for every required locale for each version being synchronized. Otherwise report which sync prerequisite is unavailable and continue only with operations allowed by the selected scope. If required source files are incomplete, report that Docs sync is blocked; do not create fallback Docs data.
 
-## Output and write boundary
+### Output and write boundary
 
 Create missing release-note history and output files only in the selected release-notes repository, and only when its resolved access mode is `write`:
 
@@ -65,6 +67,6 @@ The generated JSON has a top-level `tag` and `locales` object; each required loc
 
 Before writing, compare each intended release-notes path with existing content. If content already matches, skip it and report it. If an existing file differs, preserve it unchanged and report a conflict unless the user explicitly requested replacement. Never rewrite existing tag-history files. Do not write arbitrary Docs files; update only through the documented sync workflow and only with Docs `write` access. Do not publish a release, commit, or push.
 
-## Final report
+### Final report
 
 Report the request summary; the UTC cutoff and task-start time; chosen upper bound and source repositories that establish it; candidate tags found in each selected application repository; each processed, skipped, newly created, and blocked tag; per-repository source ranges and in-window commits; release-notes files created, updated, identical/skipped, and conflicting; Docs synchronization status and changed managed paths; locale completeness; route/anchor/link compatibility; and unresolved or missing evidence. State that the release was not published.
