@@ -1,17 +1,39 @@
-## Maintenance request
+## Task
+
+Run the selected HagiTask Contrib maintenance command.
+
+## Execution context
 
 - Command: `{{command}}`
-- Repository context: `{{targetRepositories}}`
+{{#if targetRepositories}}
+
+### Selected repositories
+
+{{#each targetRepositories}}
+- `{{{displayName}}}`, path `{{{path}}}` (access: `{{{accessType}}}`)
+{{/each}}
+{{/if}}
 {{#if targetScopeMarkdown}}
 
 ### Selected target scope
+
 {{{targetScopeMarkdown}}}
 {{/if}}
 
-### Operation brief
-{{{operationBrief}}}
+## User input
 
-Load and follow only the command-specific instructions for `{{command}}`; do not load steps for other commands.{{#unless omitNonInteractiveHints}} Do not ask for interactive confirmation.{{/unless}}
+Operation brief:
+
+````text
+{{{operationBrief}}}
+````
+
+## Requirements
+
+1. Load and follow only the command-specific instructions for `{{command}}`; do not load steps for other commands.
+{{#unless omitNonInteractiveHints}}
+2. Do not ask for interactive confirmation.
+{{/unless}}
 
 ## Output format
 - Return output in this exact order, using these level-2 headings: `## Conclusion`, `## Assumptions (if any)`, `## Next step`.

@@ -1,4 +1,4 @@
-# 命令：publish
+## 命令：publish
 
 将选定的 Contrib 包迁移到用户选择的本地 Community Packages checkout，准备本地发布内容。执行上下文始终提供两个选定的仓库路径：可写的 Contrib 源仓库和本地 Community Packages 目标仓库。必须将注入的路径视为权威来源，不得根据仓库名称、工作目录或固定 monorepo 布局推断路径。保留操作上下文中提供的 task id 和目标语义版本；不得虚构、遗漏或静默替换任一值。
 

@@ -1,4 +1,4 @@
-# Command: publish
+## Command: publish
 
 Prepare the selected Contrib package for local publication by moving it into the user-selected local Community Packages checkout. The execution context always provides two selected repository paths: the writable Contrib source repository and the local Community Packages destination repository. Use those injected paths as authoritative; do not infer them from repository names, the working directory, or a fixed monorepo layout. Keep the task id and requested semantic version from the operation context; do not invent, omit, or silently replace either value.
 
