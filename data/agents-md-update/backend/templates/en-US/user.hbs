@@ -6,6 +6,10 @@ Update agent documentation for the selected project and the normalized repositor
 
 ### Target documentation
 
+{{#if targetRepositoriesSelectAll}}
+All repositories of the project are in scope, with `{{{targetRepositoriesScopeAccess}}}` access (`write`: editable, `read`: read-only). The documents listed below are the complete current set, including repositories added after the selection was made.
+
+{{/if}}
 {{#if targetRepositories}}
 The selected repository documents are:
 

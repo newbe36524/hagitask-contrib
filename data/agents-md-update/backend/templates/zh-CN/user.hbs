@@ -6,6 +6,10 @@
 
 ### 目标文档
 
+{{#if targetRepositoriesSelectAll}}
+本次范围为项目的全部仓库，访问权限为 `{{{targetRepositoriesScopeAccess}}}`（`write` 为可编辑，`read` 为只读）。下方列出的文档是当前完整集合，包括选择之后加入项目的仓库。
+
+{{/if}}
 {{#if targetRepositories}}
 选定仓库中的文档：
 
