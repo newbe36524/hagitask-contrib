@@ -9,7 +9,9 @@
     { "name": "command", "source": "task-preset-input", "required": true, "description": "Must be new, dev, or publish." },
     { "name": "operationBrief", "source": "task-preset-input", "required": true, "description": "Operation objective and acceptance criteria." },
     { "name": "targetRepositories", "source": "computed-context", "description": "Selected repositories and their access modes." },
-    { "name": "targetScopeMarkdown", "source": "task-preset-input", "description": "Markdown description of the selected repository scope." }
+    { "name": "targetScopeMarkdown", "source": "task-preset-input", "description": "Markdown description of the selected repository scope." },
+    { "name": "targetRepositoriesSelectAll", "source": "computed-context", "description": "Optional. True when the repository scope is the resolved select-all state; absent or false means an explicit list." },
+    { "name": "targetRepositoriesScopeAccess", "source": "computed-context", "description": "Optional. Access of the resolved select-all scope: write or read. Present only when targetRepositoriesSelectAll is true." }
   ],
   "rendering": { "strictVariables": true, "trimBlocks": true },
   "locales": {

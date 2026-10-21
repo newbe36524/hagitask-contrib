@@ -20,6 +20,10 @@ Run the selected HagiTask Contrib maintenance command.
 {{{targetScopeMarkdown}}}
 {{/if}}
 
+{{#if targetRepositoriesSelectAll}}
+All repositories of the project are in scope, with `{{{targetRepositoriesScopeAccess}}}` access (`write`: editable, `read`: read-only). The repositories listed above are the complete current set, including repositories added after the selection was made.
+
+{{/if}}
 ## User input
 
 Operation brief:
