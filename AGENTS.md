@@ -29,6 +29,7 @@ Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validat
 - Keep package IDs, directory names, schema references, and locale resources consistent.
 - Put command-specific execution guidance in `backend/prompts.json` and locale templates; keep skills for reusable capabilities.
 - Do not copy or edit local schema files or generated publication output.
+- A new `data/<taskId>/` package needs a scenario image: a recipe in the img-gen set `scenario-stage-backgrounds` and a registry entry for the script key `hagitask.<taskId>` in the frontend registry `repos/web/src/config/scenarioBackgrounds.ts` (monorepo path). A package without one shows its group's default picture (`group-hagitask`). A missing image is not a validation failure.
 - Enabled task target selections may use only the scope sources `owner-project-repositories`, `vault-registry`, or `project-registry`; unknown sources fail validation.
 - Keep internal packages compatible with the community repository layout so promotion does not require restructuring.
 
