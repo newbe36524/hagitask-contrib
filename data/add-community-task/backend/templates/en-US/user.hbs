@@ -93,6 +93,8 @@ Return these four parts:
 - **Assumptions** — list each package-completeness default or inferred metadata value separately. Do not present assumptions as user requirements.
 - **Validation and contribution result** — report generated files, the HagiTask CLI command and JSON result, the `npm test` exit status, any failure diagnostics, and (only if successful) the fork and PR details.
 
+In the **Validation and contribution result**, add one hand-off line that names the new task ID, its `hagitask.<task-id>` script key, and states that a scenario image recipe and registry entry are still needed. Do not create the image or edit img-gen or frontend files; still write only under `data/<task-id>/`.
+
 ## Output format
 - Return output in this exact order, using these level-2 headings: `## Conclusion`, `## Assumptions (if any)`, `## Next step`.
 - `## Conclusion`: start with one bold sentence that states the outcome. Follow with at most 5 bullets of key facts. Write paths, commands, and identifiers as inline code. Use a table only for real comparisons.

@@ -93,6 +93,8 @@
 - **Assumptions**——逐项列出每个包完整性默认值或推断出的元数据，不要把假设写成用户要求。
 - **Validation and contribution result**——报告生成的文件、HagiTask CLI 的真实命令与 JSON 结果、`npm test` 的退出状态、所有失败诊断，以及（仅在成功时）fork 和 PR 详情。
 
+在 **Validation and contribution result** 中加入一行交接说明：写明新的 task ID、其 `hagitask.<task-id>` script key，并说明仍需补充场景图片的 recipe 和 registry 条目。不要创建图片，也不要编辑 img-gen 或前端文件；仍只写入 `data/<task-id>/`。
+
 ## 输出格式
 - 必须按以下顺序输出，并使用这些二级标题：`## 结论`、`## 假设（如有）`、`## 下一步`。
 - `## 结论`：第一句用一句加粗的话说明结果。之后最多列出 5 条关键事实。路径、命令和标识符使用行内代码。仅在确实需要对比时使用表格。
