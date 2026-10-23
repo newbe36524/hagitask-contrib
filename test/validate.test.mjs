@@ -336,3 +336,39 @@ test('every non-exempt user template carries the output-format block with its he
     }
   }
 });
+
+test('readme-updator exposes update and translate with matching prompts, bindings and locales', () => {
+  const packageRoot = join(repoRoot, 'data', 'readme-updator');
+  const readJson = (path) => JSON.parse(readFileSync(join(packageRoot, path), 'utf8'));
+  const manifest = readJson('manifest.json');
+  const commands = readJson('frontend/commands.json').commands;
+  const panel = readJson('frontend/panel.json');
+  const preset = readJson('backend/task-preset.json');
+  const prompts = readJson('backend/prompts.json');
+  const expected = ['update', 'translate', 'init'];
+
+  assert.equal(manifest.taskPresetId, 'readme-updator');
+  assert.equal(prompts.version, manifest.version);
+  assert.deepEqual(commands.map(({ id }) => id), expected);
+  assert.deepEqual(Object.keys(prompts.commandSystemPrompts), expected);
+  assert.equal(panel.sections.flatMap(({ fields }) => fields)
+    .find(({ id }) => id === 'repositoryScope').renderer, 'repository-access-selector');
+  assert.deepEqual(preset.targets.repositories.selections[0].allowedAccessTypes, ['write']);
+  assert.ok(preset.inputBindings.some(({ input, promptParameter }) => input === 'command' && promptParameter === 'command'));
+  assert.ok(preset.inputBindings.some(({ input, promptParameter }) => input === 'operationBrief' && promptParameter === 'operationBrief'));
+
+  for (const locale of manifest.localization.supportedLocales) {
+    const { systemTemplate, userTemplate } = prompts.locales[locale];
+    const system = readFileSync(join(packageRoot, 'backend', systemTemplate.replace('./', '')), 'utf8');
+    readFileSync(join(packageRoot, 'backend', userTemplate.replace('./', '')), 'utf8');
+    for (const key of ['public', 'multilingual', 'languages', 'sourceLanguage', 'style']) {
+      assert.match(system, new RegExp(`\`${key}\``));
+    }
+    assert.match(system, /\.hagicode\/hagitask\/readme-updator\/index\.md/);
+    for (const command of expected) {
+      const text = readFileSync(join(packageRoot, 'backend', prompts.commandSystemPrompts[command][locale].replace('./', '')), 'utf8');
+      assert.match(text, /\.hagicode\/hagitask\/readme-updator\/index\.md/);
+    }
+    assert.ok(readJson(`locales/${locale}.json`).taskPreset.displayName);
+  }
+});

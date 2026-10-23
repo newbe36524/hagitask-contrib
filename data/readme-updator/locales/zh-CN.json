@@ -1,0 +1,34 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "README 工具",
+    "title": "创建 README 任务",
+    "description": "按各仓库共享的需求文件刷新 README.md，或让翻译版 README 与源文件保持一致。",
+    "defaultTitle": "README 工具",
+    "submit": "运行 README 任务",
+    "submitting": "正在派发 README 任务..."
+  },
+  "panel": {
+    "projectLabel": "项目 *",
+    "projectHint": "维护会话会在你选中的项目内创建。",
+    "commandLabel": "命令 *",
+    "commandHint": "选择 init 创建需求文件，选择 update 刷新 README.md，或选择 translate 让翻译版 README 与其保持一致。",
+    "repositoryScopeLabel": "仓库范围",
+    "repositoryScopeHint": "选择要处理的仓库。不选择表示全部可写仓库，包括 MonoSpecs 主仓库。",
+    "operationTitle": "执行细节",
+    "operationDescription": "可选的本次运行说明。",
+    "operationBriefLabel": "说明",
+    "operationBriefHint": "可选。为本次运行补充上下文；每个仓库的索引文件仍是需求的唯一来源。",
+    "operationBriefPlaceholder": "本次运行的可选说明...",
+    "taskNameLabel": "任务名称",
+    "taskNameHint": "可选。留空时使用该预设的默认标题。",
+    "taskNamePlaceholder": "更新 hagicode-mono 的 README"
+  },
+  "commands": {
+    "groupTitle": "README 命令",
+    "groupDescription": "选择对每个仓库的 README 执行什么操作。",
+    "updateDescription": "依据仓库的需求文件和当前仓库事实刷新 README.md。",
+    "translateDescription": "在不修改源文件的前提下，让每个翻译版 README 与 README.md 保持一致。",
+    "initDescription": "探索仓库现状，写出需求文件；若仓库尚无 README.md，也一并生成。"
+  }
+}

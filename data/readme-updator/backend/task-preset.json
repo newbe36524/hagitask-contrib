@@ -1,0 +1,59 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/task-preset.schema.json",
+  "taskKey": "readmeUpdator",
+  "scriptKey": "autotask.readme-updator",
+  "defaultTargetType": "repository",
+  "requirements": [
+    {
+      "type": "agent",
+      "name": "any"
+    }
+  ],
+  "targets": {
+    "repositories": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "repositoryScope",
+          "selectionMode": "multiple",
+          "allowedAccessTypes": ["write"],
+          "output": "repositoryScope",
+          "required": false,
+          "scope": { "source": "owner-project-repositories" }
+        }
+      ]
+    },
+    "vaults": {
+      "enabled": false
+    },
+    "projects": {
+      "enabled": true,
+      "selections": [
+        {
+          "id": "projectId",
+          "selectionMode": "single",
+          "output": "projectId"
+        }
+      ]
+    }
+  },
+  "inputBindings": [
+    {
+      "input": "projectId",
+      "metadataKey": "autoTaskTargetProjectId",
+      "required": false
+    },
+    {
+      "input": "command",
+      "promptParameter": "command",
+      "metadataKey": "autoTaskReadmeCommand",
+      "required": true
+    },
+    {
+      "input": "operationBrief",
+      "promptParameter": "operationBrief",
+      "metadataKey": "autoTaskReadmeOperationBrief",
+      "required": false
+    }
+  ]
+}

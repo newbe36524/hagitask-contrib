@@ -1,0 +1,73 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": [
+    "en-US",
+    "zh-CN"
+  ],
+  "inputs": [
+    {
+      "name": "projectPath",
+      "source": "system",
+      "required": true,
+      "description": "Absolute path to the selected project root."
+    },
+    {
+      "name": "projectName",
+      "source": "computed-context",
+      "required": true,
+      "description": "Display name of the selected project."
+    },
+    {
+      "name": "targetRepositories",
+      "source": "computed-context",
+      "description": "Optional normalized repositories selected within the project."
+    },
+    {
+      "name": "targetRepositoriesSelectAll",
+      "source": "computed-context",
+      "description": "Optional. True when the repository scope is the resolved select-all state; absent or false means an explicit list."
+    },
+    {
+      "name": "targetRepositoriesScopeAccess",
+      "source": "computed-context",
+      "description": "Optional. Access of the resolved select-all scope: write or read. Present only when targetRepositoriesSelectAll is true."
+    },
+    { "name": "command", "source": "task-preset-input", "required": true },
+    {
+      "name": "operationBrief",
+      "source": "task-preset-input",
+      "description": "Optional notes for this run."
+    }
+  ],
+  "rendering": {
+    "strictVariables": false,
+    "trimBlocks": true
+  },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  },
+  "commandSystemPrompts": {
+    "update": {
+      "en-US": "./templates/en-US/commands/update.md",
+      "zh-CN": "./templates/zh-CN/commands/update.md"
+    },
+    "translate": {
+      "en-US": "./templates/en-US/commands/translate.md",
+      "zh-CN": "./templates/zh-CN/commands/translate.md"
+    },
+    "init": {
+      "en-US": "./templates/en-US/commands/init.md",
+      "zh-CN": "./templates/zh-CN/commands/init.md"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/locales.schema.json",
+  "taskPreset": {
+    "displayName": "README tool",
+    "title": "Create README Task",
+    "description": "Refresh README.md from each repository's shared requirements file, or bring translated READMEs in line with the source.",
+    "defaultTitle": "README tool",
+    "submit": "Run README task",
+    "submitting": "Queueing README task..."
+  },
+  "panel": {
+    "projectLabel": "Project *",
+    "projectHint": "The task session will be created inside the selected project.",
+    "commandLabel": "Command *",
+    "commandHint": "Choose init to create the requirements file, update to refresh README.md, or translate to bring translated READMEs in line with it.",
+    "repositoryScopeLabel": "Repository scope",
+    "repositoryScopeHint": "Select the repositories to work on. An empty selection means all writable repositories, including the MonoSpecs root.",
+    "operationTitle": "Execution details",
+    "operationDescription": "Optional notes for this run.",
+    "operationBriefLabel": "Notes",
+    "operationBriefHint": "Optional. Extra context for this run. Each repository's index file remains the source of requirements.",
+    "operationBriefPlaceholder": "Optional notes for this run...",
+    "taskNameLabel": "Task name",
+    "taskNameHint": "Optional. Leave empty to use the preset default title.",
+    "taskNamePlaceholder": "README update for hagicode-mono"
+  },
+  "commands": {
+    "groupTitle": "README commands",
+    "groupDescription": "Choose what happens to each repository's README.",
+    "updateDescription": "Refresh README.md against the repository's requirements file and current repository facts.",
+    "translateDescription": "Bring each translated README in line with README.md without editing the source.",
+    "initDescription": "Explore the repository and write its requirements file, and README.md too when it has none."
+  }
+}
