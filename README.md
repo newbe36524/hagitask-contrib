@@ -31,6 +31,7 @@ repository so a stabilized task can be moved without restructuring.
 ## Current development package
 
 - `data/add-community-task/`
+- `data/readme-updator/`
 
 ## Validate locally
 
