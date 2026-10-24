@@ -10,27 +10,17 @@ stabilizes, it may be promoted to
 for public distribution. This repository is the intermediate source of truth
 while the team develops and validates a task.
 
-## Repository layout
-
-```text
-data/<taskId>/
-  manifest.json
-  frontend/
-  backend/
-  locales/
-  store-page/
-scripts/
-  (validation is provided by @hagicode/hagitask)
-test/
-  validate.test.mjs
-```
-
 The package layout and schema contracts intentionally match the community
 repository so a stabilized task can be moved without restructuring.
 
-## Current development package
+## Current development packages
 
 - `data/add-community-task/`
+- `data/agents-md-update/`
+- `data/codegraph-tasks/`
+- `data/github-tasks/`
+- `data/hagicode-release-notes-auto-update/`
+- `data/hagitask-contrib-maintenance/`
 - `data/readme-updator/`
 
 ## Validate locally
@@ -43,8 +33,3 @@ npm test
 
 Only packages under `data/` are discovered. Generated catalogs and archives do
 not belong in this repository.
-
-For command-driven packages, command-specific execution steps belong in the
-optional `commandSystemPrompts` section of `backend/prompts.json` and its
-locale template files. Keep skills for reusable capabilities; do not use skill
-installation or discovery to carry the MonoSpecs command steps.
