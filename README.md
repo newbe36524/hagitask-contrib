@@ -19,7 +19,6 @@ repository so a stabilized task can be moved without restructuring.
 - `data/agents-md-update/`
 - `data/codegraph-tasks/`
 - `data/github-tasks/`
-- `data/hagicode-release-notes-auto-update/`
 - `data/hagitask-contrib-maintenance/`
 - `data/readme-updator/`
 
