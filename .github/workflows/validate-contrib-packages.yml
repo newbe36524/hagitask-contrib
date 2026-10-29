@@ -6,7 +6,7 @@ on:
       - "data/**"
       - "test/**"
       - "package.json"
-      - "package-lock.json"
+      - "pnpm-lock.yaml"
       - ".github/workflows/validate-contrib-packages.yml"
   push:
     branches:
@@ -23,17 +23,28 @@ jobs:
       - name: Checkout contrib packages
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: npm
+          cache: pnpm
 
       - name: Install locked toolchain
-        run: npm ci
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify install and lockfile stability
+        run: |
+          test -d node_modules
+          git diff --exit-code -- pnpm-lock.yaml
+
+      - name: Registry neutrality
+        run: pnpm run check:registry
 
       - name: Validate contrib packages
-        run: npm run validate
+        run: pnpm run validate
 
       - name: Run CLI smoke tests
-        run: npm test
+        run: pnpm test

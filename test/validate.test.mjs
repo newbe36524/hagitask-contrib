@@ -1,12 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 
 const repoRoot = resolve(import.meta.dirname, '..');
-const cli = resolve(repoRoot, 'node_modules/@hagicode/hagitask/dist/cli.js');
+// The CLI only runs when invoked by its real path; pnpm's node_modules entry is a symlink, so resolve it.
+const cli = realpathSync(resolve(repoRoot, 'node_modules/@hagicode/hagitask/dist/cli.js'));
 const agentsPackage = join(repoRoot, 'data', 'agents-md-update');
 
 function readPackageFile(path) {

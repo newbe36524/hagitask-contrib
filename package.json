@@ -6,12 +6,15 @@
   "description": "HagiCode Team internal HagiTask development packages and validation tooling.",
   "scripts": {
     "validate": "hagitask validate .",
-    "test": "node --test"
+    "test": "node --test",
+    "check:registry": "node scripts/check-registry-neutrality.mjs",
+    "test:registry": "node --test scripts/check-registry-neutrality.node-test.mjs"
   },
   "devDependencies": {
     "@hagicode/hagitask": "0.1.2"
   },
   "engines": {
     "node": ">=24.0.0"
-  }
+  },
+  "packageManager": "pnpm@12.16.1"
 }
