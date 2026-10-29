@@ -46,7 +46,7 @@ badges:
 
 `new` 和 `dev` 只写入 Contrib；只有 `publish` 会写入本地 Community checkout，并且会保留 Contrib 源包。任何 preflight、身份、复制、校验或测试失败都会停止流程，不会报告成功。
 
-`new` 和 `dev` 会运行 `npm run validate` 与 `npm test`。`publish` 执行 Contrib preflight，在本地复制和校验包，并保持 Contrib 源包不变。它不执行远程 Git 或 Pull Request 操作。
+`new` 和 `dev` 会运行 `pnpm run validate` 与 `pnpm test`。`publish` 执行 Contrib preflight，在本地复制和校验包，并保持 Contrib 源包不变。它不执行远程 Git 或 Pull Request 操作。
 
 ## 适用场景
 

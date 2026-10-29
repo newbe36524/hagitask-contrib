@@ -37,7 +37,7 @@ Add Community Task 面向想要发布 HagiTask Community Task、但不想手工�
 
 ### 把校验作为完成条件
 
-生成包之后，执行器会初始化嵌套 Schema 子模块，并运行仓库自带的 `npm run validate` 与 `npm test`，如实报告真实退出状态。修改生成产物或忽略错误来让运行看起来干净，是被明令禁止的。
+生成包之后，执行器会初始化嵌套 Schema 子模块，并运行仓库自带的 `pnpm run validate` 与 `pnpm test`，如实报告真实退出状态。修改生成产物或忽略错误来让运行看起来干净，是被明令禁止的。
 
 ### 完成整个贡献闭环
 

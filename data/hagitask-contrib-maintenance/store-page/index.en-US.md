@@ -46,7 +46,7 @@ This maintenance task provides three commands: `new` creates a complete Contrib 
 
 `new` and `dev` write only to Contrib. `publish` is the only command that writes to the local Community checkout, and it leaves the Contrib source unchanged. Any preflight, identity, copy, validation, or test failure stops the operation without reporting success.
 
-`new` and `dev` run `npm run validate` and `npm test`. `publish` performs Contrib preflight, copies and validates the package locally, and leaves the Contrib source unchanged. It does not perform remote Git or Pull Request operations.
+`new` and `dev` run `pnpm run validate` and `pnpm test`. `publish` performs Contrib preflight, copies and validates the package locally, and leaves the Contrib source unchanged. It does not perform remote Git or Pull Request operations.
 
 ## Best fit
 

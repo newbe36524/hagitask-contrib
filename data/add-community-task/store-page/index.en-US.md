@@ -37,7 +37,7 @@ Repository, vault, and project selections are read-only context. The executor re
 
 ### Treats validation as a completion condition
 
-After generating the package the executor runs the repository's own `npm run validate` and `npm test` using the installed CLI. It reports the real exit status. Editing generated output or dropping an error to make the run look clean is explicitly forbidden.
+After generating the package the executor runs the repository's own `pnpm run validate` and `pnpm test` using the installed CLI. It reports the real exit status. Editing generated output or dropping an error to make the run look clean is explicitly forbidden.
 
 ### Finishes the contribution
 

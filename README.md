@@ -25,9 +25,9 @@ repository so a stabilized task can be moved without restructuring.
 ## Validate locally
 
 ```bash
-npm ci
-npm run validate
-npm test
+pnpm install
+pnpm run validate
+pnpm test
 ```
 
 Only packages under `data/` are discovered. Generated catalogs and archives do

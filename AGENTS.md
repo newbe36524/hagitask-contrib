@@ -15,14 +15,14 @@ Inherits the monorepo rules from `/AGENTS.md`. This is the internal development 
 Run from `repos/hagitask-contrib/`:
 
 ```bash
-npm ci
-npm run validate
-npm test
+pnpm install
+pnpm run validate
+pnpm test
 ```
 
 Run validation and tests after changing a package contract, prompt binding, locale, or validator.
 
-Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validate-contrib-packages.yml` runs `npm ci`, `npm run validate`, and `npm test` (`test/validate.test.mjs`); keep local runs equivalent. `validate` is `hagitask validate .` from the pinned `@hagicode/hagitask` devDependency.
+Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validate-contrib-packages.yml` runs `pnpm install`, `pnpm run validate`, and `pnpm test` (`test/validate.test.mjs`); keep local runs equivalent. `validate` is `hagitask validate .` from the pinned `@hagicode/hagitask` devDependency.
 
 ## Conventions
 
@@ -41,6 +41,13 @@ This repository is an intermediate source, not the public publication target. Pr
 
 The `publish` operation receives the absolute Contrib source checkout and Community Packages target checkout from its execution context. Treat those paths as authoritative; verify that both exist and are distinct repository roots. Do not infer paths or use remotes, `gh`, forks, commits, pushes, pull requests, merges, or releases.
 
-Before copying anything, run `npm run validate` and `npm test` in this checkout, then verify the selected `data/<taskId>/` package, its directory name, `manifest.json.taskPresetId`, and the requested target semantic version. Any validation, identity, preflight, or version failure stops the operation and leaves the Contrib package unchanged.
+Before copying anything, run `pnpm run validate` and `pnpm test` in this checkout, then verify the selected `data/<taskId>/` package, its directory name, `manifest.json.taskPresetId`, and the requested target semantic version. Any validation, identity, preflight, or version failure stops the operation and leaves the Contrib package unchanged.
 
 Copy only the authored package source from `data/<taskId>/` to the target checkout's `data/<taskId>/`. Update the copied `manifest.json` to the target semantic version while preserving its public `$schema` URL. Never copy or edit catalogs, archives, generated `/index.json`, `/tasks/<taskId>.json`, `/packages/<taskId>.zip`, unrelated packages, or repository-level files. Report the task ID, old and new versions, copied and skipped files, both validation/test exit statuses, and the local target path.
+
+## Package management
+
+- The repository uses pnpm, pinned in `package.json` `packageManager`. Run `corepack enable` once, then `pnpm install`. `pnpm-lock.yaml` is the only lockfile; do not commit `package-lock.json`.
+- Settings live in `pnpm-workspace.yaml`. `allowBuilds` lists the dependencies whose install scripts may run (reviewed individually, `false` means reviewed and denied); review any new dependency that has an install script and add it there.
+- A local registry mirror belongs in `~/.npmrc` only. Never commit a `registry=` line or a mirror URL; `pnpm run check:registry` (also run in CI) fails on any non-`registry.npmjs.org` `tarball` in the lockfile and on mirror hosts in tracked files.
+- Undeclared imports fail under pnpm's strict layout: declare the package instead of hoisting it.
