@@ -16,6 +16,8 @@
     "publishDescription": "Copy, version, and validate a Contrib package locally."
   },
   "panel": {
+    "projectLabel": "Project *",
+    "projectHint": "The maintenance task will be created in the selected project.",
     "contextTitle": "Command and repository scope",
     "contextDescription": "Choose the operation and read-only repository context.",
     "repositoryAccessLabel": "Reference repositories",

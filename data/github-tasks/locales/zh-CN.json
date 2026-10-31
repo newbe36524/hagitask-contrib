@@ -15,6 +15,8 @@
     "updateRepoDescriptionDescription": "远程更新仓库描述、topics、主页 URL 及其他明确请求的仓库元数据。"
   },
   "panel": {
+    "projectLabel": "项目 *",
+    "projectHint": "GitHub 任务会在所选项目中创建。",
     "contextTitle": "GitHub 远程操作",
     "contextDescription": "可使用已选仓库，或从操作说明中的仓库 URL 解析目标，不产生本地输出文件。",
     "repositoryLabel": "仓库上下文",

@@ -19,6 +19,8 @@
     "exploreDescription": "使用 codegraph_explore 回答架构或影响问题。"
   },
   "panel": {
+    "projectLabel": "项目 *",
+    "projectHint": "CodeGraph 任务会在所选项目中创建。",
     "contextTitle": "目标与命令",
     "contextDescription": "选择全部仓库或指定仓库，再选择命令。",
     "targetModeLabel": "仓库范围",

@@ -15,6 +15,8 @@
     "updateRepoDescriptionDescription": "Update descriptions, topics, homepage URLs, and other explicitly requested repository metadata remotely."
   },
   "panel": {
+    "projectLabel": "Project *",
+    "projectHint": "The GitHub task will be created in the selected project.",
     "contextTitle": "GitHub remote operation",
     "contextDescription": "Use selected repositories or repository URLs from the operation brief without local output files.",
     "repositoryLabel": "Repository context",

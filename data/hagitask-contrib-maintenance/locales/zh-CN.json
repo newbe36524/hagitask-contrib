@@ -16,6 +16,8 @@
     "publishDescription": "在本地复制、更新版本并校验 Contrib 包。"
   },
   "panel": {
+    "projectLabel": "项目 *",
+    "projectHint": "维护任务会在所选项目中创建。",
     "contextTitle": "命令与仓库范围",
     "contextDescription": "选择操作和只读仓库上下文。",
     "repositoryAccessLabel": "参考仓库",

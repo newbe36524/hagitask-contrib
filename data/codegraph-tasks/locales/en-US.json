@@ -19,6 +19,8 @@
     "exploreDescription": "Use codegraph_explore to answer an architecture or impact question."
   },
   "panel": {
+    "projectLabel": "Project *",
+    "projectHint": "The CodeGraph task will be created in the selected project.",
     "contextTitle": "Target and command",
     "contextDescription": "Choose all repositories or a specific repository, then select a command.",
     "targetModeLabel": "Repository scope",
