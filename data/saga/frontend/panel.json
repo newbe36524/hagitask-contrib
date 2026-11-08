@@ -1,0 +1,116 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/panel.schema.json",
+  "surface": "drawer",
+  "title": { "key": "taskPreset.title" },
+  "description": { "key": "taskPreset.description" },
+  "defaultTitle": { "key": "taskPreset.defaultTitle" },
+  "submitLabel": { "key": "taskPreset.submit" },
+  "submittingLabel": { "key": "taskPreset.submitting" },
+  "sections": [
+    {
+      "id": "context",
+      "layout": "split",
+      "title": { "key": "panel.contextSectionTitle" },
+      "description": { "key": "panel.contextSectionDescription" },
+      "fields": [
+        {
+          "id": "projectId",
+          "renderer": "project-picker",
+          "label": { "key": "panel.projectLabel" },
+          "hint": { "key": "panel.projectHint" },
+          "required": true,
+          "output": "projectId"
+        },
+        {
+          "id": "targetRepositories",
+          "renderer": "repository-access-selector",
+          "label": { "key": "panel.repositoryAccessLabel" },
+          "hint": { "key": "panel.repositoryAccessHint" },
+          "required": false,
+          "output": "targetRepositories",
+          "selectionMode": "multiple",
+          "componentProps": {
+            "targetSelectionId": "targetRepositories",
+            "emptyTextKey": "panel.repositoryAccessEmpty"
+          }
+        }
+      ]
+    },
+    {
+      "id": "saga",
+      "layout": "stack",
+      "title": { "key": "panel.sagaSectionTitle" },
+      "description": { "key": "panel.sagaSectionDescription" },
+      "fields": [
+        {
+          "id": "command",
+          "renderer": "command-picker",
+          "label": { "key": "panel.commandLabel" },
+          "hint": { "key": "panel.commandHint" },
+          "required": true,
+          "output": "command",
+          "selectionMode": "single",
+          "dataSource": "./commands.json"
+        },
+        {
+          "id": "sagaId",
+          "renderer": "text",
+          "label": { "key": "panel.sagaIdLabel" },
+          "hint": { "key": "panel.sagaIdHint" },
+          "placeholder": { "key": "panel.sagaIdPlaceholder" },
+          "required": false,
+          "output": "sagaId"
+        },
+        {
+          "id": "objective",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.objectiveLabel" },
+          "hint": { "key": "panel.objectiveHint" },
+          "placeholder": { "key": "panel.objectivePlaceholder" },
+          "required": false,
+          "output": "objective"
+        },
+        {
+          "id": "constraints",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.constraintsLabel" },
+          "hint": { "key": "panel.constraintsHint" },
+          "required": false,
+          "output": "constraints"
+        },
+        {
+          "id": "workItems",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.workItemsLabel" },
+          "hint": { "key": "panel.workItemsHint" },
+          "required": false,
+          "output": "workItems"
+        },
+        {
+          "id": "verification",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.verificationLabel" },
+          "hint": { "key": "panel.verificationHint" },
+          "required": false,
+          "output": "verification"
+        },
+        {
+          "id": "references",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.referencesLabel" },
+          "hint": { "key": "panel.referencesHint" },
+          "required": false,
+          "output": "references"
+        },
+        {
+          "id": "runOptions",
+          "renderer": "multiline-text",
+          "label": { "key": "panel.runOptionsLabel" },
+          "hint": { "key": "panel.runOptionsHint" },
+          "required": false,
+          "output": "runOptions"
+        }
+      ]
+    }
+  ]
+}

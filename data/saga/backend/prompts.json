@@ -1,0 +1,108 @@
+{
+  "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
+  "version": "1.0.0",
+  "templateEngine": "handlebars",
+  "defaultLocale": "en-US",
+  "supportedLocales": [
+    "en-US",
+    "zh-CN"
+  ],
+  "inputs": [
+    {
+      "name": "command",
+      "source": "task-preset-input",
+      "required": true,
+      "description": "One of create or run."
+    },
+    {
+      "name": "sagaId",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "Saga id (kebab-case). create: the new or existing saga; run: the saga to run."
+    },
+    {
+      "name": "objective",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "create: what the saga must achieve, or the amendment text when the saga already exists."
+    },
+    {
+      "name": "constraints",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "Scope, non-goals, safety rules and forbidden areas."
+    },
+    {
+      "name": "workItems",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "Known work items or an outline, if the user has one."
+    },
+    {
+      "name": "verification",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "How items are verified: commands, environment and expected results."
+    },
+    {
+      "name": "references",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "Documents, paths or links to read first."
+    },
+    {
+      "name": "runOptions",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "run only: parallelism, stop conditions or extra instructions for the orchestrator."
+    },
+    {
+      "name": "projectPath",
+      "source": "system",
+      "required": true,
+      "description": "Absolute path to the selected project root. The saga root is <projectPath>/.hagicode/sagas."
+    },
+    {
+      "name": "omitNonInteractiveHints",
+      "source": "system",
+      "required": false,
+      "description": "Optional. True when interactive control is enabled for the agent CLI running this prompt."
+    },
+    {
+      "name": "targetScopeMarkdown",
+      "source": "task-preset-input",
+      "required": false,
+      "description": "Frontend-composed repository scope."
+    },
+    {
+      "name": "targetRepositories",
+      "source": "computed-context",
+      "required": false,
+      "description": "Optional selected repositories."
+    }
+  ],
+  "rendering": {
+    "strictVariables": false,
+    "trimBlocks": true
+  },
+  "locales": {
+    "en-US": {
+      "systemTemplate": "./templates/en-US/system.md",
+      "userTemplate": "./templates/en-US/user.hbs"
+    },
+    "zh-CN": {
+      "systemTemplate": "./templates/zh-CN/system.md",
+      "userTemplate": "./templates/zh-CN/user.hbs"
+    }
+  },
+  "commandSystemPrompts": {
+    "create": {
+      "en-US": "./templates/en-US/commands/create.md",
+      "zh-CN": "./templates/zh-CN/commands/create.md"
+    },
+    "run": {
+      "en-US": "./templates/en-US/commands/run.md",
+      "zh-CN": "./templates/zh-CN/commands/run.md"
+    }
+  }
+}
