@@ -23,9 +23,6 @@
         }
       ]
     },
-    "vaults": {
-      "enabled": false
-    },
     "projects": {
       "enabled": true,
       "selections": [

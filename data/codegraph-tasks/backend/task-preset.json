@@ -19,9 +19,7 @@
           "scope": { "source": "owner-project-repositories" }
         }
       ]
-    },
-    "vaults": { "enabled": false },
-    "projects": { "enabled": false }
+    }
   },
   "inputBindings": [
     { "input": "command", "promptParameter": "command", "metadataKey": "codegraphTaskCommand", "required": true },

@@ -2,7 +2,7 @@
   "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/manifest.schema.json",
   "schemaVersion": "1.0",
   "taskPresetId": "readme-updator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "file-text",
   "displayName": {
     "key": "taskPreset.displayName"
