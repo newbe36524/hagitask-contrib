@@ -167,13 +167,13 @@ importers:
   .:
     devDependencies:
       '@hagicode/hagitask':
-        specifier: 0.1.0-dev.36
-        version: 0.1.0-dev.36
+        specifier: 0.3.0
+        version: 0.3.0
 
 packages:
 
-  '@hagicode/hagitask@0.1.0-dev.36':
-    resolution: {integrity: sha512-5LZvVKC6uCEGNw19ZC7LLQ8GtuyAJGO7rmbq6p9G1FCjwAbjrOkOhQbrMUHvEH9qb965TF3yrDlKJWdCgBRlrg==}
+  '@hagicode/hagitask@0.3.0':
+    resolution: {integrity: sha512-pkEt5qIqi0nRFWttqlKFRO0z4ua37rJtflFqGyIm0yHNhI0i9F5bexu/9+CfxQN0XlwiZKlRhsYQrU1NfuagQw==}
     engines: {node: '>=24.0.0'}
     hasBin: true
 
@@ -199,7 +199,7 @@ packages:
 
 snapshots:
 
-  '@hagicode/hagitask@0.1.0-dev.36':
+  '@hagicode/hagitask@0.3.0':
     dependencies:
       ajv: 8.20.0
       commander: 14.0.3
