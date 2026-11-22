@@ -56,7 +56,7 @@ test('agents-md-update only binds AGENTS.md targets in both locales', () => {
   const panel = readPackageJson('frontend/panel.json');
   const preset = readPackageJson('backend/task-preset.json');
 
-  assert.equal(manifest.version, '2.0.0');
+  assert.equal(manifest.version, '2.0.1');
   assert.equal(prompts.version, manifest.version);
   assert.equal(manifest.schemaVersion, '1.0');
   assert.deepEqual(panel.sections.flatMap(({ fields }) => fields.map(({ id }) => id))

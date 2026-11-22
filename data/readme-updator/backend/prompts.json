@@ -1,6 +1,6 @@
 {
   "$schema": "https://tasks.hagicode.com/schemas/task-preset-plugin/prompt-package.schema.json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "templateEngine": "handlebars",
   "defaultLocale": "en-US",
   "supportedLocales": [
