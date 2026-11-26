@@ -16,13 +16,14 @@ Run from `repos/hagitask-contrib/`:
 
 ```bash
 pnpm install
+pnpm run check:registry
 pnpm run validate
 pnpm test
 ```
 
 Run validation and tests after changing a package contract, prompt binding, locale, or validator.
 
-Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validate-contrib-packages.yml` runs `pnpm install`, `pnpm run validate`, and `pnpm test` (`test/validate.test.mjs`); keep local runs equivalent. `validate` is `hagitask validate .` from the pinned `@hagicode/hagitask` devDependency.
+Node.js 24+ is required (`engines`; CI runs Node 24). `.github/workflows/validate-contrib-packages.yml` runs `pnpm install`, `pnpm run check:registry`, `pnpm run validate`, and `pnpm test` (`test/validate.test.mjs`); keep local runs equivalent. `validate` is `hagitask validate .` from the pinned `@hagicode/hagitask` devDependency.
 
 ## Conventions
 
